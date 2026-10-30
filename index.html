@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endoscope Inspection & Repair Log Tracker</title>
+    <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+
+    <section class="auth-gate" id="authGate">
+        <form class="auth-gate-card" id="authGateForm" autocomplete="off">
+            <svg class="auth-gate-brand-logo" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v6" />
+                <path d="M8 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v3" />
+                <path d="M12 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v6" />
+            </svg>
+            <p class="auth-gate-eyebrow">EndoLab · Secure access</p>
+            <h1 class="auth-gate-title"><span>Sign in</span><span class="auth-gate-title-context">to Scope Tracking</span></h1>
+            <p>Enter your assigned staff or administrator passcode.</p>
+            <label class="form-control-group" for="authPasscodeInput">Passcode
+                <input class="form-input-element" type="password" id="authPasscodeInput" name="passcode" autocomplete="current-password" required />
+            </label>
+            <button class="btn btn-interactive-primary" id="authSubmitButton" type="submit">Verify access</button>
+            <p class="auth-gate-message" id="authGateMessage" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+
+    <!-- Main Framework Flex Wrapper Shell -->
+    <div class="app-container" id="appRoot" hidden>
+        
+        <!-- Persistent Responsive Navigation Sidebar -->
+<aside class="app-sidebar" id="navigationSidebar">
+    <div class="sidebar-brand-wrapper">
+        <div class="brand-container">
+            <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v6" />
+                <path d="M8 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v3" />
+                <path d="M12 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v6" />
+            </svg>
+            <h1 class="brand-title">Endo<span>Lab</span></h1>
+        </div>
+        <div class="navbar-language-picker" role="group" aria-label="Interface language">
+            <button type="button" class="language-flag-button" data-app-language="en" aria-label="English" title="English" aria-pressed="true">
+                <svg class="language-flag-icon" viewBox="0 0 24 16" aria-hidden="true" focusable="false">
+                    <rect width="24" height="16" fill="#fff" />
+                    <path fill="#b22234" d="M0 0h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0zm0 2.46h24v1.23H0z" />
+                    <rect width="10.5" height="8.62" fill="#3c3b6e" />
+                    <path fill="#fff" d="M1 1h.6v.6H1zm2 0h.6v.6H3zm2 0h.6v.6H5zm2 0h.6v.6H7zm1.2 1.4h.6V3h-.6zm-6.2 0h.6V3H2zm2 0h.6V3H4zm2 0h.6V3H6zm-5 1.4h.6v.6H1zm2 0h.6v.6H3zm2 0h.6v.6H5zm2 0h.6v.6H7zm1.2 1.4h.6v.6h-.6zm-6.2 0h.6v.6H2zm2 0h.6v.6H4zm2 0h.6v.6H6z" />
+                </svg>
+            </button>
+            <button type="button" class="language-flag-button" data-app-language="id" aria-label="Bahasa Indonesia" title="Bahasa Indonesia" aria-pressed="false">
+                <svg class="language-flag-icon" viewBox="0 0 24 16" aria-hidden="true" focusable="false">
+                    <rect width="24" height="8" fill="#ce1126" />
+                    <rect y="8" width="24" height="8" fill="#fff" />
+                </svg>
+            </button>
+        </div>
+        <button type="button" id="mobileNavbarMenuToggle" aria-expanded="false" aria-controls="sidebarNavLinksGroup" aria-label="Open navigation menu">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+    
+    <!-- Link Container Layout Matrix -->
+    <nav class="sidebar-menu-links" id="sidebarNavLinksGroup">
+        <a href="#mirror-dashboard" class="menu-link active-link" id="navLinkMirrorDashboard" aria-current="page">
+            <span class="menu-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg></span>
+            <span class="menu-text">Tracking Dashboard</span>
+        </a>
+        <a href="#dashboard" class="menu-link" id="navLinkDashboard">
+            <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
+                <path d="M3 12A9 3 0 0 0 21 12"/>
+            </svg></span>
+            <span class="menu-text" data-trn="sidebar_nav_dashboard">Scope Entry & Records</span>
+        </a>
+        <a href="#parts-tracker" class="menu-link" id="navLinkParts">
+            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+  <circle cx="12" cy="12" r="3"/>
+</svg></span>
+            <span class="menu-text" data-trn="sidebar_nav_parts">Parts & Logistics</span>
+        </a>
+        <a href="#timeline-history" class="menu-link" id="navLinkTimeline">
+            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 16 14"/>
+</svg>
+</span>
+            <span class="menu-text" data-trn="sidebar_nav_timeline">Scope History Timeline</span>
+        </a>
+        <a href="#inventory" class="menu-link" id="navLinkInventory">
+            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+  <polyline points="3.29 7 12 12 20.71 7"/>
+  <line x1="12" y1="22" x2="12" y2="12"/>
+</svg>
+</span>
+            <span class="menu-text" data-trn="sidebar_nav_inventory">Inventory</span>
+        </a>
+        <a href="#admin-logs" class="menu-link" id="navLinkAdminLogs" style="border: 1px dashed rgba(37,99,235,0.4);">
+            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+  <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+  <path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+  <line x1="2" y1="2" x2="22" y2="22"/>
+</svg>
+</span>
+            <span class="menu-text" data-trn="sidebar_nav_admin_logs">Private Engineer Log</span>
+        </a>
+        <a href="#toggle-theme" class="menu-link" id="navLinkThemeToggle" style="margin-top: auto;">
+            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Flawless center dividing line -->
+  <line x1="12" y1="2" x2="12" y2="22" />
+  
+  <!-- Flawless outer boundary circle framework -->
+  <circle cx="12" cy="12" r="10" />
+  
+  <!-- Perfect, geometrically matching filled right half for dark mode -->
+  <path d="M12 2a10 10 0 0 1 0 20Z" fill="currentColor" />
+</svg>
+</span>
+            <span class="menu-text" data-trn="sidebar_nav_theme">Shift UI Theme</span>
+        </a>
+        
+    </nav>
+    <footer class="sidebar-footer">
+        <span class="sidebar-footer-brand">EndoLab</span>
+        <span class="brand-version">Beta · v3.1</span>
+    </footer>
+</aside>
+
+
+        <!-- Dynamic Main App Viewport Workspace -->
+        <main class="app-viewport-content" id="mainContentArea">
+            
+            <!-- Global Adaptive Section Header -->
+            <header class="workspace-header" id="globalHeader">
+                <div class="header-title-block">
+                    <h2 class="header-main-heading" id="viewTitleHeading">Endoscope Inspection & Repair Log</h2>
+                    <p class="header-sub-heading" id="viewSubHeading">Enterprise Clinical Equipment Node</p>
+                </div>
+            </header>
+
+
+            <!-- ==========================================================================
+               VIEW MODULE 1: SCOPE ENTRY AND SERVICE RECORDS
+               ========================================================================== -->
+            <div class="view-panel active-view" id="dashboardView">
+                <details class="scope-quick-update">
+                    <summary>Quick lab update or part request</summary>
+                    <form id="dashboardQuickCommentForm" class="scope-quick-update-form" autocomplete="off">
+                        <label class="form-control-group">Scope serial
+                            <select class="form-select-element" id="quickLinkScopeSerial" required></select>
+                        </label>
+                        <label class="form-control-group">Status note
+                            <input class="form-input-element" type="text" id="quickLinkCommentText" placeholder="Add a brief repair update" required />
+                        </label>
+                        <label class="form-control-group">Part request (optional)
+                            <input class="form-input-element" type="text" id="quickLinkPartRequest" placeholder="Part or component" />
+                        </label>
+                        <button class="btn btn-interactive-primary" type="submit">Save quick update</button>
+                    </form>
+                </details>
+                <div class="workspace-layout-split">
+                    <!-- Left Component Form Layout Block -->
+                    <section class="workspace-card container-form-card">
+                        <div class="section-card-header">
+                            <h3 class="section-card-title" data-trn="form_title_report">New Service Verification Report</h3>
+                            <p class="section-card-subtitle" data-trn="form_sub_report">Document diagnostic inspections and calibration benchmarks.</p>
+                        </div>
+                        
+                        <form class="report-submission-form" id="serviceReportForm" autocomplete="off">
+                            <fieldset class="form-section-fieldset">
+                            <legend class="fieldset-legend-title" data-trn="legend_metadata">Equipment Metadata</legend>
+                            
+                            <!-- Row 1: Model & Classification -->
+                            <div class="form-input-row-grid grid-2">
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="scopeModel" data-trn="lbl_model">Scope Model</label>
+                                    <input class="form-input-element" type="text" id="scopeModel" name="scopeModel" placeholder="e.g., EC-760ZP" required />
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="scopeType" data-trn="lbl_class">Scope Classification</label>
+                                    <select class="form-select-element" id="scopeType" name="scopeType" required>
+                                        <option value="" disabled selected>Select class...</option>
+                                        <option value="Gastroscope">Video Gastroscope</option>
+                                        <option value="Colonoscope">Video Colonoscope</option>
+                                        <option value="Duodenoscope">Video Duodenoscope</option>
+                                        <option value="Bronchoscope">Video Bronchoscope</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Serial Number & Facility Location -->
+                            <div class="form-input-row-grid grid-2">
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="serialNumber" data-trn="lbl_serial">Serial Number (S/N)</label>
+                                    <input class="form-input-element" type="text" id="serialNumber" name="serialNumber" placeholder="123231" required />
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="clientFacility" data-trn="lbl_client">Client / Facility Source</label>
+                                    <input class="form-input-element" type="text" id="clientFacility" name="clientFacility" placeholder="Hospital wing..." required />
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Operational State, Warranty Flag & Repair Tier Classification -->
+                            <div class="form-input-row-grid grid-3">
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="scopeStatusState" data-trn="lbl_state">Current Operational State</label>
+                                    <select class="form-select-element" id="scopeStatusState" name="scopeStatusState" required>
+                                        <option value="Incoming (Pending Report)">Incoming (Pending Report)</option>
+                                        <option value="In Repair">In Repair</option>
+                                        <option value="Waiting for Parts">Waiting for Parts</option>
+                                        <option value="Backup Stock Pool">Backup Stock Pool</option>
+                                        <option value="Dispatched / Completed">Dispatched / Completed</option>
+                                    </select>
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="warrantyStatus" data-trn="lbl_warranty">Warranty Tracking Flag</label>
+                                    <select class="form-select-element" id="warrantyStatus" name="warrantyStatus" required>
+                                        <option value="No Warranty">Out of Warranty</option>
+                                        <option value="Active Warranty">Active Warranty Coverage</option>
+                                    </select>
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="repairComplexity" data-trn="lbl_tier">Repair Tier Classification</label>
+                                    <select class="form-select-element" id="repairComplexity" name="repairComplexity" required>
+                                        <option value="" disabled selected>Select repair category...</option>
+                                        <option value="Minor">Minor Repair (30 Days)</option>
+                                        <option value="Medium">Medium Repair (30 Days)</option>
+                                        <option value="Major">Major Repair (30 Days)</option>
+                                        <option value="Overhaul">Overhaul Repair (60 Days)</option>
+                                        <option value="Major + CCD">Major + CCD Repair (60 Days)</option>
+                                        <option value="Overhaul + CCD">Overhaul + CCD Repair (60 Days)</option>
+                                        <option value="Warranty">Warranty (Expedited Priority)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 4: Technician, Target Date, Down Payment & File Status Flags -->
+                            <div class="form-input-row-grid grid-2">
+                                <div class="form-input-row-grid grid-2" style="gap: 16px;">
+                                    <div class="form-control-group">
+                                        <label class="field-label-text" for="technicianName" data-trn="lbl_tech">Technician</label>
+                                        <input class="form-input-element" type="text" id="technicianName" name="technicianName" placeholder="Operator name..." required />
+                                    </div>
+                                    <div class="form-control-group">
+                                        <label class="field-label-text" for="logDate" data-trn="lbl_date">Target Entry Date</label>
+                                        <input class="form-input-element" type="date" id="logDate" name="logDate" required />
+                                    </div>
+                                </div>
+                                <div class="form-input-row-grid grid-2" style="gap: 16px;">
+                                    <div class="form-control-group">
+                                        <label class="field-label-text" for="downPaymentDate" data-trn="lbl_dp">Down Payment Confirmed Date</label>
+                                        <input class="form-input-element" type="date" id="downPaymentDate" name="downPaymentDate" />
+                                    </div>
+                                    <div class="form-control-group">
+                                        <label class="field-label-text" for="inspectionStatus" data-trn="lbl_ver_status">Log Verification Status</label>
+                                        <select class="form-select-element" id="inspectionStatus" name="inspectionStatus" required>
+                                            <option value="Pending">Pending Review</option>
+                                            <option value="Pass">Pass (Certified)</option>
+                                            <option value="Fail">Fail (Damaged)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-control-group scope-estimated-date-group">
+                                    <label class="field-label-text" for="scopeEstimatedEndDate">Estimated End Date</label>
+                                    <input class="form-input-element" type="text" id="scopeEstimatedEndDate" readonly aria-describedby="scopeEstimatedEndDateHint" value="Select a repair category and start date" />
+                                    <span class="scope-estimated-date-hint" id="scopeEstimatedEndDateHint">Calculated automatically from the repair category and down payment date.</span>
+                                </div>
+                            </div>
+                        </fieldset>
+
+
+                            <fieldset class="form-section-fieldset">
+                                <legend class="fieldset-legend-title" data-trn="legend_narratives">System Narratives</legend>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="complaintTextField" data-trn="lbl_complaint">Client Complaint Details</label>
+                                    <textarea class="form-textarea-element" id="complaintTextField" name="complaintTextField" rows="2" placeholder="Symptoms reported..."></textarea>
+                                </div>
+                            </fieldset>
+                        <!-- -->
+                            <!-- 33-Point Structural Component Check Evaluation Matrix Layout -->
+                            <fieldset class="form-section-fieldset">
+                                <legend class="fieldset-legend-title" data-trn="legend_anatomy">Anatomy Verification Matrix (Fields 01 - 33)</legend>
+                                <p class="fieldset-context-hint" data-trn="legend_anatomy_hint">Scroll container to review component configurations.</p>
+                                                                <div class="anatomy-scroll-container">
+                                    
+                                    <!-- 01. Bending Rubber -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">01</span>
+                                            <label class="anatomy-name-label">Bending Rubber</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_01"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_01" placeholder="Condition, fluid integrity notes..." />
+                                    </div>
+
+                                    <!-- 02. Distal Head -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">02</span>
+                                            <label class="anatomy-name-label">Distal Head</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_02"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_02" placeholder="Lens pitting or structural damage specs..." />
+                                    </div>
+
+                                    <!-- 03. Nozzle Air/Water -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">03</span>
+                                            <label class="anatomy-name-label">Nozzle Air/Water</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_03"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_03" placeholder="Fluid blockage, alignment parameters..." />
+                                    </div>
+
+                                    <!-- 04. Camera Lens -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">04</span>
+                                            <label class="anatomy-name-label">Camera Lens</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_04"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_04" placeholder="Optical window clarity, deep surface scratch verification..." />
+                                    </div>
+
+                                    <!-- 05. Light Guide Lens -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">05</span>
+                                            <label class="anatomy-name-label">Light Guide Lens</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_05"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_05" placeholder="Illumination throughput profiles, sealing window boundaries..." />
+                                    </div>
+
+                                    <!-- 06. Biopsy Channel -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">06</span>
+                                            <label class="anatomy-name-label">Biopsy Channel</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_06"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_06" placeholder="Bezel burrs, tearing, deployment pathway obstructions..." />
+                                    </div>
+
+                                    <!-- 07. Bending Section -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">07</span>
+                                            <label class="anatomy-name-label">Bending Section</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_07"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_07" placeholder="Scratches, buckling, structural scaling changes..." />
+                                    </div>
+
+                                    <!-- 08. Insertion Tube -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">08</span>
+                                            <label class="anatomy-name-label">Insertion Tube</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_08"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_08" placeholder="Tension accuracy, exterior chemical layer traits..." />
+                                    </div>
+
+                                    <!-- 09. Stress Rubber Boot #1 -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">09</span>
+                                            <label class="anatomy-name-label">Stress Rubber Boot #1</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_09"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_09" placeholder="Separation from main housing, material degradation..." />
+                                    </div>
+
+                                    <!-- 10. Biopsy Inlet Port -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">10</span>
+                                            <label class="anatomy-name-label">Biopsy Inlet Port</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_10"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_10" placeholder="Cap thread parameters, micro-deformation wear..." />
+                                    </div>
+
+                                    <!-- 11. Control Body -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">11</span>
+                                            <label class="anatomy-name-label">Control Body</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_11"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_11" placeholder="Ergonomic chassis cracking, grip fluid border checks..." />
+                                    </div>
+                                                                        <!-- 12. Angulation Up -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">12</span>
+                                            <label class="anatomy-name-label">Angulation Up</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_12"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_12" placeholder="Gear slip, tracking resistance, pull-back play..." />
+                                    </div>
+
+                                    <!-- 13. Angulation Down -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">13</span>
+                                            <label class="anatomy-name-label">Angulation Down</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_13"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_13" placeholder="Travel range limits, cable alignment properties..." />
+                                    </div>
+
+                                    <!-- 14. Angulation Left -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">14</span>
+                                            <label class="anatomy-name-label">Angulation Left</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_14"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_14" placeholder="Free rotation mechanics, wire fraying profiling..." />
+                                    </div>
+
+                                    <!-- 15. Angulation Right -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">15</span>
+                                            <label class="anatomy-name-label">Angulation Right</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_15"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_15" placeholder="Free tracking play adjustments, torque consistency..." />
+                                    </div>
+
+                                    <!-- 16. Brake U/D -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">16</span>
+                                            <label class="anatomy-name-label">Brake U/D</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_16"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_16" placeholder="Friction lock efficacy, slippage under manual strain..." />
+                                    </div>
+
+                                    <!-- 17. Brake L/R -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">17</span>
+                                            <label class="anatomy-name-label">Brake L/R</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_17"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_17" placeholder="Friction lock mechanism hold performance..." />
+                                    </div>
+
+                                    <!-- 18. Air Water Channel -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">18</span>
+                                            <label class="anatomy-name-label">Air Water Channel</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_18"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_18" placeholder="Piston cylinder scoring, fluid delivery response..." />
+                                    </div>
+
+                                    <!-- 19. Suction Channel -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">19</span>
+                                            <label class="anatomy-name-label">Suction Channel</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_19"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_19" placeholder="Suction return response speed, scoring, pooling..." />
+                                    </div>
+
+                                    <!-- 20. Switch Electrical (1, 2, 3, 4, 5) -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">20</span>
+                                            <label class="anatomy-name-label">Switch Electrical (1, 2, 3, 4, 5)</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_20"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_20" placeholder="Tactile button membrane return, internal contact resistance..." />
+                                    </div>
+
+                                    <!-- 21. Stress Rubber Boot #2 -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">21</span>
+                                            <label class="anatomy-name-label">Stress Rubber Boot #2</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_21"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_21" placeholder="Universal light guide cable connection strain checks..." />
+                                    </div>
+
+                                    <!-- 22. Light Guide Tube -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">22</span>
+                                            <label class="anatomy-name-label">Light Guide Tube</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_22"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_22" placeholder="Cable external skin buckling or fiber twisting artifacts..." />
+                                    </div>
+
+                                                                        <!-- 23. Stress Rubber Boot #3 -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">23</span>
+                                            <label class="anatomy-name-label">Stress Rubber Boot #3</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_23"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_23" placeholder="Electrical umbilical connector block junction checks..." />
+                                    </div>
+
+                                    <!-- 24. Electrical Housing -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">24</span>
+                                            <label class="anatomy-name-label">Electrical Housing</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_24"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_24" placeholder="Metal block casing tracking, structural crack checking..." />
+                                    </div>
+
+                                    <!-- 25. Electrical Pin Unit -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">25</span>
+                                            <label class="anatomy-name-label">Electrical Pin Unit</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_25"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_25" placeholder="Bent golden connector pins, pin corrosion scaling..." />
+                                    </div>
+
+                                    <!-- 26. Light Guide Prong -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">26</span>
+                                            <label class="anatomy-name-label">Light Guide Prong</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_26"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_26" placeholder="Fiber end lens burn tracing, fusion scaling check..." />
+                                    </div>
+
+                                    <!-- 27. Auxiliary Water Inlet/Jet -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">27</span>
+                                            <label class="anatomy-name-label">Auxiliary Water Inlet/Jet</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_27"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_27" placeholder="Forward connector blockage, reverse flow seal tests..." />
+                                    </div>
+
+                                    <!-- 28. Tensioner -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">28</span>
+                                            <label class="anatomy-name-label">Tensioner</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_28"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_28" placeholder="Angulation tracking system baseline friction calibration..." />
+                                    </div>
+
+                                    <!-- 29. Camera CCD / NBI / Eyescan -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">29</span>
+                                            <label class="anatomy-name-label">Camera CCD / NBI / Eyescan</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_29"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_29" placeholder="Sensor noise baseline metrics, narrow band lens shifts..." />
+                                    </div>
+
+                                    <!-- 30. Elevator Lever -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">30</span>
+                                            <label class="anatomy-name-label">Elevator Lever</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_30"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_30" placeholder="Mechanical control wire lever tracking lift limits..." />
+                                    </div>
+
+                                    <!-- 31. Channel Elevator -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">31</span>
+                                            <label class="anatomy-name-label">Channel Elevator</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_31"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_31" placeholder="Micro-leak fluid ingress test, cellular residue profiles..." />
+                                    </div>
+
+                                    <!-- 32. Actuator Arm -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">32</span>
+                                            <label class="anatomy-name-label">Actuator Arm</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_32"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_32" placeholder="Force articulation hinge wear, geometric bend profiles..." />
+                                    </div>
+
+                                    <!-- 33. Fiber Image / Ocular Tower -->
+                                    <div class="anatomy-component-card">
+                                        <div class="anatomy-meta-row">
+                                            <span class="anatomy-index">33</span>
+                                            <label class="anatomy-name-label">Fiber Image / Ocular Tower</label>
+                                            <select class="anatomy-status-select" name="anatomy_status_33"><option value="Pass">Pass</option><option value="Fail">Fail</option></select>
+                                        </div>
+                                        <input class="anatomy-desc-input" type="text" name="anatomy_desc_33" placeholder="Eyepiece lens scratch checks, fiber pixel transmission alignment..." />
+                                    </div>
+
+                                </div> <!-- Close .anatomy-scroll-container -->
+
+                                    
+                            </fieldset>
+
+                            <fieldset class="form-section-fieldset">
+                                <legend class="fieldset-legend-title" data-trn="legend_logistics">Logistics & File Attachments</legend>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="formPartRequestField" data-trn="lbl_embed_part">Embed Quick Spare Part Request</label>
+                                    <input class="form-input-element" type="text" id="formPartRequestField" name="formPartRequestField" placeholder="e.g., Replacement O-Ring Kit, BR-04 Sleeve" />
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="formMediaCloudUrl" data-trn="lbl_cloud_url">Cloud File References / Workspace Repositories</label>
+                                    <input class="form-input-element" type="url" id="formMediaCloudUrl" name="formMediaCloudUrl" placeholder="https://google.com..." />
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="formRepairNotes" data-trn="lbl_action_notes">Chronological Repair Action Notes</label>
+                                    <textarea class="form-textarea-element" id="formRepairNotes" name="formRepairNotes" rows="2" placeholder="Calibration parameter corrections, actions taken..."></textarea>
+                                </div>
+                            </fieldset>
+
+                            <div class="form-action-footer-wrapper">
+                                <button type="reset" class="btn btn-interactive-outline" data-trn="btn_clear">Clear Fields</button>
+                                <button type="submit" class="btn btn-interactive-primary" data-trn="btn_submit_log">Commit Service Log</button>
+                            </div>
+                        </form>
+                    </section>
+                    
+
+                    <!-- Right Component Data Grid Block -->
+                    <section class="workspace-card container-table-card">
+                        <div class="section-card-header">
+                            <h3 class="section-card-title" data-trn="table_title_logs">Logged Equipment Inventory Entries</h3>
+                            <p class="section-card-subtitle" data-trn="table_sub_logs">Real-time repository sync with local file filters.</p>
+                        </div>
+                        
+                        <div class="table-filtering-toolbar-layout">
+                            <div class="search-input-field-wrapper">
+                                <span class="search-addon-icon">🔍</span>
+                                <input class="toolbar-search-input" type="text" id="tableSearchInput" placeholder="Search by unique Serial Number..." />
+                            </div>
+                            <div class="filter-dropdown-wrapper">
+                                <select class="toolbar-filter-dropdown" id="tableStatusFilter">
+                                    <option value="ALL">All Statuses</option>
+                                    <option value="Pass">Pass Only</option>
+                                    <option value="Fail">Fail Only</option>
+                                    <option value="Pending">Pending Only</option>
+                                    <option value="OVERDUE">Overdue Scopes</option>
+                                    <option value="ACTIVE">Active Scopes</option>
+                                </select>
+                            </div>
+                            <div class="toolbar-action-button-group">
+                                <button type="button" class="btn btn-secondary" id="actionExportCsv" data-trn="btn_export_csv">Export CSV</button>
+                                <button type="button" class="btn btn-success" id="actionPrintSummary" data-trn="btn_print_summary">Print Summary</button>
+                            </div>
+                        </div>
+
+                        <div class="data-table-overflow-scroller">
+                            <table class="clinical-records-table" id="masterLogDataTable">
+                                <thead>
+                                    <tr>
+                                        <th data-trn="th_target_date">Incoming Date</th>
+                                        <th data-trn="th_device_profile">Device Profile</th>
+                                        <th data-trn="th_serial_number">Serial Number</th>
+                                        <th data-trn="th_op_state">Operational State</th>
+                                        <th data-trn="th_warranty">Warranty</th>
+                                        <th data-trn="th_time_remaining">Time Remaining</th>
+                                        <th data-trn="th_diagnostics">Diagnostics / Links</th>
+                                        <th data-trn="th_actions">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="masterLogDataTableBody"></tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    
+                    <!-- Dynamic System Notifications Dashboard Banner Node -->
+                    <section class="alert-notifications-deck" id="systemAlertsBannerDeck">
+                        <!-- JavaScript automatically projects critical stock alerts & urgent overdue warnings here -->
+                    </section>
+                    <!-- Dynamic Predictive Analytics Alert Banner Vector Container -->
+                    <section class="alert-notifications-deck" id="predictiveAnalyticsAlertsDeck" style="margin-top: 12px; margin-bottom: 12px;">
+                        <!-- JavaScript automatically projects advanced failure warnings and high-risk recurrence anomalies here -->
+                    </section>
+
+
+                </div>
+            </div>
+
+            <!-- ==========================================================================
+               VIEW MODULE 2: PARTS TRACKING & PROCUREMENT WORKSPACE
+               ========================================================================== -->
+            <div class="view-panel" id="partsProcurementView">
+                <div class="workspace-layout-split">
+                    
+                    <section class="workspace-card container-form-card">
+                        <div class="section-card-header">
+                            <h3 class="section-card-title">Request a Part</h3>
+                            <p class="section-card-subtitle">Create a request linked to an active repair. Procurement will review pricing and vendor details.</p>
+                        </div>
+                        <form class="report-submission-form" id="partsProcurementForm" autocomplete="off">
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="partScopeSearch">Active repair (ID / serial)</label>
+                                <div class="scope-search-control">
+                                    <input class="form-input-element" type="search" id="partScopeSearch" name="partScopeSearch" placeholder="Search by repair ID, serial, or model…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="activeRepairResults" required />
+                                    <div class="searchable-scope-results" id="activeRepairResults" role="listbox" aria-label="Active repairs" hidden></div>
+                                </div>
+                                <input type="hidden" id="partScopeLogId" name="partScopeLogId" />
+                                <span class="form-help-text" id="partScopeHelp">Choose a listed active scope to link this request.</span>
+                            </div>
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="partName">Part name</label>
+                                <input class="form-input-element" type="text" id="partName" name="partName" placeholder="e.g., Insertion tube mesh sleeve" required />
+                            </div>
+                            <div class="form-input-row-grid grid-2">
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="partQuantity">Quantity</label>
+                                    <input class="form-input-element" type="number" id="partQuantity" name="partQuantity" min="1" step="1" value="1" required />
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="partCost">Estimated price (optional)</label>
+                                    <input class="form-input-element" type="number" id="partCost" name="partCost" min="0" step="0.01" inputmode="decimal" placeholder="0.00" />
+                                </div>
+                            </div>
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="partSourceLink">Vendor source link (optional)</label>
+                                <input class="form-input-element" type="url" id="partSourceLink" name="partSourceLink" placeholder="https://…" />
+                            </div>
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="partSupplier">Preferred vendor (optional)</label>
+                                <input class="form-input-element" type="text" id="partSupplier" name="partSupplier" list="knownVendorOptions" placeholder="Vendor name" />
+                                <datalist id="knownVendorOptions"></datalist>
+                            </div>
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="partRequestNotes">Notes / instructions (optional)</label>
+                                <textarea class="form-textarea-element" id="partRequestNotes" name="partRequestNotes" rows="3" placeholder="Fit, compatibility, urgency, or other request details…"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-interactive-primary parts-submit-button">Submit part request</button>
+                        </form>
+                    </section>
+
+                    <section class="workspace-card container-table-card parts-request-list">
+                        <div class="section-card-header">
+                            <h3 class="section-card-title">Parts request register</h3>
+                            <p class="section-card-subtitle">Request status and order progress.</p>
+                        </div>
+                        <div class="data-table-overflow-scroller">
+                            <div class="parts-request-list-grid" id="partsProcurementTableBody" aria-live="polite"></div>
+                        </div>
+                    </section>
+                </div>
+
+                <section class="workspace-card admin-procurement-panel" id="adminProcurementPanel" hidden aria-labelledby="adminProcurementTitle">
+                    <header class="section-card-header">
+                        <h3 class="section-card-title" id="adminProcurementTitle">Procurement review</h3>
+                        <p class="section-card-subtitle">Review technician requests, record purchasing details, and maintain vendor quality history.</p>
+                    </header>
+                    <div class="admin-procurement-grid">
+                        <section class="procurement-subpanel" aria-labelledby="pendingPartsTitle">
+                            <h4 id="pendingPartsTitle">Requests awaiting review / order</h4>
+                            <div class="admin-procurement-list" id="adminProcurementReviewList" aria-live="polite"></div>
+                        </section>
+                        <section class="procurement-subpanel" aria-labelledby="vendorQualityTitle">
+                            <h4 id="vendorQualityTitle">Vendor quality history</h4>
+                            <div class="vendor-quality-list" id="vendorQualityList"></div>
+                        </section>
+                    </div>
+                    <section class="procurement-subpanel procurement-map-panel" aria-labelledby="partsTransitTitle">
+                        <div class="section-card-header">
+                            <div>
+                                <h4 id="partsTransitTitle">Incoming orders · simulated transit</h4>
+                                <p class="section-card-subtitle">Orders with origin, arrival destination, and ETA are shown. Route progress is estimated, not live carrier tracking.</p>
+                            </div>
+                        </div>
+                        <div class="parts-transit-list" id="partsTransitList" aria-live="polite"></div>
+                        <div class="parts-map-wrap">
+                            <svg id="partsTransitMap" class="parts-transit-map" viewBox="0 0 900 390" role="img" aria-labelledby="partsMapTitle partsMapDescription">
+                                <title id="partsMapTitle">Estimated parts shipment routes</title>
+                                <desc id="partsMapDescription">A schematic map showing order routes and plane positions calculated from order dates and estimated arrival dates.</desc>
+                                <defs>
+                                    <linearGradient id="partsMapOcean" x1="0" x2="1" y1="0" y2="1">
+                                        <stop offset="0" stop-color="#d9e7ec" />
+                                        <stop offset="1" stop-color="#bfd3dc" />
+                                    </linearGradient>
+                                </defs>
+                                <rect class="map-ocean" x="0" y="0" width="900" height="390" rx="14" />
+                                <g class="map-graticule" aria-hidden="true">
+                                    <path d="M0 85H900 M0 155H900 M0 225H900 M0 295H900 M150 0V390 M300 0V390 M450 0V390 M600 0V390 M750 0V390" />
+                                </g>
+                                <g class="map-land" id="partsMapContinents" aria-hidden="true"></g>
+                                <path class="map-route" id="partsTransitRoute" d="" />
+                                <circle class="map-origin-dot" id="partsMapOriginDot" cx="0" cy="0" r="6" visibility="hidden" />
+                                <circle class="map-destination-dot" id="partsMapDestinationDot" cx="679" cy="205" r="7" />
+                                <g id="partsMapPlane" class="map-plane" visibility="hidden" aria-hidden="true">
+                                    <circle r="13"></circle><text y="5" text-anchor="middle">✈</text>
+                                </g>
+                                <text class="map-label" id="partsMapOriginLabel" x="0" y="0"></text>
+                                <text class="map-label" id="partsMapDestinationLabel" x="689" y="225">Jakarta, Indonesia</text>
+                            </svg>
+                            <p class="parts-map-caption" id="partsMapCaption">No orders with origin and destination details are currently in transit.</p>
+                            <p class="parts-map-source">Coastline outlines: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a> (public domain). Transit progress is estimated from order dates.</p>
+                        </div>
+                    </section>
+                </section>
+            </div>
+            <section class="view-panel mirror-dashboard-view" id="scopeMirrorDashboardView" style="display: none;" aria-label="Repair Status Tracking">
+                <label class="mirror-search">
+                    <span class="visually-hidden">Search by serial number, brand, or scope model</span>
+                    <span aria-hidden="true">⌕</span>
+                    <input class="form-input-element" type="search" id="mirrorSearchInput" placeholder="Search serial number, brand, or model…" autocomplete="off" />
+                </label>
+
+                <section class="mirror-metrics-grid" aria-label="Scope lifecycle summary">
+                    <button class="mirror-metric-card mirror-metric-active" type="button" data-mirror-filter="active" aria-label="Show active repairs">
+                        <span>Active Repairs</span><strong id="mirrorMetricActive">0</strong>
+                    </button>
+                    <button class="mirror-metric-card mirror-metric-ready" type="button" data-mirror-filter="completed" aria-label="Show scopes ready for pickup">
+                        <span>Ready for Pickup</span><strong id="mirrorMetricReady">0</strong>
+                    </button>
+                    <button class="mirror-metric-card mirror-metric-warranty" type="button" data-mirror-filter="warranty" aria-label="Show scopes in warranty period">
+                        <span>In Warranty Period</span><strong id="mirrorMetricWarranty">0</strong>
+                    </button>
+                    <button class="mirror-metric-card mirror-metric-complete" type="button" data-mirror-filter="out-of-lab" aria-label="Show completed scopes out of lab">
+                        <span>Completed</span><strong id="mirrorMetricOutOfLab">0</strong>
+                    </button>
+                    <button class="mirror-metric-card mirror-metric-backup" type="button" data-mirror-filter="backup" aria-label="Show backup scopes">
+                        <span>Backup Scopes</span><strong id="mirrorMetricBackup">0</strong>
+                    </button>
+                </section>
+
+                <section class="mirror-register" aria-labelledby="mirrorRegisterTitle">
+                    <div class="mirror-register-heading">
+                        <div>
+                            <h3 id="mirrorRegisterTitle">Scope tracking</h3>
+                            <p class="mirror-sync-status" id="mirrorSyncStatus" role="status" aria-live="polite">Showing locally saved scope tracking data.</p>
+                        </div>
+                        <div class="mirror-tabs" role="tablist" aria-label="Filter scopes by lifecycle">
+                            <button class="mirror-tab is-selected" type="button" role="tab" id="mirrorTabActive" aria-selected="true" aria-controls="mirrorCards" data-mirror-tab="active">Active <span id="mirrorTabActiveCount">0</span></button>
+                            <button class="mirror-tab" type="button" role="tab" id="mirrorTabCompleted" aria-selected="false" aria-controls="mirrorCards" data-mirror-tab="completed">Ready <span id="mirrorTabCompletedCount">0</span></button>
+                            <button class="mirror-tab" type="button" role="tab" id="mirrorTabWarranty" aria-selected="false" aria-controls="mirrorCards" data-mirror-tab="warranty">Warranty <span id="mirrorTabWarrantyCount">0</span></button>
+                            <button class="mirror-tab" type="button" role="tab" id="mirrorTabOutOfLab" aria-selected="false" aria-controls="mirrorCards" data-mirror-tab="out-of-lab">Completed <span id="mirrorTabOutOfLabCount">0</span></button>
+                            <button class="mirror-tab" type="button" role="tab" id="mirrorTabBackup" aria-selected="false" aria-controls="mirrorCards" data-mirror-tab="backup">Backup <span id="mirrorTabBackupCount">0</span></button>
+                        </div>
+                    </div>
+                    <div class="mirror-card-grid" id="mirrorCards" role="tabpanel" aria-labelledby="mirrorTabActive"></div>
+                </section>
+                <footer class="mirror-dashboard-footer">
+                    <button class="btn btn-interactive-outline" type="button" id="mirrorRefreshButton">Refresh data</button>
+                </footer>
+            </section>
+            <!-- VIEW MODULE 3: CHRONOLOGICAL SCOPE HISTORY TIMELINE VIEW -->
+            <div class="view-panel" id="scopeTimelineView" style="display: none;">
+                <div class="workspace-card" style="width: 100%;">
+                    <button class="btn btn-interactive-outline timeline-back-button" id="timelineBackToDashboard" type="button">← Back to Tracking Dashboard</button>
+                    <div class="section-card-header timeline-query-header">
+                        <div>
+                            <h3 class="section-card-title" data-trn="timeline_title">Scope Lifecycle Timeline Explorer</h3>
+                            <p class="section-card-subtitle" data-trn="timeline_sub">Query comprehensive chronological service logs and media parameters by device identifier.</p>
+                        </div>
+                        
+                        <!-- Timeline Query Bar -->
+                        <div class="search-input-field-wrapper timeline-query-controls">
+                            <input class="toolbar-search-input" type="text" id="timelineQueryInput" placeholder="Enter Equipment Serial Number (S/N)..." style="padding-left: 14px;" />
+                            <button type="button" class="btn btn-interactive-primary" id="btnExecuteTimelineQuery" data-trn="btn_query">Query</button>
+                        </div>
+                    </div>
+
+                    <div class="history-search-bar">
+                        <label class="field-label-text" for="historySearchInput">Search this scope's history</label>
+                        <input class="form-input-element" type="search" id="historySearchInput" placeholder="Search reports, notes, technician, facility, parts..." />
+                    </div>
+
+                    <!-- Target Injection Container for the Dynamic Timeline Line -->
+                    <div class="timeline-dynamic-stream" id="timelineStreamContainer">
+                        <div style="text-align: center; color: var(--text-muted); padding: 48px;">
+                            Enter a valid endoscope Serial Number above to resolve its historical clinical service lifecycle.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- VIEW MODULE 5: INVENTORY LEDGER STOCK MANAGEMENT VIEW PANEL -->
+            <div class="view-panel" id="warehouseInventoryView" style="display: none;">
+                <div class="workspace-layout-split">
+                    
+                    <!-- Left Column Form: Stock Intake Registration Panel Component -->
+                    <section class="workspace-card container-form-card">
+                        <div class="section-card-header">
+                            <h3 class="section-card-title" data-trn="inv_form_title">Update Inventory</h3>
+                            <p class="section-card-subtitle" data-trn="inv_form_sub">Input incoming part batch runs, item SKUs, and location tracking thresholds.</p>
+                        </div>
+                        <form class="report-submission-form" id="inventoryIntakeRegistrationForm" autocomplete="off">
+                        <div class="form-input-row-grid grid-2">
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="invPartName" data-trn="inv_lbl_name">Part Name / Description</label>
+                                <input class="form-input-element" type="text" id="invPartName" name="invPartName" placeholder="e.g., Angulation Wire Core Array" required />
+                            </div>
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="invSku" data-trn="inv_lbl_sku">SKU Code</label>
+                                <input class="form-input-element" type="text" id="invSku" name="invSku" placeholder="e.g., SKU-WIRE-OLY04" required />
+                            </div>
+                        </div>
+                        <div class="form-input-row-grid grid-3">
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="invLotNumber" data-trn="inv_lbl_lot">Batch Lot Number (Lot #)</label>
+                                <input class="form-input-element" type="text" id="invLotNumber" name="invLotNumber" placeholder="e.g., LOT-2026-X1" required />
+                            </div>
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="invCurrentStock" data-trn="inv_lbl_stock">Initial Current Stock</label>
+                                <input class="form-input-element" type="number" id="invCurrentStock" name="invCurrentStock" min="0" placeholder="100" required />
+                            </div>
+                            <div class="form-control-group">
+                                <label class="field-label-text" for="invVendor" data-trn="inv_lbl_vendor">Supplier Vendor</label>
+                                <input class="form-input-element" type="text" id="invVendor" name="invVendor" placeholder="e.g., Olympus Direct Corp" required />
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-interactive-primary" style="background: var(--brand-primary-gradient); font-weight:700;" data-trn="inv_btn_submit">Ingest Asset Batch Line</button>
+                    </form>
+
+                    </section>
+
+                    <!-- Right Column Table: Live Stock Quantities & Availability Ledger Grid -->
+                    <section class="workspace-card container-table-card">
+                        <div class="section-card-header">
+                            <h3 class="section-card-title" data-trn="inv_table_title">Available On-Hand Quantities</h3>
+                            <p class="section-card-subtitle" data-trn="inv_table_sub">Monitors inventory allocations and auto-decrements on-hand counts when parts are logged in per-scope per-repair triage sheets.</p>
+                        </div>
+                        <div class="data-table-overflow-scroller">
+                            <table class="clinical-records-table" id="warehouseInventoryLedgerTable">
+                                <thead>
+                                    <tr>
+                                        <th data-trn="th_inv_part">Part Profile (Name / SKU)</th>
+                                        <th data-trn="th_inv_lot">Lot #</th>
+                                        <th data-trn="th_inv_stock">On-Hand Stock</th>
+                                        <th data-trn="th_inv_vendor">Vendor Channel</th>
+                                        <th data-trn="th_inv_analytics">Utilization Analytics (By Repair Tier Category)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="warehouseInventoryTableBody"></tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+            <!-- VIEW MODULE 4: PASSWORD-PROTECTED PRIVATE TERMINAL OPERATIONAL CORE -->
+            <div class="view-panel" id="adminNotebookView" style="display: none;">
+                
+                <!-- Passcode Verification Interface Shielder -->
+                <div id="adminFormLockoutPrompt" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 48px 24px; background: #020617; border: 2px solid #22c55e; border-radius: 16px; box-shadow: 0 0 20px rgba(34,197,94,0.15); max-width: 500px; margin: 40px auto; width:100%;">
+                    <span style="font-size: 40px; animation: pulse 2s infinite;">🔐</span>
+                    <h3 style="color: #22c55e; font-family: monospace; font-size: 18px; letter-spacing: 1px; text-transform: uppercase;" data-trn="admin_gate_title">Secure Terminal Handshake</h3>
+                    <input class="form-input-element" type="password" id="adminConsoleGatePass" placeholder="••••••••" style="letter-spacing: 6px; text-align: center; background: #0f172a !important; color: #22c55e !important; border: 1px solid #22c55e !important; font-family: monospace; font-size: 18px; width: 100%; max-width: 320px;" />
+                    <button type="button" class="btn" id="btnUnlockAdminConsole" style="background: linear-gradient(135deg, #22c55e, #15803d); color: #020617; font-family: monospace; font-weight: 700; width: 100%; max-width: 320px;" data-trn="admin_gate_btn">INITIALIZE_SESSION()</button>
+                </div>
+
+                <!-- MAIN UNLOCKED HUB (Hidden natively until cloud authentication matches) -->
+                <div id="unlockedTerminalDashboard" style="display: none; flex-direction: column; gap: 24px; width: 100%;">
+                    
+                    <!-- Top Row Utilities: Lab Scratchpad & Daily To-Do Checklist Framework -->
+                    <div class="terminal-dashboard-top-grid">
+                        
+                        <!-- Quick Lab To-Do Checklist Module -->
+                        <section class="terminal-module">
+                            <div class="terminal-module-header">
+                                <span class="terminal-prompt-caret">&gt;_</span>
+                                <h4 class="terminal-module-title" data-trn="admin_todo_title">Daily Triage Checklist</h4>
+                            </div>
+                            <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+                                <input type="text" id="terminalTodoInput" placeholder="Add custom action step..." style="flex-grow:1; background:#020617; border:1px solid #334155; color:#22c55e; font-family:monospace; padding:8px 12px; border-radius:6px; font-size:14px;" />
+                                <button type="button" class="btn" id="btnAppendTerminalTodo" style="background:#22c55e; color:#020617; font-family:monospace; font-weight:700; padding:4px 14px; font-size:14px; border-radius:6px;">+</button>
+                            </div>
+                            <ul class="terminal-todo-list" id="terminalTodoListContainer">
+                                <!-- JavaScript dynamically projects checklist items here -->
+                            </ul>
+                        </section>
+
+                        <!-- Frictionless Lab Notes Scratchpad Module -->
+                        <section class="terminal-module">
+                            <div class="terminal-module-header">
+                                <span class="terminal-prompt-caret">&gt;_</span>
+                                <h4 class="terminal-module-title" data-trn="admin_scratch_title">Persistent Lab Scratchpad</h4>
+                            </div>
+                            <textarea id="terminalScratchpadArea" placeholder="Drop hot temporary fragments, supplier details, or courier numbers here... Saves automatically on keystroke." style="width:100%; height:130px; background:#020617; border:1px solid #334155; color:#22c55e; font-family:monospace; padding:12px; border-radius:8px; resize:none; font-size:14px; line-height:1.5; outline:none;"></textarea>
+                        </section>
+                    </div>
+
+                    <!-- Bottom Split Row: Main Entry Form & History Stream Tables -->
+                    <div class="workspace-layout-split" style="gap: 24px;">
+                        
+                        <!-- Secure Entry Form Component Module -->
+                        <section class="terminal-module" style="padding: 24px;">
+                            <div class="terminal-module-header" style="margin-bottom: 20px;">
+                                <span class="terminal-prompt-caret">&gt;_</span>
+                                <h4 class="terminal-module-title" data-trn="admin_note_title">Append Encrypted Engineering Note</h4>
+                            </div>
+                            <form class="report-submission-form" id="adminPrivateNoteForm" autocomplete="off">
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="adminNoteScopeSerial" style="color:#22c55e; font-family:monospace;" data-trn="admin_lbl_sn">Target Scope S/N Link</label>
+                                    <select class="form-select-element" id="adminNoteScopeSerial" name="adminNoteScopeSerial" style="background:#020617 !important; color:#22c55e !important; border-color:#334155 !important; font-family:monospace;" required>
+                                        <!-- Dynamic cross-references updated here -->
+                                    </select>
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="adminNoteTitle" style="color:#22c55e; font-family:monospace;" data-trn="admin_lbl_title">Topic Classification</label>
+                                    <input class="form-input-element" type="text" id="adminNoteTitle" name="adminNoteTitle" placeholder="e.g., Client Cost Adjustment, Damage Dispute" style="background:#020617 !important; color:#22c55e !important; border-color:#334155 !important; font-family:monospace;" required />
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="field-label-text" for="adminNoteContent" style="color:#22c55e; font-family:monospace;" data-trn="admin_lbl_comments">Internal Engineering Comments</label>
+                                    <textarea class="form-textarea-element" id="adminNoteContent" name="adminNoteContent" rows="4" placeholder="Write proprietary processing evaluations safely..." style="background:#020617 !important; color:#22c55e !important; border-color:#334155 !important; font-family:monospace;" required></textarea>
+                                </div>
+                                <button type="submit" class="btn" style="background: linear-gradient(135deg, #22c55e, #16a34a); color:#020617; font-family:monospace; font-weight:700; width:100%; padding:12px;" data-trn="admin_btn_write">WRITE_RECORD_TO_CLOUD()</button>
+                            </form>
+                        </section>
+
+                        <!-- Encrypted Internal Journal Table Matrix Module -->
+                        <section class="terminal-module" style="padding: 24px; display:flex; flex-direction:column; overflow:hidden;">
+                            <div class="terminal-module-header" style="margin-bottom: 20px;">
+                                <span class="terminal-prompt-caret">&gt;_</span>
+                                <h4 class="terminal-module-title" data-trn="admin_journal_title">Secure Internal Journal Index</h4>
+                            </div>
+                            
+                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
+                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
+                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
+               
+               
+                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
+                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
+                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
+
+
+                            <div class="data-table-overflow-scroller" style="border-color:#334155; flex-grow:1;">
+                                <table class="clinical-records-table" id="adminPrivateNotesTable" style="background:#020617; color:#22c55e; font-family:monospace;">
+                                    <thead>
+                                        <tr>
+                                            <th style="background:#0f172a; color:#86efac; border-bottom:2px solid #334155;" data-trn="th_admin_time">Timestamp</th>
+                                            <th style="background:#0f172a; color:#86efac; border-bottom:2px solid #334155;" data-trn="th_admin_sn">Linked S/N</th>
+                                            <th style="background:#0f172a; color:#86efac; border-bottom:2px solid #334155;" data-trn="th_admin_topic">Topic Heading</th>
+                                            <th style="background:#0f172a; color:#86efac; border-bottom:2px solid #334155;" data-trn="th_admin_comments">Internal Comments</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminPrivateNotesTableBody">
+                                        <!-- Dynamic journal entries render here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="scope-edit-overlay" id="scopeEditModal" aria-hidden="true">
+        <section class="scope-edit-dialog" role="dialog" aria-modal="true" aria-labelledby="scopeEditTitle">
+            <header class="scope-edit-header">
+                <div>
+                    <h2 id="scopeEditTitle">Edit Scope Service Report</h2>
+                    <p id="scopeEditSubtitle">Update report fields, parts, and scope details.</p>
+                </div>
+                <button class="scope-edit-close" id="scopeEditCloseButton" type="button" aria-label="Close editor">×</button>
+            </header>
+            <form id="scopeEditForm" class="scope-edit-form">
+                <div id="scopeEditFields"></div>
+                <section class="scope-edit-section procurement-request-section">
+                    <div class="scope-edit-section-heading">
+                        <h3>Request a Part</h3>
+                        <p>Create a procurement ticket linked to this scope and service report.</p>
+                    </div>
+                    <div class="scope-edit-grid">
+                        <label class="form-control-group">Part name
+                            <input class="form-input-element" type="text" name="partName" placeholder="Component or part required" />
+                        </label>
+                        <label class="form-control-group">Supplier
+                            <input class="form-input-element" type="text" name="supplier" value="OEM Direct Distribution" />
+                        </label>
+                        <label class="form-control-group">Estimated cost
+                            <input class="form-input-element" type="number" min="0" step="0.01" name="cost" placeholder="0.00" />
+                        </label>
+                        <label class="form-control-group">ETA
+                            <input class="form-input-element" type="text" name="partEta" placeholder="Pending verification" />
+                        </label>
+                    </div>
+                    <button class="btn btn-interactive-outline" id="scopePartRequestButton" type="button">Request this part</button>
+                </section>
+                <section class="scope-edit-section deletion-request-section" id="scopeDeletionRequestSection" hidden>
+                    <div class="scope-edit-section-heading">
+                        <h3>Request Content Deletion</h3>
+                        <p>This submits a review request; technicians cannot delete scope data.</p>
+                    </div>
+                    <label class="form-control-group" for="scopeDeletionReason">Reason for request
+                        <textarea class="form-textarea-element" id="scopeDeletionReason" rows="3" placeholder="Explain why this record should be reviewed for deletion."></textarea>
+                    </label>
+                </section>
+                <footer class="scope-edit-actions">
+                    <button class="btn btn-interactive-outline" id="scopeEditCancelButton" type="button">Cancel</button>
+                    <button class="btn btn-interactive-outline scope-deletion-button" id="scopeRequestDeletionButton" type="button" hidden>Request Content Deletion</button>
+                    <button class="btn btn-danger scope-deletion-button" id="scopeDeleteButton" type="button" hidden>Delete Record</button>
+                    <button class="btn btn-interactive-primary" type="submit">Save Scope Updates</button>
+                </footer>
+            </form>
+        </section>
+    </div>
+
+    <!-- Linked External Component Modules -->
+    <script src="natural-earth-land.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
