@@ -2952,10 +2952,10 @@ body[data-theme="dark"] .parts-map-source a { color: #93c5fd; }
     }
 }
 
-/* Keep procurement readable as a single-column register at every viewport. */
+/* Keep procurement cards separated and sized to the available workspace. */
 #partsProcurementView .workspace-layout-split {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) !important;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     align-items: stretch;
     gap: 18px;
 }
@@ -2963,17 +2963,67 @@ body[data-theme="dark"] .parts-map-source a { color: #93c5fd; }
 #partsProcurementView .workspace-layout-split > .workspace-card {
     width: 100%;
     min-width: 0;
+    padding: 20px;
+}
+
+#partsProcurementView .report-submission-form {
+    gap: 16px;
+}
+
+#partsProcurementView .admin-procurement-panel {
+    gap: 18px;
+    margin-top: 18px;
+    padding: 22px;
+}
+
+#partsProcurementView .admin-procurement-grid {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 18px;
+}
+
+#partsProcurementView .procurement-subpanel {
+    min-width: 0;
+    padding: 16px;
 }
 
 #partsProcurementView .parts-request-list-grid,
-#partsProcurementView .admin-procurement-grid,
 #partsProcurementView .admin-procurement-list {
-    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
 }
 
 #partsProcurementView .admin-part-form,
 #partsProcurementView .part-receipt-form {
     grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 1200px) {
+    #mainContentArea:has(#partsProcurementView.active-view) {
+        gap: 22px;
+        padding: clamp(20px, 2.4vw, 32px);
+    }
+
+    #partsProcurementView .workspace-layout-split {
+        grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+        align-items: start;
+        gap: 24px;
+    }
+
+    #partsProcurementView .workspace-layout-split > .workspace-card {
+        padding: 22px;
+    }
+
+    #partsProcurementView .admin-procurement-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(270px, .85fr);
+        gap: 24px;
+    }
+}
+
+@media (min-width: 1500px) {
+    #partsProcurementView .parts-request-list-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 .admin-part-card {
