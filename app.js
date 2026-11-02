@@ -3,19 +3,113 @@
    Integrated Multi-View Management Node with Google Sheets Cloud Synchronization
    ========================================================================== */
 
+
 /* ==========================================================================
    1. GLOBAL TRANSLATION DICTIONARY MATRIX (EN / ID)
    ========================================================================== */
 const EndoTranslationMatrix = {
     en: {
+        nav_open_menu: "Open navigation menu",
+        nav_close_menu: "Close navigation menu",
+        nav_collapse: "Collapse navigation",
+        nav_expand: "Expand navigation",
+        brand_return_login: "Return to sign in",
+        auth_theme_dark: "Use dark theme",
+        auth_theme_light: "Use light theme",
+        app_footer_label: "EndoLab application information",
+        ui_language_label: "Interface language",
+        active_repairs_label: "Active repairs",
+        parts_transit_list_label: "Estimated orders in transit",
+        scope_dashboard_label: "Repair Status Tracking",
+        scope_lifecycle_summary_label: "Scope lifecycle summary",
+        scope_lifecycle_filter_label: "Filter scopes by lifecycle",
+        metric_show_active: "Show active repairs",
+        metric_show_ready: "Show scopes ready for pickup",
+        metric_show_warranty: "Show scopes in warranty period",
+        metric_show_completed: "Show completed scopes out of lab",
+        metric_show_backup: "Show backup scopes",
+        report_preview_close_label: "Close report preview",
+        report_logo_contact_label: "Endo Andalan contact information",
+        report_incoming_inspection_label: "Incoming inspection",
+        report_details_label: "Service report details",
+        report_signatures_label: "Handwritten signatures",
+        mirror_stage_for: "Repair stage for {serial}",
+        mirror_scope_history_label: "Scope {model}, serial {serial}. Press Enter to open its service history.",
+        scope_generic: "scope",
+        scope_unknown: "unknown",
+        inventory_edit_part_name: "part name",
+        inventory_edit_category: "category",
+        inventory_edit_lot_number: "lot number",
+        inventory_edit_quantity: "on-hand quantity",
+        inventory_edit_vendor: "vendor",
+        inventory_edit_incoming_date: "incoming date",
+        inventory_edit_outgoing_date: "outgoing date",
+        // Form hints and accessibility labels
+        quick_note_placeholder: "Add a brief repair update",
+        quick_part_placeholder: "Part or component",
+        scope_model_placeholder: "e.g., EC-760ZP",
+        client_facility_placeholder: "Hospital wing...",
+        technician_placeholder: "Operator name...",
+        complaint_placeholder: "Symptoms reported...",
+        anatomy_placeholder_01: "Condition, fluid integrity notes...",
+        anatomy_placeholder_02: "Lens pitting or structural damage specs...",
+        anatomy_placeholder_03: "Fluid blockage, alignment parameters...",
+        anatomy_placeholder_04: "Optical window clarity, deep surface scratch verification...",
+        anatomy_placeholder_05: "Illumination throughput profiles, sealing window boundaries...",
+        anatomy_placeholder_06: "Bezel burrs, tearing, deployment pathway obstructions...",
+        anatomy_placeholder_07: "Scratches, buckling, structural scaling changes...",
+        anatomy_placeholder_08: "Tension accuracy, exterior chemical layer traits...",
+        anatomy_placeholder_09: "Separation from main housing, material degradation...",
+        anatomy_placeholder_10: "Cap thread parameters, micro-deformation wear...",
+        anatomy_placeholder_11: "Ergonomic chassis cracking, grip fluid border checks...",
+        anatomy_placeholder_12: "Gear slip, tracking resistance, pull-back play...",
+        anatomy_placeholder_13: "Travel range limits, cable alignment properties...",
+        anatomy_placeholder_14: "Free rotation mechanics, wire fraying profiling...",
+        anatomy_placeholder_15: "Free tracking play adjustments, torque consistency...",
+        anatomy_placeholder_16: "Friction lock efficacy, slippage under manual strain...",
+        anatomy_placeholder_17: "Friction lock mechanism hold performance...",
+        anatomy_placeholder_18: "Piston cylinder scoring, fluid delivery response...",
+        anatomy_placeholder_19: "Suction return response speed, scoring, pooling...",
+        anatomy_placeholder_20: "Tactile button membrane return, internal contact resistance...",
+        anatomy_placeholder_21: "Universal light guide cable connection strain checks...",
+        anatomy_placeholder_22: "Cable external skin buckling or fiber twisting artifacts...",
+        anatomy_placeholder_23: "Electrical umbilical connector block junction checks...",
+        anatomy_placeholder_24: "Metal block casing tracking, structural crack checking...",
+        anatomy_placeholder_25: "Bent golden connector pins, pin corrosion scaling...",
+        anatomy_placeholder_26: "Fiber end lens burn tracing, fusion scaling check...",
+        anatomy_placeholder_27: "Forward connector blockage, reverse flow seal tests...",
+        anatomy_placeholder_28: "Angulation tracking system baseline friction calibration...",
+        anatomy_placeholder_29: "Sensor noise baseline metrics, narrow band lens shifts...",
+        anatomy_placeholder_30: "Mechanical control wire lever tracking lift limits...",
+        anatomy_placeholder_31: "Micro-leak fluid ingress test, cellular residue profiles...",
+        anatomy_placeholder_32: "Force articulation hinge wear, geometric bend profiles...",
+        anatomy_placeholder_33: "Eyepiece lens scratch checks, fiber pixel transmission alignment...",
+        repair_notes_placeholder: "Calibration parameter corrections, actions taken...",
+        embedded_part_placeholder: "e.g., Replacement O-Ring Kit, BR-04 Sleeve",
+        table_search_placeholder: "Search by unique Serial Number...",
+        part_scope_search_placeholder: "Search by repair ID, serial, or model…",
+        part_name_placeholder: "e.g., Insertion tube mesh sleeve",
+        part_vendor_placeholder: "Vendor name",
+        part_notes_placeholder: "Fit, compatibility, urgency, or other request details…",
+        mirror_search_placeholder: "Search serial number, brand, or model…",
+        history_search_placeholder: "Search reports, notes, technician, facility, parts...",
+        terminal_todo_placeholder: "Add custom action step...",
+        terminal_scratchpad_placeholder: "Drop hot temporary fragments, supplier details, or courier numbers here... Saves automatically on keystroke.",
+        admin_note_title_placeholder: "e.g., Client Cost Adjustment, Damage Dispute",
+        admin_note_content_placeholder: "Write proprietary processing evaluations safely...",
+        edit_part_name_placeholder: "Component or part required",
+        part_search_results_label: "Active repairs",
+        timeline_history_label: "Search this scope's history",
+        scope_edit_close_label: "Close editor",
         // Navigation
-        sidebar_nav_mirror: "Repair Status",
+        sidebar_nav_mirror: "Tracking Dashboard",
         sidebar_nav_dashboard: "Scope Entry & Records",
         sidebar_nav_parts: "Parts & Logistics",
         sidebar_nav_timeline: "Scope History Timeline",
         sidebar_nav_inventory: "Inventory",
         sidebar_nav_admin_logs: "Log",
         sidebar_nav_theme: "Shift UI Theme",
+
 
         // View Headings
         view_title_dashboard: "Endoscope Inspection & Repair Log",
@@ -30,6 +124,7 @@ const EndoTranslationMatrix = {
         view_title_admin: "Private Engineering Notebook Hub",
         view_sub_admin: "Restricted cryptographic space for internal repair monitoring analytics.",
 
+
         // Metrics Deck
         metric_total_label: "Total Logs Managed",
         metric_total_badge: "All",
@@ -38,12 +133,14 @@ const EndoTranslationMatrix = {
         metric_active_label: "Open Active Files",
         metric_active_badge: "Pending",
 
+
         // Quick Lab Linker
         quick_title: "Quick Lab Update & Part Request Linker",
         quick_lbl_serial: "Target Serial Reference",
         quick_lbl_note: "Repair Status / Technical Note Description",
         quick_lbl_part: "Link Urgent Spare Component Request (Optional)",
         quick_btn_submit: "Push Progress Update",
+
 
         // Master Service Report Form
         form_title_report: "New Service Report",
@@ -71,6 +168,7 @@ const EndoTranslationMatrix = {
         btn_clear: "Clear Fields",
         btn_submit_log: "Commit Service Log",
 
+
         // Master Logs Table
         table_title_logs: "Log of Scopes Recorded",
         table_sub_logs: "Real-time repository sync with local file filters.",
@@ -84,6 +182,7 @@ const EndoTranslationMatrix = {
         th_time_remaining: "Time Remaining",
         th_diagnostics: "Diagnostics / Links",
         th_actions: "Actions",
+
 
         // Parts Procurement
         form_title_procurement: "Procurement Parts Demand Request Form",
@@ -106,14 +205,114 @@ const EndoTranslationMatrix = {
         th_parts_actions: "Administrative Actions",
         btn_approve: "Approve Request",
 
+
         // Scope History Timeline
         timeline_title: "Scope Lifecycle Timeline Explorer",
         timeline_sub: "Query comprehensive chronological service logs and media parameters by device identifier.",
+        timeline_serial_placeholder: "Enter equipment serial number (S/N)...",
+        timeline_serial_label: "Equipment serial number",
         btn_query: "Query",
         timeline_empty_hint: "Enter a valid endoscope Serial Number above to resolve its historical clinical service lifecycle.",
         timeline_no_records: "No chronological service records found for Serial Number: ",
+        timeline_back_dashboard: "← Back to Tracking Dashboard",
+
+        report_preview_title: "Editable Service Report Preview",
+        report_preview_hint: "Review and edit the first-page report before printing.",
+        report_heading: "Service Report",
+        report_subheading: "Incoming Technical Report",
+        report_scope_type: "Scope Type",
+        report_brand_product: "Brand / Product",
+        report_type: "Type",
+        report_serial: "Serial No.",
+        report_client: "Client",
+        report_sales_person: "Sales Person",
+        report_date: "Date",
+        report_location: "Location",
+        report_initial_complaint: "Initial Complaint",
+        report_leak_test: "Leak Test",
+        report_sterilization: "Sterilization",
+        report_sterilization_date: "Sterilization Date",
+        report_chemical: "Chemical",
+        report_additional: "Additional Report",
+        report_components: "Component Inspection",
+        report_component: "Component",
+        report_test: "Test / Result",
+        report_notes: "Notes",
+        report_status_pass: "Pass",
+        report_status_fail: "Fail",
+        report_status_pending: "Select result",
+        report_service_contract: "Service Contract",
+        report_contract_number: "Contract Number",
+        report_customer_visit: "Customer Visit",
+        report_accessories: "Accessories",
+        report_linked_parts: "Linked Parts",
+        report_requester: "Requester",
+        report_department: "Department",
+        report_repair_category: "Repair Category",
+        report_ect: "ECT",
+        report_signature_technician: "Technician",
+        report_signature_customer: "Customer",
+        report_signature_approval: "Approved By",
+        report_save_sheet: "Save Changes to Sheet",
+        report_cancel: "Cancel",
+        report_print: "Print Report",
+        mirror_print_report: "Print Report",
+        mirror_search_label: "Search scopes",
+        mirror_card_repair_stage: "Repair stage",
+        mirror_card_progress: "Time elapsed",
+        mirror_card_priority: "Priority · Complete ASAP",
+        mirror_card_progress_aria: "Repair timeline progress",
+        mirror_card_details: "Scope details",
+        mirror_card_owner: "Owner",
+        mirror_card_start_date: "Start date",
+        mirror_card_estimated_end_date: "Estimated end date",
+        mirror_card_time_remaining: "Time remaining",
+        mirror_card_reference: "Reference",
+        mirror_card_latest_note: "Latest note",
+        mirror_card_add_note: "Add scope note",
+        mirror_card_close_note: "Close note",
+        mirror_card_note_placeholder: "Add a repair update or scope observation…",
+        mirror_card_save_note: "Save note",
+        mirror_card_cancel: "Cancel",
+        mirror_card_print_report: "Print report",
+        scope_request_title: "Request a Part",
+        scope_request_hint: "Create a procurement ticket linked to this scope and service report.",
+        scope_request_submit: "Request this part",
+        scope_edit_title: "Edit Scope Service Report",
+        scope_edit_subtitle: "Update report fields, parts, and scope details.",
+        scope_request_deletion: "Request Content Deletion",
+        scope_request_deletion_hint: "This submits a review request; technicians cannot delete scope data.",
+        scope_deletion_reason: "Reason for request",
+        scope_deletion_placeholder: "Explain why this record should be reviewed for deletion.",
+        scope_action_edit: "Edit",
+        scope_action_delete: "Delete Record",
+        scope_action_request_deletion: "Request Content Deletion",
+        scope_action_cancel: "Cancel",
+        scope_action_save: "Save Scope Updates",
+        scope_part_name: "Part name",
+        scope_part_quantity: "Quantity",
+        scope_part_estimated_price: "Estimated price (optional)",
+        scope_part_vendor_link: "Vendor source link (optional)",
+        scope_part_preferred_vendor: "Preferred vendor (optional)",
+        scope_part_notes: "Notes / instructions (optional)",
+        inv_delivery_speed: "Delivery speed (1–5)",
+        vendor_quality_average: "Quality",
+        vendor_speed_average: "Delivery speed",
+        vendor_receipt_count: "received inventory observations",
+        vendor_no_receipts: "No received-inventory observations yet.",
+        vendor_no_quality_rating: "No quality rating",
+        parts_transit_empty: "No ordered parts with origin, arrival destination, and ETA details are available.",
+        parts_transit_summary: "Showing {count} estimated shipments simultaneously. Progress is calculated from order date to ETA.",
+        inv_quality_rating: "Received part quality (1–5)",
+        inv_quality_notes: "Receipt observations (optional)",
+        inv_quality_select_rating: "Select a rating",
+        inv_quality_select_rating: "Select a rating",
+        "34": "Ocular Tower",
+
 
         // Warehouse Inventory
+        inv_open_form: "Update Inventory",
+        inv_close_form: "Close",
         inv_form_title: "Update Inventory",
         inv_form_sub: "Register a received part batch, assign its category, and record vendor quality.",
         inv_lbl_name: "Part Name / Description",
@@ -132,6 +331,9 @@ const EndoTranslationMatrix = {
         inv_lbl_category: "Part category",
         inv_lot_label: "Lot number",
         inv_current_stock_label: "Current stock",
+        inv_adjust_quantity: "Adjust on-hand quantity",
+        inv_quantity_adjustment_label: "Adjust on-hand quantity",
+        inv_adjust_stock_hint: "To record parts used for this repair, use the Parts Consumed section above.",
         inv_vendor_label: "Vendor",
         inv_search_label: "Search inventory",
         inv_search_placeholder: "Search part name, SKU, lot, vendor, or category",
@@ -152,12 +354,19 @@ const EndoTranslationMatrix = {
         scope_consumed_subtitle: "Select available warehouse stock to link and consume parts for this repair. Stock is decremented when linked.",
         scope_consumed_available: "Available inventory item",
         scope_consumed_choose: "Choose a part and lot",
+        scope_consumed_option: "{name} · {sku} · Lot {lot} · {available} available",
         scope_consumed_quantity: "Quantity",
+        scope_consumed_available_summary: "On hand: {available} · Remaining after use: {remaining}",
+        scope_consumed_select_item_hint: "Select a part and lot to check its current on-hand quantity.",
+        scope_consumed_quantity_error: "Enter a whole quantity from 1 to {available}.",
+        scope_consumed_category_error: "Select the repair category for this stock usage.",
+        scope_consumed_button_hint: "This records an outgoing movement and links it to this scope.",
         scope_consumed_repair_category: "Repair category",
         scope_consumed_select_category: "Select repair category",
-        scope_consumed_link: "Link part and record outgoing stock",
+        scope_consumed_link: "Consume quantity and link to scope",
         scope_consumed_none_available: "No available inventory can be linked to this repair.",
         scope_consumed_none_linked: "No inventory parts are linked to this scope yet.",
+
 
         // Admin Terminal
         admin_gate_title: "Secure Terminal Handshake",
@@ -175,6 +384,7 @@ const EndoTranslationMatrix = {
         th_admin_topic: "Topic Heading",
         th_admin_comments: "Internal Comments",
 
+
         // System Toasts & Alerts
         toast_transmitting: "📡 CLOUD_SYNC: transmitting package lines...",
         toast_synced: "✓ CLOUD_SYNC: Google Sheets updated successfully!",
@@ -182,6 +392,7 @@ const EndoTranslationMatrix = {
         alert_predictive: "PREDICTIVE ANOMALY DETECTED:",
         msg_saved_synced: "Report saved locally and dispatched to Google Sheets!",
         msg_deleted_synced: "Record permanently removed and sync signal dispatched.",
+
 
         // 33 Anatomy Components (EN)
         "01": "Bending Rubber", "02": "Distal Head", "03": "Nozzle Air/Water", "04": "Camera Lens",
@@ -195,14 +406,107 @@ const EndoTranslationMatrix = {
         "33": "Fiber Image / Ocular Tower"
     },
     id: {
+        nav_open_menu: "Buka menu navigasi",
+        nav_close_menu: "Tutup menu navigasi",
+        nav_collapse: "Ciutkan navigasi",
+        nav_expand: "Perluas navigasi",
+        brand_return_login: "Kembali ke halaman masuk",
+        auth_theme_dark: "Gunakan tema gelap",
+        auth_theme_light: "Gunakan tema terang",
+        app_footer_label: "Informasi aplikasi EndoLab",
+        ui_language_label: "Bahasa antarmuka",
+        active_repairs_label: "Perbaikan aktif",
+        parts_transit_list_label: "Perkiraan pesanan dalam perjalanan",
+        scope_dashboard_label: "Pelacakan Status Perbaikan",
+        scope_lifecycle_summary_label: "Ringkasan siklus hidup scope",
+        scope_lifecycle_filter_label: "Filter scope berdasarkan siklus",
+        metric_show_active: "Tampilkan perbaikan aktif",
+        metric_show_ready: "Tampilkan scope yang siap diambil",
+        metric_show_warranty: "Tampilkan scope dalam masa garansi",
+        metric_show_completed: "Tampilkan scope selesai di luar lab",
+        metric_show_backup: "Tampilkan scope cadangan",
+        report_preview_close_label: "Tutup pratinjau laporan",
+        report_logo_contact_label: "Informasi kontak Endo Andalan",
+        report_incoming_inspection_label: "Pemeriksaan masuk",
+        report_details_label: "Detail laporan servis",
+        report_signatures_label: "Tanda tangan tulisan tangan",
+        mirror_stage_for: "Tahap perbaikan untuk {serial}",
+        mirror_scope_history_label: "Scope {model}, nomor seri {serial}. Tekan Enter untuk membuka riwayat servis.",
+        scope_generic: "scope",
+        scope_unknown: "tidak diketahui",
+        inventory_edit_part_name: "nama suku cadang",
+        inventory_edit_category: "kategori",
+        inventory_edit_lot_number: "nomor lot",
+        inventory_edit_quantity: "jumlah stok tersedia",
+        inventory_edit_vendor: "vendor",
+        inventory_edit_incoming_date: "tanggal barang masuk",
+        inventory_edit_outgoing_date: "tanggal barang keluar",
+        // Petunjuk formulir dan label aksesibilitas
+        quick_note_placeholder: "Tambahkan pembaruan singkat perbaikan",
+        quick_part_placeholder: "Suku cadang atau komponen",
+        scope_model_placeholder: "misalnya, EC-760ZP",
+        client_facility_placeholder: "Sayap rumah sakit...",
+        technician_placeholder: "Nama operator...",
+        complaint_placeholder: "Gejala yang dilaporkan...",
+        anatomy_placeholder_01: "Catatan kondisi dan integritas cairan...",
+        anatomy_placeholder_02: "Spesifikasi lubang lensa atau kerusakan struktural...",
+        anatomy_placeholder_03: "Penyumbatan cairan dan parameter keselarasan...",
+        anatomy_placeholder_04: "Kejernihan jendela optik dan pemeriksaan goresan permukaan...",
+        anatomy_placeholder_05: "Profil keluaran cahaya dan batas penyegelan jendela...",
+        anatomy_placeholder_06: "Gerigi bezel, robekan, atau hambatan jalur instrumen...",
+        anatomy_placeholder_07: "Goresan, tekukan, atau perubahan skala struktur...",
+        anatomy_placeholder_08: "Akurasi tegangan dan kondisi lapisan kimia luar...",
+        anatomy_placeholder_09: "Pemisahan dari rumah utama dan degradasi material...",
+        anatomy_placeholder_10: "Parameter ulir penutup dan keausan akibat deformasi mikro...",
+        anatomy_placeholder_11: "Retakan rangka ergonomis dan pemeriksaan cairan pada pegangan...",
+        anatomy_placeholder_12: "Selip roda gigi, hambatan gerak, dan kelonggaran tarikan balik...",
+        anatomy_placeholder_13: "Batas jangkauan gerak dan karakteristik keselarasan kabel...",
+        anatomy_placeholder_14: "Mekanisme rotasi bebas dan pemeriksaan serabut kawat...",
+        anatomy_placeholder_15: "Penyesuaian kelonggaran gerak dan konsistensi torsi...",
+        anatomy_placeholder_16: "Efektivitas kunci gesek dan selip saat diberi beban manual...",
+        anatomy_placeholder_17: "Kemampuan mekanisme kunci gesek menahan posisi...",
+        anatomy_placeholder_18: "Goresan silinder piston dan respons aliran cairan...",
+        anatomy_placeholder_19: "Kecepatan respons aliran balik isap, goresan, dan genangan...",
+        anatomy_placeholder_20: "Respons membran tombol dan resistansi kontak internal...",
+        anatomy_placeholder_21: "Pemeriksaan tegangan pada sambungan kabel pemandu cahaya universal...",
+        anatomy_placeholder_22: "Tekukan kulit luar kabel atau serat optik yang terpuntir...",
+        anatomy_placeholder_23: "Pemeriksaan sambungan blok konektor kabel listrik...",
+        anatomy_placeholder_24: "Pemeriksaan casing blok logam dan retakan struktural...",
+        anatomy_placeholder_25: "Pin konektor bengkok dan korosi pada pin...",
+        anatomy_placeholder_26: "Jejak terbakar pada lensa ujung serat dan pemeriksaan fusi...",
+        anatomy_placeholder_27: "Penyumbatan konektor depan dan uji segel aliran balik...",
+        anatomy_placeholder_28: "Kalibrasi gesekan dasar pada sistem pelacakan angulasi...",
+        anatomy_placeholder_29: "Metrik dasar derau sensor dan pergeseran lensa pita sempit...",
+        anatomy_placeholder_30: "Batas pengangkatan tuas kawat kendali mekanis...",
+        anatomy_placeholder_31: "Uji kebocoran mikro, masuknya cairan, dan residu sel...",
+        anatomy_placeholder_32: "Keausan engsel artikulasi dan profil tekukan geometris...",
+        anatomy_placeholder_33: "Pemeriksaan goresan lensa okuler dan keselarasan transmisi piksel serat...",
+        repair_notes_placeholder: "Koreksi parameter kalibrasi dan tindakan yang dilakukan...",
+        embedded_part_placeholder: "misalnya, Kit O-Ring Pengganti, Sleeve BR-04",
+        table_search_placeholder: "Cari berdasarkan Nomor Seri unik...",
+        part_scope_search_placeholder: "Cari berdasarkan ID perbaikan, nomor seri, atau model…",
+        part_name_placeholder: "misalnya, selubung jaring tabung insersi",
+        part_vendor_placeholder: "Nama vendor",
+        part_notes_placeholder: "Kesesuaian, kompatibilitas, urgensi, atau detail permintaan lainnya…",
+        mirror_search_placeholder: "Cari nomor seri, merek, atau model…",
+        history_search_placeholder: "Cari laporan, catatan, teknisi, fasilitas, suku cadang...",
+        terminal_todo_placeholder: "Tambahkan langkah tindakan...",
+        terminal_scratchpad_placeholder: "Tambahkan catatan sementara, detail pemasok, atau nomor kurir... Disimpan otomatis saat mengetik.",
+        admin_note_title_placeholder: "misalnya, Penyesuaian Biaya Klien, Sengketa Kerusakan",
+        admin_note_content_placeholder: "Tulis evaluasi pemrosesan internal dengan aman...",
+        edit_part_name_placeholder: "Komponen atau suku cadang yang diperlukan",
+        part_search_results_label: "Perbaikan aktif",
+        timeline_history_label: "Cari riwayat scope ini",
+        scope_edit_close_label: "Tutup editor",
         // Navigation
-        sidebar_nav_mirror: "Status Perbaikan",
+        sidebar_nav_mirror: "Dasbor Pelacakan",
         sidebar_nav_dashboard: "Input & Riwayat Scope",
         sidebar_nav_parts: "Suku Cadang & Logistik",
         sidebar_nav_timeline: "Timeline Riwayat Alat",
         sidebar_nav_inventory: "Inventaris",
         sidebar_nav_admin_logs: "Log",
         sidebar_nav_theme: "Ubah Tema UI",
+
 
         // View Headings
         view_title_dashboard: "Log Inspeksi & Perbaikan Endoskopi",
@@ -217,6 +521,7 @@ const EndoTranslationMatrix = {
         view_title_admin: "Hub Catatan Rahasia Teknisi Senior",
         view_sub_admin: "Ruang terenkripsi terbatas untuk analisis dan catatan perbaikan internal.",
 
+
         // Metrics Deck
         metric_total_label: "Total Log Dikelola",
         metric_total_badge: "Semua",
@@ -225,12 +530,14 @@ const EndoTranslationMatrix = {
         metric_active_label: "File Lab Aktif Terbuka",
         metric_active_badge: "Pending",
 
+
         // Quick Lab Linker
         quick_title: "Pembaruan Cepat Lab & Tautan Suku Cadang",
         quick_lbl_serial: "Referensi Nomor Seri Target",
         quick_lbl_note: "Status Perbaikan / Deskripsi Catatan Teknis",
         quick_lbl_part: "Tautkan Permintaan Suku Cadang Mendesak (Opsional)",
         quick_btn_submit: "Kirim Pembaruan Progres",
+
 
         // Master Service Report Form
         form_title_report: "Laporan Layanan Baru",
@@ -258,6 +565,7 @@ const EndoTranslationMatrix = {
         btn_clear: "Bersihkan Bidang",
         btn_submit_log: "Simpan Log Layanan",
 
+
         // Master Logs Table
         table_title_logs: "Daftar Scope yang Tercatat",
         table_sub_logs: "Sinkronisasi repositori waktu-nyata dengan filter berkas lokal.",
@@ -271,6 +579,7 @@ const EndoTranslationMatrix = {
         th_time_remaining: "Sisa Waktu",
         th_diagnostics: "Diagnostik / Link",
         th_actions: "Tindakan",
+
 
         // Parts Procurement
         form_title_procurement: "Formulir Permintaan Pengadaan Suku Cadang",
@@ -293,14 +602,114 @@ const EndoTranslationMatrix = {
         th_parts_actions: "Tindakan Admin",
         btn_approve: "Setujui Permintaan",
 
+
         // Scope History Timeline
         timeline_title: "Penjelajah Timeline Siklus Hidup Ruang Lab",
         timeline_sub: "Kueri riwayat kronologis lengkap berdasarkan nomor seri alat.",
+        timeline_serial_placeholder: "Masukkan nomor seri alat endoskop (S/N)...",
+        timeline_serial_label: "Nomor seri alat",
         btn_query: "Kueri",
         timeline_empty_hint: "Masukkan Nomor Seri endoskopi yang valid di atas untuk memuat siklus layanan historisnya.",
         timeline_no_records: "Tidak ada riwayat catatan layanan untuk Nomor Seri: ",
+        timeline_back_dashboard: "← Kembali ke Dasbor Pelacakan",
+
+        report_preview_title: "Pratinjau Laporan Servis",
+        report_preview_hint: "Tinjau dan edit laporan halaman pertama sebelum dicetak.",
+        report_heading: "Laporan Servis",
+        report_subheading: "Laporan Teknis Masuk",
+        report_scope_type: "Jenis Scope",
+        report_brand_product: "Merek / Produk",
+        report_type: "Tipe",
+        report_serial: "Nomor Seri",
+        report_client: "Klien",
+        report_sales_person: "Sales",
+        report_date: "Tanggal",
+        report_location: "Lokasi",
+        report_initial_complaint: "Keluhan Awal",
+        report_leak_test: "Tes Kebocoran",
+        report_sterilization: "Sterilisasi",
+        report_sterilization_date: "Tanggal Sterilisasi",
+        report_chemical: "Bahan Kimia",
+        report_additional: "Laporan Tambahan",
+        report_components: "Inspeksi Komponen",
+        report_component: "Komponen",
+        report_test: "Tes / Hasil",
+        report_notes: "Catatan",
+        report_status_pass: "Lulus",
+        report_status_fail: "Gagal",
+        report_status_pending: "Pilih hasil",
+        report_service_contract: "Kontrak Servis",
+        report_contract_number: "Nomor Kontrak",
+        report_customer_visit: "Kunjungan Pelanggan",
+        report_accessories: "Aksesori",
+        report_linked_parts: "Suku Cadang Terkait",
+        report_requester: "Pemohon",
+        report_department: "Departemen",
+        report_repair_category: "Kategori Perbaikan",
+        report_ect: "ECT",
+        report_signature_technician: "Teknisi",
+        report_signature_customer: "Pelanggan",
+        report_signature_approval: "Disetujui Oleh",
+        report_save_sheet: "Simpan Perubahan ke Sheet",
+        report_cancel: "Batal",
+        report_print: "Cetak Laporan",
+        mirror_print_report: "Cetak Laporan",
+        mirror_search_label: "Cari scope",
+        mirror_card_repair_stage: "Tahap perbaikan",
+        mirror_card_progress: "Waktu berjalan",
+        mirror_card_priority: "Prioritas · Selesaikan segera",
+        mirror_card_progress_aria: "Progres jadwal perbaikan",
+        mirror_card_details: "Detail scope",
+        mirror_card_owner: "Penanggung jawab",
+        mirror_card_start_date: "Tanggal mulai",
+        mirror_card_estimated_end_date: "Perkiraan tanggal selesai",
+        mirror_card_time_remaining: "Sisa waktu",
+        mirror_card_reference: "Referensi",
+        mirror_card_latest_note: "Catatan terbaru",
+        mirror_card_add_note: "Tambah catatan scope",
+        mirror_card_close_note: "Tutup catatan",
+        mirror_card_note_placeholder: "Tambahkan pembaruan perbaikan atau catatan scope…",
+        mirror_card_save_note: "Simpan catatan",
+        mirror_card_cancel: "Batal",
+        mirror_card_print_report: "Cetak laporan",
+        scope_request_title: "Minta Suku Cadang",
+        scope_request_hint: "Buat tiket pengadaan yang terhubung ke scope dan laporan servis ini.",
+        scope_request_submit: "Minta suku cadang ini",
+        scope_edit_title: "Edit Laporan Servis Scope",
+        scope_edit_subtitle: "Perbarui kolom laporan, suku cadang, dan detail scope.",
+        scope_request_deletion: "Minta Penghapusan Konten",
+        scope_request_deletion_hint: "Ini mengirim permintaan peninjauan; teknisi tidak dapat menghapus data scope.",
+        scope_deletion_reason: "Alasan permintaan",
+        scope_deletion_placeholder: "Jelaskan alasan data ini perlu ditinjau untuk dihapus.",
+        scope_action_edit: "Edit",
+        scope_action_delete: "Hapus Data",
+        scope_action_request_deletion: "Minta Penghapusan Konten",
+        scope_action_cancel: "Batal",
+        scope_action_save: "Simpan Perubahan Scope",
+        scope_part_name: "Nama suku cadang",
+        scope_part_quantity: "Jumlah",
+        scope_part_estimated_price: "Estimasi harga (opsional)",
+        scope_part_vendor_link: "Tautan vendor (opsional)",
+        scope_part_preferred_vendor: "Vendor pilihan (opsional)",
+        scope_part_notes: "Catatan / instruksi (opsional)",
+        inv_delivery_speed: "Kecepatan pengiriman (1–5)",
+        vendor_quality_average: "Kualitas",
+        vendor_speed_average: "Kecepatan pengiriman",
+        vendor_receipt_count: "observasi inventaris diterima",
+        vendor_no_receipts: "Belum ada observasi inventaris diterima.",
+        vendor_no_quality_rating: "Belum ada rating kualitas",
+        parts_transit_empty: "Tidak ada suku cadang yang dipesan dengan detail asal, tujuan, dan ETA.",
+        parts_transit_summary: "Menampilkan {count} perkiraan pengiriman secara bersamaan. Progres dihitung dari tanggal pesanan hingga ETA.",
+        inv_quality_rating: "Kualitas suku cadang diterima (1–5)",
+        inv_quality_notes: "Observasi penerimaan (opsional)",
+        inv_quality_select_rating: "Pilih rating",
+        inv_quality_select_rating: "Pilih rating",
+        "34": "Menara Okular",
+
 
         // Warehouse Inventory
+        inv_open_form: "Perbarui Inventaris",
+        inv_close_form: "Tutup",
         inv_form_title: "Perbarui Inventaris",
         inv_form_sub: "Daftarkan batch suku cadang yang diterima, pilih kategori, dan catat kualitas vendor.",
         inv_lbl_name: "Nama / Deskripsi Komponen",
@@ -319,6 +728,9 @@ const EndoTranslationMatrix = {
         inv_lbl_category: "Kategori suku cadang",
         inv_lot_label: "Nomor lot",
         inv_current_stock_label: "Stok saat ini",
+        inv_adjust_quantity: "Sesuaikan jumlah stok",
+        inv_quantity_adjustment_label: "Sesuaikan jumlah stok tersedia",
+        inv_adjust_stock_hint: "Untuk mencatat suku cadang yang digunakan dalam perbaikan, gunakan bagian Suku Cadang Digunakan di atas.",
         inv_vendor_label: "Vendor",
         inv_search_label: "Cari persediaan",
         inv_search_placeholder: "Cari nama suku cadang, SKU, lot, vendor, atau kategori",
@@ -339,12 +751,19 @@ const EndoTranslationMatrix = {
         scope_consumed_subtitle: "Pilih stok gudang untuk ditautkan dan digunakan pada perbaikan ini. Stok akan berkurang saat ditautkan.",
         scope_consumed_available: "Item persediaan tersedia",
         scope_consumed_choose: "Pilih suku cadang dan lot",
+        scope_consumed_option: "{name} · {sku} · Lot {lot} · tersedia {available}",
         scope_consumed_quantity: "Jumlah",
+        scope_consumed_available_summary: "Stok tersedia: {available} · Sisa setelah digunakan: {remaining}",
+        scope_consumed_select_item_hint: "Pilih suku cadang dan lot untuk memeriksa stok yang tersedia.",
+        scope_consumed_quantity_error: "Masukkan jumlah bilangan bulat dari 1 hingga {available}.",
+        scope_consumed_category_error: "Pilih kategori perbaikan untuk penggunaan stok ini.",
+        scope_consumed_button_hint: "Tindakan ini mencatat barang keluar dan menautkannya ke scope ini.",
         scope_consumed_repair_category: "Kategori perbaikan",
         scope_consumed_select_category: "Pilih kategori perbaikan",
-        scope_consumed_link: "Tautkan suku cadang dan catat stok keluar",
+        scope_consumed_link: "Gunakan jumlah dan tautkan ke scope",
         scope_consumed_none_available: "Tidak ada persediaan yang tersedia untuk ditautkan ke perbaikan ini.",
         scope_consumed_none_linked: "Belum ada suku cadang persediaan yang ditautkan ke scope ini.",
+
 
         // Admin Terminal
         admin_gate_title: "Autentikasi Terminal Rahasia",
@@ -362,6 +781,7 @@ const EndoTranslationMatrix = {
         th_admin_topic: "Judul Topik",
         th_admin_comments: "Komentar Internal",
 
+
         // System Toasts & Alerts
         toast_transmitting: "📡 SINKRONISASI_CLOUD: mengirim paket data...",
         toast_synced: "✓ SINKRONISASI_CLOUD: Google Sheets berhasil diperbarui!",
@@ -369,6 +789,7 @@ const EndoTranslationMatrix = {
         alert_predictive: "ANOMALI KERUSAKAN BERULANG TERDETEKSI:",
         msg_saved_synced: "Laporan tersimpan di memori lokal & disinkronkan ke Google Sheets!",
         msg_deleted_synced: "Data dihapus secara permanen dan sinyal sinkronisasi dikirim.",
+
 
         // 33 Anatomy Components (ID)
         "01": "Karet Tekuk (Bending Rubber)", "02": "Ujung Kamera (Distal Head)", "03": "Nozel Udara/Air (Nozzle Air/Water)", "04": "Lensa Kamera (Camera Lens)",
@@ -383,6 +804,7 @@ const EndoTranslationMatrix = {
     }
 };
 
+
 /* ==========================================================================
    2. PRIMARY APPLICATION STORE & DATA REPOSITORIES
    ========================================================================== */
@@ -396,8 +818,10 @@ const EndoAppStore = {
     roleSessionKey: 'endolog_verified_user_role_v1',
     authTokenSessionKey: 'endolog_auth_token_v1',
 
+
     // Google Apps Script Web App Deployment URL
     googleWebhookUrl: 'https://script.google.com/macros/s/AKfycbxnC7KydhfkQwyeOTGwqstzMnv_2fURQ9_JZ0R6-yjatG0_uNghUxSnCxpfkKK7qmFUkA/exec',
+
 
     serviceLogs: [],
     partsOrders: [],
@@ -407,6 +831,7 @@ const EndoAppStore = {
     vendorQualityEvents: [],
     adminNotes: [],
     terminalTodos: [],
+
 
     activeLanguage: 'en',
     adminAuthenticated: false,
@@ -438,11 +863,43 @@ const EndoAppStore = {
         'Switch Button', 'Tensioner', 'Other'
     ],
 
+
     /* ----------------------------------------------------------------------
        Bootstrap Engine
        ---------------------------------------------------------------------- */
+    applyTheme(theme) {
+        const activeTheme = theme === 'dark' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', activeTheme);
+        localStorage.setItem('endolog_pro_active_theme', activeTheme);
+        this.syncAuthThemeToggle();
+    },
+
+    syncAuthThemeToggle() {
+        const button = document.getElementById('authThemeToggle');
+        if (!button) return;
+        const isDark = document.body.getAttribute('data-theme') === 'dark';
+        const themeAction = isDark ? 'light' : 'dark';
+        const dict = EndoTranslationMatrix[this.activeLanguage] || EndoTranslationMatrix.en;
+        const text = dict[`auth_theme_${themeAction}`];
+        button.setAttribute('aria-label', text);
+        button.title = text;
+        button.setAttribute('aria-pressed', String(isDark));
+    },
+
+    bindAuthThemeToggle() {
+        const button = document.getElementById('authThemeToggle');
+        if (!button || button.hasAttribute('data-bound')) return;
+        button.setAttribute('data-bound', 'true');
+        button.addEventListener('click', () => {
+            this.applyTheme(document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+    },
+
     init() {
         this.activeLanguage = localStorage.getItem('endolog_pro_active_lang') || 'en';
+        const persistedTheme = localStorage.getItem('endolog_pro_active_theme');
+        this.applyTheme(persistedTheme === 'dark' ? 'dark' : 'light');
+        this.bindAuthThemeToggle();
         const userActiveRole = sessionStorage.getItem(this.roleSessionKey);
         const authToken = sessionStorage.getItem(this.authTokenSessionKey);
         if ((userActiveRole === 'admin' || userActiveRole === 'tech') && authToken) {
@@ -453,6 +910,7 @@ const EndoAppStore = {
         sessionStorage.removeItem(this.authTokenSessionKey);
         this.bindAuthenticationForm();
     },
+
 
     validateStoredSession(token) {
         fetch(this.googleWebhookUrl, {
@@ -483,6 +941,7 @@ const EndoAppStore = {
             });
     },
 
+
     bindAuthenticationForm() {
         const form = document.getElementById('authGateForm');
         const message = document.getElementById('authGateMessage');
@@ -492,8 +951,11 @@ const EndoAppStore = {
 
         form.addEventListener('submit', event => {
             event.preventDefault();
-            const passcode = String(new FormData(form).get('passcode') || '');
-            if (!passcode) return;
+            const passcode = String(new FormData(form).get('passcode') || '').trim();
+            if (!passcode) {
+                if (message) message.textContent = 'Enter your passcode to continue.';
+                return;
+            }
             if (submitButton) submitButton.disabled = true;
             if (message) message.textContent = 'Verifying access…';
 
@@ -525,6 +987,9 @@ const EndoAppStore = {
         });
     },
 
+
+
+
     startApplication(role, authToken) {
         this.currentUserRole = role;
         this.currentAuthToken = authToken || sessionStorage.getItem(this.authTokenSessionKey);
@@ -549,6 +1014,7 @@ const EndoAppStore = {
         this.initBackgroundRefresh();
     },
 
+
     loadState() {
         try {
             const rawLogs = localStorage.getItem(this.logsKey);
@@ -560,6 +1026,7 @@ const EndoAppStore = {
             const rawNotes = localStorage.getItem(this.adminNotesKey);
             const rawTodos = localStorage.getItem(this.adminTodoKey);
 
+
             this.serviceLogs = rawLogs ? JSON.parse(rawLogs) : [];
             this.partsOrders = rawParts ? JSON.parse(rawParts) : [];
             this.inventoryPool = rawInv ? JSON.parse(rawInv) : [];
@@ -568,6 +1035,7 @@ const EndoAppStore = {
             this.vendorQualityEvents = rawVendorQualityEvents ? JSON.parse(rawVendorQualityEvents) : [];
             this.adminNotes = rawNotes ? JSON.parse(rawNotes) : [];
             this.terminalTodos = rawTodos ? JSON.parse(rawTodos) : [];
+
 
             // Seed initial clinical baseline data if entirely fresh
             if (this.serviceLogs.length === 0 && this.inventoryPool.length === 0) {
@@ -586,6 +1054,7 @@ const EndoAppStore = {
         }
     },
 
+
     saveState() {
         try {
             localStorage.setItem(this.logsKey, JSON.stringify(this.serviceLogs));
@@ -603,6 +1072,7 @@ const EndoAppStore = {
         this.executePredictivePatternAnalysis();
         this.updateMetrics();
     },
+
 
     /* ----------------------------------------------------------------------
        Initial Demo Data Seeder (Ensures UI is never completely empty)
@@ -644,8 +1114,10 @@ const EndoAppStore = {
             }
         ];
 
+
         const pastDate35Days = new Date(Date.now() - (35 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
         const pastDate10Days = new Date(Date.now() - (10 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
+
 
         this.serviceLogs = [
             {
@@ -697,6 +1169,7 @@ const EndoAppStore = {
             }
         ];
 
+
         this.partsOrders = [
             {
                 id: 'PRT-9001',
@@ -710,6 +1183,7 @@ const EndoAppStore = {
             }
         ];
 
+
         this.adminNotes = [
             {
                 id: 'NOTE-1',
@@ -720,14 +1194,17 @@ const EndoAppStore = {
             }
         ];
 
+
         this.terminalTodos = [
             { id: 'TD-1', text: 'Calibrate angulation wheel on SN-3419088', done: false },
             { id: 'TD-2', text: 'Leak test replacement bending rubber on SN-2904812', done: true }
         ];
 
+
         this.saveState();
     }
 };
+
 
 /* ==========================================================================
    3. GOOGLE SHEETS CLOUD DISPATCH PIPELINE & NETWORK TOASTS
@@ -742,10 +1219,13 @@ EndoAppStore.syncRecordToGoogleSheets = async function(payloadData) {
         return false;
     }
 
+
     this.showNetworkToastNotification(true);
+
 
     try {
         const payloadString = JSON.stringify({ ...payloadData, authToken: this.currentAuthToken });
+
 
         const response = await fetch(this.googleWebhookUrl, {
             method: 'POST',
@@ -758,6 +1238,7 @@ EndoAppStore.syncRecordToGoogleSheets = async function(payloadData) {
             throw new Error(result.message || `Google Apps Script reported ${result.status}.`);
         }
 
+
         // Flash success state in toast
         const toast = document.getElementById('appNetworkSyncToast');
         if (toast) {
@@ -766,6 +1247,7 @@ EndoAppStore.syncRecordToGoogleSheets = async function(payloadData) {
             toast.style.borderColor = '#22c55e';
             toast.style.color = '#22c55e';
         }
+
 
         setTimeout(() => this.showNetworkToastNotification(false), 1400);
         return true;
@@ -783,6 +1265,7 @@ EndoAppStore.syncRecordToGoogleSheets = async function(payloadData) {
     }
 };
 
+
 EndoAppStore.showNetworkToastNotification = function(show) {
     let toast = document.getElementById('appNetworkSyncToast');
     if (!toast) {
@@ -797,6 +1280,7 @@ EndoAppStore.showNetworkToastNotification = function(show) {
     toast.style.color = '#38bdf8';
     toast.style.display = show ? 'block' : 'none';
 };
+
 
 EndoAppStore.showMirrorToast = function(message, isError) {
     let toast = document.getElementById('mirrorUpdateToast');
@@ -815,6 +1299,7 @@ EndoAppStore.showMirrorToast = function(message, isError) {
     this.mirrorToastTimeout = window.setTimeout(() => toast.classList.remove('is-visible'), 3000);
 };
 
+
 /* ==========================================================================
    4. SYSTEM NOTIFICATIONS & PREDICTIVE ANALYTICS ENGINE
    ========================================================================== */
@@ -823,9 +1308,11 @@ EndoAppStore.renderNotifications = function() {
     if (!alertsDeck) return;
     alertsDeck.innerHTML = '';
 
+
     const dict = EndoTranslationMatrix[this.activeLanguage] || EndoTranslationMatrix.en;
     const now = new Date();
     const overdueLogs = this.getOverdueScopeLogs(now);
+
 
     // A. Detect Overdue Scopes
     overdueLogs.forEach(log => {
@@ -840,7 +1327,9 @@ EndoAppStore.renderNotifications = function() {
         alertsDeck.appendChild(banner);
     });
 
+
     this.cachedOverdueCount = overdueLogs.length;
+
 
     // B. Detect low stock only when fewer than two units remain.
     this.inventoryPool.forEach(item => {
@@ -856,13 +1345,16 @@ EndoAppStore.renderNotifications = function() {
     });
 };
 
+
 EndoAppStore.isActiveScopeLog = function(log) {
     return ['In Repair', 'Waiting for Parts', 'Incoming (Pending Report)'].includes(log.scopeStatusState);
 };
 
+
 EndoAppStore.getScopeDeadline = function(log) {
     return this.getScopeTimeline(log).dueDate;
 };
+
 
 EndoAppStore.getScopeTimeline = function(log, now) {
     const tracking = log.scopeTracking || {};
@@ -893,6 +1385,7 @@ EndoAppStore.getScopeTimeline = function(log, now) {
         };
     }
 
+
     const slaDays = ['Overhaul + CCD', 'Overhaul', 'Major + CCD'].includes(category) ? 60 : 30;
     const dueDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + slaDays);
     const dayMilliseconds = 24 * 60 * 60 * 1000;
@@ -909,10 +1402,14 @@ EndoAppStore.getScopeTimeline = function(log, now) {
     return { category, startDate, dueDate, slaDays, daysRemaining, progress, warning, ect, isWarranty: false };
 };
 
+
 EndoAppStore.formatScopeDateInput = function(date) {
     if (!date || Number.isNaN(date.getTime())) return '';
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 };
+
+
+
 
 EndoAppStore.updateServiceReportEstimatedEndDate = function() {
     const output = document.getElementById('scopeEstimatedEndDate');
@@ -937,6 +1434,7 @@ EndoAppStore.updateServiceReportEstimatedEndDate = function() {
     }
 };
 
+
 EndoAppStore.bindScopeTimelineDateFields = function() {
     const form = document.getElementById('serviceReportForm');
     if (!form || form.dataset.timelineBound === 'true') return;
@@ -950,6 +1448,7 @@ EndoAppStore.bindScopeTimelineDateFields = function() {
     form.addEventListener('change', update);
     this.updateServiceReportEstimatedEndDate();
 };
+
 
 EndoAppStore.getOverdueScopeLogs = function(now) {
     const currentTime = now || new Date();
@@ -965,6 +1464,7 @@ EndoAppStore.getOverdueScopeLogs = function(now) {
         return deadline !== null && currentDate > deadline;
     });
 };
+
 
 EndoAppStore.createDefaultScopeTracking = function(log) {
     const category = this.mirrorCategories.includes(log.repairComplexity) ? log.repairComplexity : '';
@@ -984,7 +1484,7 @@ EndoAppStore.createDefaultScopeTracking = function(log) {
         endDate: '',
         progress: null,
         notes: log.repairNotes || '',
-        owner: log.technicianName || '',
+owner: log.technicianName || '',
         repairStage: stageByStatus[log.scopeStatusState] || 'Pre QC',
         refOther: '',
         isOutOfLab: log.scopeStatusState === 'Dispatched / Completed',
@@ -992,6 +1492,7 @@ EndoAppStore.createDefaultScopeTracking = function(log) {
         estimatedEndDate: this.formatScopeDateInput(this.getScopeTimeline(log).dueDate)
     };
 };
+
 
 EndoAppStore.getScopeTracking = function(log) {
     const tracking = Object.assign(this.createDefaultScopeTracking(log), log.scopeTracking || {});
@@ -1006,6 +1507,7 @@ EndoAppStore.getScopeTracking = function(log) {
     tracking.estimatedEndDate = this.formatScopeDateInput(timeline.dueDate);
     return tracking;
 };
+
 
 EndoAppStore.getMirrorLifecycle = function(log, now) {
     const tracking = this.getScopeTracking(log);
@@ -1028,6 +1530,7 @@ EndoAppStore.getMirrorLifecycle = function(log, now) {
         }
     }
 
+
     const isWarrantyActive = stageIsWarranty && warrantyRemaining !== null && warrantyRemaining >= 0;
     const isExpiredWarranty = stageIsWarranty && !isWarrantyActive;
     const isBackup = category === 'Backup Scope' || log.scopeStatusState === 'Backup Stock Pool';
@@ -1038,11 +1541,13 @@ EndoAppStore.getMirrorLifecycle = function(log, now) {
     const isActive = !isReadyForPickup && !stageIsWarranty && !tracking.isOutOfLab &&
         category !== 'Cancelled' && !isBackup;
 
+
     const timeline = this.getScopeTimeline({ ...log, scopeTracking: tracking }, currentTime);
     const slaDays = timeline.slaDays;
     const daysRemaining = timeline.daysRemaining;
     const dueDate = timeline.dueDate;
     const progress = stageIsWarranty || tracking.isOutOfLab ? 100 : timeline.progress;
+
 
     return {
         tracking,
@@ -1065,6 +1570,7 @@ EndoAppStore.getMirrorLifecycle = function(log, now) {
     };
 };
 
+
 EndoAppStore.getMirrorRows = function() {
     const now = new Date();
     return this.serviceLogs.map(log => ({
@@ -1075,6 +1581,7 @@ EndoAppStore.getMirrorRows = function() {
             lifecycle.isCompletedOutOfLab || lifecycle.isBackup
     );
 };
+
 
 EndoAppStore.serviceReportChecklistParts = [
     { name: 'Bending Rubber' },
@@ -1113,15 +1620,26 @@ EndoAppStore.serviceReportChecklistParts = [
     { name: 'Ocular Tower', group: 'FIBER' }
 ];
 
-EndoAppStore.renderServiceReportChecklist = function(log) {
+
+EndoAppStore.renderServiceReportChecklist = function(log, preserveEdits) {
     const left = document.getElementById('serviceReportChecklistLeft');
     const right = document.getElementById('serviceReportChecklistRight');
     if (!left || !right) return;
-    left.replaceChildren();
-    right.replaceChildren();
     const anatomy = log.anatomyChecklist && typeof log.anatomyChecklist === 'object'
         ? log.anatomyChecklist : {};
     const reportComponents = log.reportChecklist?.components || {};
+    const dict = EndoTranslationMatrix[this.activeLanguage] || EndoTranslationMatrix.en;
+    const previousValues = new Map();
+    if (preserveEdits) {
+        document.querySelectorAll('#serviceReportPaper [data-report-check-index]').forEach(control => {
+            const index = control.dataset.reportCheckIndex;
+            const component = previousValues.get(index) || {};
+            component[control.dataset.reportCheckProperty] = control.value;
+            previousValues.set(index, component);
+        });
+    }
+    left.replaceChildren();
+    right.replaceChildren();
     const renderRow = (part, index) => {
         const row = document.createElement('tr');
         if (part.group) {
@@ -1134,48 +1652,57 @@ EndoAppStore.renderServiceReportChecklist = function(log) {
             (index < 18 ? left : right).appendChild(groupRow);
         }
 
+
         const checklistIndex = index + 1;
         const savedComponent = reportComponents[String(checklistIndex)] || {};
         const anatomyComponent = anatomy[`comp_${String(Math.min(checklistIndex, 33)).padStart(2, '0')}`] || {};
         const current = Object.assign({}, anatomyComponent, savedComponent);
+        const previous = previousValues.get(String(checklistIndex)) || {};
         const number = part.group
             ? `${part.group === 'ERCP' ? index - 28 : index - 31}`
             : String(checklistIndex);
         const numberCell = document.createElement('td');
         numberCell.textContent = number;
         const nameCell = document.createElement('td');
-        nameCell.textContent = part.name;
+        const componentKey = String(checklistIndex).padStart(2, '0');
+        const componentName = dict[componentKey] || part.name;
+        nameCell.textContent = componentName;
         const statusCell = document.createElement('td');
         const status = document.createElement('select');
         status.dataset.reportCheckIndex = String(checklistIndex);
         status.dataset.reportCheckProperty = 'status';
-        status.setAttribute('aria-label', `${part.name} test result`);
+        status.setAttribute('aria-label', `${componentName} ${dict.report_test}`);
         [
             ['', ''],
-            ['Pass', 'Ok'],
-            ['Fail', 'Failed']
+            ['Pass', dict.report_status_pass],
+            ['Fail', dict.report_status_fail]
         ].forEach(([value, label]) => {
             const option = document.createElement('option');
             option.value = value;
             option.textContent = label;
             status.appendChild(option);
         });
-        status.value = current.status === 'Pass' || current.status === 'Ok' ? 'Pass'
-            : current.status === 'Fail' || current.status === 'Failed' ? 'Fail' : '';
+        if (status.options[0]) status.options[0].textContent = dict.report_status_pending;
+        const existingStatus = Object.prototype.hasOwnProperty.call(previous, 'status') ? previous.status : current.status;
+        status.value = existingStatus === 'Pass' || existingStatus === 'Ok' ? 'Pass'
+            : existingStatus === 'Fail' || existingStatus === 'Failed' ? 'Fail' : '';
         statusCell.appendChild(status);
         const detailsCell = document.createElement('td');
         const details = document.createElement('input');
         details.type = 'text';
-        details.value = current.desc || current.details || '';
+        details.value = Object.prototype.hasOwnProperty.call(previous, 'desc')
+            ? previous.desc
+            : current.desc || current.details || '';
         details.dataset.reportCheckIndex = String(checklistIndex);
         details.dataset.reportCheckProperty = 'desc';
-        details.setAttribute('aria-label', `${part.name} inspection notes`);
+        details.setAttribute('aria-label', `${componentName} ${dict.report_notes}`);
         detailsCell.appendChild(details);
         row.append(numberCell, nameCell, statusCell, detailsCell);
         (index < 18 ? left : right).appendChild(row);
     };
     this.serviceReportChecklistParts.forEach(renderRow);
 };
+
 
 EndoAppStore.fitServiceReportPreviewTextareas = function() {
     const paper = document.getElementById('serviceReportPaper');
@@ -1192,11 +1719,13 @@ EndoAppStore.fitServiceReportPreviewTextareas = function() {
     });
 };
 
+
 EndoAppStore.openServiceReportPreview = function(logId) {
     const log = this.serviceLogs.find(item => String(item.id) === String(logId));
     const modal = document.getElementById('serviceReportPreviewModal');
     const paper = document.getElementById('serviceReportPaper');
     if (!log || !modal || !paper) return;
+
 
     const tracking = this.getScopeTracking(log);
     const details = log.reportDetails && typeof log.reportDetails === 'object' ? log.reportDetails : {};
@@ -1256,6 +1785,7 @@ EndoAppStore.openServiceReportPreview = function(logId) {
     document.getElementById('serviceReportPreviewClose')?.focus();
 };
 
+
 EndoAppStore.closeServiceReportPreview = function() {
     const modal = document.getElementById('serviceReportPreviewModal');
     if (!modal) return;
@@ -1264,6 +1794,7 @@ EndoAppStore.closeServiceReportPreview = function() {
     document.body.classList.remove('service-report-preview-open');
     this.reportPreviewLogId = null;
 };
+
 
 EndoAppStore.collectServiceReportPreviewEdits = function(log) {
     const paper = document.getElementById('serviceReportPaper');
@@ -1274,6 +1805,7 @@ EndoAppStore.collectServiceReportPreviewEdits = function(log) {
     const rootFields = new Set([
         'scopeType', 'scopeModel', 'serialNumber', 'clientFacility', 'logDate', 'complaintText'
     ]);
+
 
     paper.querySelectorAll('[data-report-field]').forEach(control => {
         const key = control.dataset.reportField;
@@ -1300,6 +1832,7 @@ EndoAppStore.collectServiceReportPreviewEdits = function(log) {
             details[key] = value;
         }
     });
+
 
     const reportComponents = Object.assign({}, updatedLog.reportChecklist?.components || {});
     const anatomy = updatedLog.anatomyChecklist && typeof updatedLog.anatomyChecklist === 'object'
@@ -1329,6 +1862,7 @@ EndoAppStore.collectServiceReportPreviewEdits = function(log) {
     updatedLog.reportDetails = details;
     updatedLog.scopeTracking = tracking;
 
+
     const timeline = this.getScopeTimeline(updatedLog);
     updatedLog.estimatedEndDate = this.formatScopeDateInput(timeline.dueDate);
     tracking.estimatedEndDate = updatedLog.estimatedEndDate;
@@ -1341,6 +1875,7 @@ EndoAppStore.collectServiceReportPreviewEdits = function(log) {
     tracking.serialNumber = updatedLog.serialNumber || tracking.serialNumber;
     return updatedLog;
 };
+
 
 EndoAppStore.confirmServiceReportPrint = async function() {
     const log = this.serviceLogs.find(item => String(item.id) === String(this.reportPreviewLogId));
@@ -1374,6 +1909,7 @@ EndoAppStore.confirmServiceReportPrint = async function() {
     }
 };
 
+
 EndoAppStore.renderScopeMirrorDashboard = function() {
     const cardGrid = document.getElementById('mirrorCards');
     if (!cardGrid) return;
@@ -1387,6 +1923,7 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
         const element = document.getElementById(id);
         if (element) element.textContent = String(value);
     };
+
 
     setText('mirrorMetricActive', activeRows.length);
     setText('mirrorMetricReady', readyRows.length);
@@ -1404,6 +1941,7 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
         button.setAttribute('aria-selected', String(selected));
     });
 
+
     const search = (document.getElementById('mirrorSearchInput')?.value || '').trim().toLowerCase();
     const tabRows = this.mirrorTab === 'completed' ? readyRows
         : this.mirrorTab === 'warranty' ? warrantyRows
@@ -1412,6 +1950,7 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
     const visibleRows = tabRows.filter(({ log, lifecycle }) =>
         JSON.stringify({ ...log, ...lifecycle.tracking }).toLowerCase().includes(search)
     );
+
 
     cardGrid.setAttribute('aria-labelledby', this.mirrorTab === 'completed' ? 'mirrorTabCompleted'
         : this.mirrorTab === 'warranty' ? 'mirrorTabWarranty'
@@ -1431,6 +1970,7 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
         cardGrid.appendChild(empty);
         return;
     }
+
 
     visibleRows.forEach(({ log, lifecycle }) => {
         const tracking = lifecycle.tracking;
@@ -1464,6 +2004,7 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
         header.append(identification, warning);
         card.appendChild(header);
 
+
         const tags = document.createElement('div');
         tags.className = 'mirror-card-tags';
         const categoryTag = document.createElement('span');
@@ -1475,20 +2016,23 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
         tags.append(categoryTag, brandTag);
         card.appendChild(tags);
 
+
         const controls = document.createElement('div');
         controls.className = 'mirror-card-controls';
         const stageLabel = document.createElement('label');
         stageLabel.className = 'mirror-inline-field';
         const stageCaption = document.createElement('span');
-        stageCaption.textContent = 'Repair stage';
+        stageCaption.textContent = this.getUiText('mirror_card_repair_stage');
         const stageSelect = document.createElement('select');
         stageSelect.className = `mirror-stage-select stage-${stageClass}`;
         stageSelect.dataset.mirrorInlineField = 'repairStage';
         stageSelect.dataset.logId = log.id;
-        stageSelect.setAttribute('aria-label', `Repair stage for ${tracking.serialNumber || log.id}`);
+        stageSelect.setAttribute('aria-label', this.getUiText('mirror_stage_for')
+            .replace('{serial}', tracking.serialNumber || log.id));
         this.mirrorStages.forEach(stage => {
             const option = document.createElement('option');
             option.value = stage;
+            option.className = `stage-${stage.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
             option.textContent = stage;
             option.disabled = stage === 'In Warranty Period' && !tracking.isOutOfLab && tracking.repairStage !== stage;
             stageSelect.appendChild(option);
@@ -1496,38 +2040,47 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
         stageSelect.value = tracking.repairStage;
         stageLabel.append(stageCaption, stageSelect);
         controls.appendChild(stageLabel);
+        card.appendChild(controls);
 
+        const progressSection = document.createElement('section');
+        progressSection.className = 'mirror-progress-section';
         const progressLabel = document.createElement('div');
-        progressLabel.className = 'mirror-inline-field mirror-progress-field';
+        progressLabel.className = 'mirror-progress-topline';
         const progressHeading = document.createElement('span');
         progressHeading.className = 'mirror-progress-heading';
         progressHeading.textContent = lifecycle.timeline.isWarranty
-            ? 'Priority · Complete ASAP'
-            : `Time elapsed · ${lifecycle.progress.toFixed(0)}%`;
-        progressLabel.appendChild(progressHeading);
-        controls.appendChild(progressLabel);
-        card.appendChild(controls);
-
+            ? this.getUiText('mirror_card_priority')
+            : `${this.getUiText('mirror_card_progress')} · ${lifecycle.progress.toFixed(0)}%`;
+        const progressRemaining = document.createElement('span');
+        progressRemaining.className = 'mirror-progress-remaining';
+        progressRemaining.textContent = ectLabel;
+        progressLabel.append(progressHeading, progressRemaining);
         const progressTrack = document.createElement('div');
         progressTrack.className = 'mirror-progress-track';
         progressTrack.setAttribute('role', 'progressbar');
         progressTrack.setAttribute('aria-valuemin', '0');
         progressTrack.setAttribute('aria-valuemax', '100');
         progressTrack.setAttribute('aria-valuenow', lifecycle.progress.toFixed(0));
-        progressTrack.setAttribute('aria-label', 'Repair completion');
+        progressTrack.setAttribute('aria-label', this.getUiText('mirror_card_progress_aria'));
         const progressFill = document.createElement('span');
         progressFill.style.width = `${lifecycle.progress.toFixed(0)}%`;
         progressTrack.appendChild(progressFill);
-        card.appendChild(progressTrack);
+        progressSection.append(progressLabel, progressTrack);
+        card.appendChild(progressSection);
 
+
+        const extraDetails = document.createElement('details');
+        extraDetails.className = 'mirror-card-extra';
+        const extraSummary = document.createElement('summary');
+        extraSummary.textContent = this.getUiText('mirror_card_details');
         const details = document.createElement('dl');
         details.className = 'mirror-card-details';
         [
-            ['Owner', tracking.owner || log.technicianName || '—'],
-            ['Start date', this.formatMirrorDate(tracking.startDate)],
-            ['Estimated end date', lifecycle.timeline.isWarranty ? 'Complete ASAP' : this.formatMirrorDate(lifecycle.dueDate)],
-            ['Time remaining', ectLabel],
-            ['Reference', tracking.refOther || '—']
+            [this.getUiText('mirror_card_owner'), tracking.owner || log.technicianName || '—'],
+            [this.getUiText('mirror_card_start_date'), this.formatMirrorDate(tracking.startDate)],
+            [this.getUiText('mirror_card_estimated_end_date'), lifecycle.timeline.isWarranty ? this.getUiText('mirror_card_priority') : this.formatMirrorDate(lifecycle.dueDate)],
+            [this.getUiText('mirror_card_time_remaining'), ectLabel],
+            [this.getUiText('mirror_card_reference'), tracking.refOther || '—']
         ].forEach(([label, value]) => {
             const item = document.createElement('div');
             const term = document.createElement('dt');
@@ -1537,22 +2090,26 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
             item.append(term, description);
             details.appendChild(item);
         });
-        card.appendChild(details);
-
+        extraDetails.append(extraSummary, details);
         if (tracking.notes) {
             const notes = document.createElement('p');
             notes.className = 'mirror-card-notes';
-            notes.textContent = tracking.notes;
-            card.appendChild(notes);
+            const noteHeading = document.createElement('strong');
+            noteHeading.textContent = `${this.getUiText('mirror_card_latest_note')}: `;
+            notes.appendChild(noteHeading);
+            notes.appendChild(document.createTextNode(tracking.notes));
+            extraDetails.appendChild(notes);
         }
-
         const noteActions = document.createElement('div');
         noteActions.className = 'mirror-card-note-actions';
         const addNoteButton = document.createElement('button');
         addNoteButton.type = 'button';
-        addNoteButton.className = 'btn btn-interactive-outline mirror-add-note-button';
+        addNoteButton.className = 'mirror-icon-button mirror-add-note-button';
         addNoteButton.dataset.mirrorAddNote = log.id;
-        addNoteButton.textContent = 'Add scope note';
+        addNoteButton.setAttribute('aria-label', this.getUiText('mirror_card_add_note'));
+        addNoteButton.title = this.getUiText('mirror_card_add_note');
+        addNoteButton.setAttribute('aria-expanded', 'false');
+        addNoteButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>';
         const noteForm = document.createElement('form');
         noteForm.className = 'mirror-quick-note-form';
         noteForm.dataset.mirrorQuickNoteForm = log.id;
@@ -1560,14 +2117,14 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
         const noteLabel = document.createElement('label');
         noteLabel.className = 'form-control-group';
         const noteLabelText = document.createElement('span');
-        noteLabelText.textContent = 'New note';
+        noteLabelText.textContent = this.getUiText('mirror_card_latest_note');
         const noteInput = document.createElement('textarea');
         noteInput.className = 'form-textarea-element';
         noteInput.name = 'note';
         noteInput.rows = 3;
         noteInput.maxLength = 2000;
         noteInput.required = true;
-        noteInput.placeholder = 'Add a repair update or scope observation…';
+        noteInput.placeholder = this.getUiText('mirror_card_note_placeholder');
         noteLabel.append(noteLabelText, noteInput);
         const noteFormActions = document.createElement('div');
         noteFormActions.className = 'mirror-quick-note-actions';
@@ -1575,21 +2132,27 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
         cancelNoteButton.type = 'button';
         cancelNoteButton.className = 'btn btn-interactive-outline';
         cancelNoteButton.dataset.mirrorCancelNote = log.id;
-        cancelNoteButton.textContent = 'Cancel';
+        cancelNoteButton.textContent = this.getUiText('mirror_card_cancel');
         const saveNoteButton = document.createElement('button');
         saveNoteButton.type = 'submit';
         saveNoteButton.className = 'btn btn-interactive-primary';
-        saveNoteButton.textContent = 'Save note';
+        saveNoteButton.textContent = this.getUiText('mirror_card_save_note');
         noteFormActions.append(cancelNoteButton, saveNoteButton);
         noteForm.append(noteLabel, noteFormActions);
         noteActions.append(addNoteButton, noteForm);
         const printReportButton = document.createElement('button');
         printReportButton.type = 'button';
-        printReportButton.className = 'btn btn-interactive-outline mirror-print-report-button';
+        printReportButton.className = 'mirror-icon-button mirror-print-report-button';
         printReportButton.dataset.mirrorPrintReport = log.id;
-        printReportButton.textContent = 'Print Report';
+        printReportButton.setAttribute('aria-label', this.getUiText('mirror_card_print_report'));
+        printReportButton.title = this.getUiText('mirror_card_print_report');
+        printReportButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>';
         noteActions.insertBefore(printReportButton, noteForm);
-        card.appendChild(noteActions);
+        const utilityRow = document.createElement('div');
+        utilityRow.className = 'mirror-card-utility-row';
+        utilityRow.append(extraDetails, noteActions);
+        card.appendChild(utilityRow);
+
 
         if (lifecycle.isCompleted) {
             const pickupButton = document.createElement('button');
@@ -1601,10 +2164,13 @@ EndoAppStore.renderScopeMirrorDashboard = function() {
         }
         card.setAttribute('role', 'group');
         card.tabIndex = 0;
-        card.setAttribute('aria-label', `Scope ${tracking.scopeModel || log.scopeModel || 'scope'}, serial ${tracking.serialNumber || log.serialNumber || 'unknown'}. Press Enter to open its service history.`);
+        card.setAttribute('aria-label', this.getUiText('mirror_scope_history_label')
+            .replace('{model}', tracking.scopeModel || log.scopeModel || this.getUiText('scope_generic'))
+            .replace('{serial}', tracking.serialNumber || log.serialNumber || this.getUiText('scope_unknown')));
         cardGrid.appendChild(card);
     });
 };
+
 
 EndoAppStore.updateMirrorInlineField = async function(logId, key, value) {
     const log = this.serviceLogs.find(item => String(item.id) === String(logId));
@@ -1623,12 +2189,14 @@ EndoAppStore.updateMirrorInlineField = async function(logId, key, value) {
     );
 };
 
+
 EndoAppStore.addScopeNote = async function(logId, noteText) {
     const log = this.serviceLogs.find(item => String(item.id) === String(logId));
     const note = String(noteText || '').trim();
     if (!log) throw new Error('Scope record could not be found.');
     if (!note) throw new Error('Enter a note before saving.');
     if (note.length > 2000) throw new Error('Notes must be 2,000 characters or fewer.');
+
 
     const tracking = this.getScopeTracking(log);
     const timestamp = new Date();
@@ -1647,6 +2215,7 @@ EndoAppStore.addScopeNote = async function(logId, noteText) {
     return synced;
 };
 
+
 EndoAppStore.openScopeHistoryFromMirror = function(log) {
     if (!log) return;
     const serial = String(log.serialNumber || log.scopeTracking?.serialNumber || '').trim();
@@ -1658,11 +2227,13 @@ EndoAppStore.openScopeHistoryFromMirror = function(log) {
     this.generateTimelineStream(serial);
 };
 
+
 EndoAppStore.formatMirrorDate = function(value) {
     if (!value) return '—';
     const date = new Date(value);
     return Number.isNaN(date.getTime()) ? String(value) : new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(date);
 };
+
 
 EndoAppStore.markScopeOutOfLab = async function(logId) {
     const log = this.serviceLogs.find(item => String(item.id) === String(logId));
@@ -1686,6 +2257,7 @@ EndoAppStore.markScopeOutOfLab = async function(logId) {
     );
 };
 
+
 EndoAppStore.refreshScopeMirrorFromSheets = async function() {
     const status = document.getElementById('mirrorSyncStatus');
     try {
@@ -1699,6 +2271,7 @@ EndoAppStore.refreshScopeMirrorFromSheets = async function() {
         if (result.status !== 'SUCCESS' || !Array.isArray(result.data)) {
             throw new Error(result.message || 'The scope mirror response was invalid.');
         }
+
 
         result.data.forEach(remote => {
             if (!remote.id || !remote.scopeTracking) return;
@@ -1723,21 +2296,26 @@ EndoAppStore.refreshScopeMirrorFromSheets = async function() {
     }
 };
 
+
 EndoAppStore.executePredictivePatternAnalysis = function() {
     const deck = document.getElementById('predictiveAnalyticsAlertsDeck');
     if (!deck) return;
     deck.innerHTML = '';
 
+
     const dict = EndoTranslationMatrix[this.activeLanguage] || EndoTranslationMatrix.en;
+
 
     // Group logs by serial number to detect recurring component breakdowns
     const scopeFailures = {};
+
 
     this.serviceLogs.forEach(log => {
         if (log.inspectionStatus === 'Fail' || log.anatomyChecklist) {
             const sn = log.serialNumber;
             if (!scopeFailures[sn]) scopeFailures[sn] = { model: log.scopeModel, count: 0, failedComps: {} };
             scopeFailures[sn].count++;
+
 
             if (log.anatomyChecklist) {
                 Object.entries(log.anatomyChecklist).forEach(([key, val]) => {
@@ -1750,6 +2328,7 @@ EndoAppStore.executePredictivePatternAnalysis = function() {
         }
     });
 
+
     // Project predictive banners for scopes with high recurrence
     Object.entries(scopeFailures).forEach(([sn, data]) => {
         const repeatComps = Object.entries(data.failedComps).filter(([_, count]) => count >= 1);
@@ -1757,7 +2336,9 @@ EndoAppStore.executePredictivePatternAnalysis = function() {
             const banner = document.createElement('div');
             banner.className = 'alert-banner alert-predictive-fail';
 
+
             const compNames = repeatComps.map(([idx]) => this.lookupAnatomyComponentName(idx)).join(', ') || 'Multiple inspection points';
+
 
             banner.innerHTML = `
                 <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
@@ -1770,6 +2351,7 @@ EndoAppStore.executePredictivePatternAnalysis = function() {
     });
 };
 
+
 /* ==========================================================================
    5. METRICS CARDS & REAL-TIME SUMMARY COUNTERS
    ========================================================================== */
@@ -1778,14 +2360,17 @@ EndoAppStore.updateMetrics = function() {
     const valPending = document.getElementById('valPendingRepairs');
     const valActive = document.getElementById('valActiveLogs');
 
+
     if (valTotal) valTotal.innerText = this.serviceLogs.length;
     if (valPending) valPending.innerText = this.getOverdueScopeLogs().length;
+
 
     if (valActive) {
         const activeCount = this.serviceLogs.filter(log => this.isActiveScopeLog(log)).length;
         valActive.innerText = activeCount;
     }
 };
+
 
 /* ==========================================================================
    6. ROLE-BASED ACCESS CONTROL & PRIVILEGES
@@ -1811,6 +2396,7 @@ EndoAppStore.applyRolePrivilegeLockdowns = function(role) {
     this.evaluateAdminSessionStateDisplay();
 };
 
+
 /* ==========================================================================
    7. NAVIGATION ROUTING & MOBILE DRAWER ENGINE
    ========================================================================== */
@@ -1822,6 +2408,7 @@ EndoAppStore.bindGlobalNavigation = function() {
     const navInventory = document.getElementById('navLinkInventory');
     const navAdminLogs = document.getElementById('navLinkAdminLogs');
 
+
     const viewDashboard = document.getElementById('dashboardView');
     const viewMirror = document.getElementById('scopeMirrorDashboardView');
     const viewParts = document.getElementById('partsProcurementView');
@@ -1829,16 +2416,23 @@ EndoAppStore.bindGlobalNavigation = function() {
     const viewInventory = document.getElementById('warehouseInventoryView');
     const viewAdminLogs = document.getElementById('adminNotebookView');
 
+
     const viewTitle = document.getElementById('viewTitleHeading');
     const viewSub = document.getElementById('viewSubHeading');
 
+
     const mobileButton = document.getElementById('mobileNavbarMenuToggle');
+    const desktopButton = document.getElementById('desktopNavbarMenuToggle');
+    const brandHomeButton = document.getElementById('brandHomeButton');
+    const navigationToggleText = document.getElementById('sidebarToggleText');
     const navLinksGroup = document.getElementById('sidebarNavLinksGroup');
+    const appContainer = document.getElementById('appRoot');
     const timelineBackButton = document.getElementById('timelineBackToDashboard');
 
+
     // Theme initialization
-    const persistedTheme = localStorage.getItem('endolog_pro_active_theme') || 'light';
-    document.body.setAttribute('data-theme', persistedTheme);
+    this.applyTheme(localStorage.getItem('endolog_pro_active_theme'));
+
 
     const resetAllActiveViewPanels = () => {
         [viewDashboard, viewMirror, viewParts, viewTimeline, viewInventory, viewAdminLogs].forEach(panel => {
@@ -1852,22 +2446,79 @@ EndoAppStore.bindGlobalNavigation = function() {
         });
         if (window.innerWidth < 1024 && navLinksGroup) {
             navLinksGroup.classList.remove('drawer-open');
-            if (mobileButton) {
-                mobileButton.setAttribute('aria-expanded', 'false');
-                mobileButton.setAttribute('aria-label', 'Open navigation menu');
-            }
+            syncNavigationToggle();
         }
     };
 
-    // Mobile Hamburger Toggle
+
+    const syncNavigationToggle = () => {
+        if (!navLinksGroup || !appContainer) return;
+        if (window.innerWidth >= 1024) {
+            navLinksGroup.classList.remove('drawer-open');
+            const collapsed = localStorage.getItem('endolog_pro_sidebar_collapsed') === 'true';
+            appContainer.classList.toggle('sidebar-collapsed', collapsed);
+            const label = this.getUiText(collapsed ? 'nav_expand' : 'nav_collapse');
+            if (navigationToggleText) navigationToggleText.textContent = label;
+            if (desktopButton) {
+                desktopButton.setAttribute('aria-expanded', String(!collapsed));
+                desktopButton.setAttribute('aria-label', label);
+                desktopButton.title = label;
+            }
+            navLinksGroup.querySelectorAll('.menu-link').forEach(link => {
+                link.title = collapsed ? link.querySelector('.menu-text')?.textContent.trim() || '' : '';
+            });
+            return;
+        }
+        appContainer.classList.remove('sidebar-collapsed');
+        navLinksGroup.querySelectorAll('.menu-link').forEach(link => { link.title = ''; });
+        const open = navLinksGroup.classList.contains('drawer-open');
+        const label = this.getUiText(open ? 'nav_close_menu' : 'nav_open_menu');
+        if (mobileButton) {
+            mobileButton.setAttribute('aria-expanded', String(open));
+            mobileButton.setAttribute('aria-label', label);
+            mobileButton.title = label;
+        }
+    };
+
     if (mobileButton && navLinksGroup) {
+        syncNavigationToggle();
         mobileButton.addEventListener('click', (e) => {
             e.stopPropagation();
-            const isOpen = navLinksGroup.classList.toggle('drawer-open');
-            mobileButton.setAttribute('aria-expanded', String(isOpen));
-            mobileButton.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+            navLinksGroup.classList.toggle('drawer-open');
+            syncNavigationToggle();
         });
     }
+    if (desktopButton && appContainer) {
+        desktopButton.addEventListener('click', event => {
+            event.stopPropagation();
+            const collapsed = appContainer.classList.toggle('sidebar-collapsed');
+            localStorage.setItem('endolog_pro_sidebar_collapsed', String(collapsed));
+            syncNavigationToggle();
+        });
+    }
+    if (brandHomeButton) {
+        brandHomeButton.addEventListener('click', () => {
+            sessionStorage.removeItem(this.roleSessionKey);
+            sessionStorage.removeItem(this.authTokenSessionKey);
+            this.currentUserRole = null;
+            this.currentAuthToken = null;
+            this.adminAuthenticated = false;
+            this.currentActiveView = null;
+            appContainer.hidden = true;
+            const authGate = document.getElementById('authGate');
+            if (authGate) authGate.hidden = false;
+            const form = document.getElementById('authGateForm');
+            if (form) form.reset();
+            const message = document.getElementById('authGateMessage');
+            if (message) message.textContent = '';
+            const submitButton = document.getElementById('authSubmitButton');
+            if (submitButton) submitButton.disabled = false;
+            this.bindAuthenticationForm();
+            document.getElementById('authPasscodeInput')?.focus();
+        });
+    }
+    window.addEventListener('resize', syncNavigationToggle);
+
 
     // A. Service Dashboard
     if (navDashboard) {
@@ -1883,6 +2534,7 @@ EndoAppStore.bindGlobalNavigation = function() {
         });
     }
 
+
     if (navMirror) {
         navMirror.addEventListener('click', event => {
             event.preventDefault();
@@ -1896,6 +2548,7 @@ EndoAppStore.bindGlobalNavigation = function() {
             this.refreshScopeMirrorFromSheets();
         });
     }
+
 
     // B. Parts Procurement
     if (navParts) {
@@ -1912,6 +2565,7 @@ EndoAppStore.bindGlobalNavigation = function() {
             this.refreshPartsProcurementData();
         });
     }
+
 
     // C. Scope History Timeline
     if (navTimeline) {
@@ -1933,6 +2587,7 @@ EndoAppStore.bindGlobalNavigation = function() {
         });
     }
 
+
     // D. Warehouse Inventory Ledger
     if (navInventory) {
         navInventory.addEventListener('click', (e) => {
@@ -1948,6 +2603,7 @@ EndoAppStore.bindGlobalNavigation = function() {
         });
     }
 
+
     // E. Private Admin Notebook
     if (navAdminLogs) {
         navAdminLogs.addEventListener('click', (e) => {
@@ -1962,28 +2618,29 @@ EndoAppStore.bindGlobalNavigation = function() {
         });
     }
 
+
     // Global Theme Toggle
     const navThemeToggle = document.getElementById('navLinkThemeToggle');
     if (navThemeToggle) {
         navThemeToggle.addEventListener('click', (e) => {
             e.preventDefault();
-            const currentTheme = document.body.getAttribute('data-theme');
-            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.body.setAttribute('data-theme', targetTheme);
-            localStorage.setItem('endolog_pro_active_theme', targetTheme);
+            this.applyTheme(document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
         });
     }
+
 
     if (timelineBackButton && navMirror) {
         timelineBackButton.addEventListener('click', () => navMirror.click());
     }
 };
 
+
 EndoAppStore.openDashboardLogFilter = function(filterValue) {
     const dashboardLink = document.getElementById('navLinkDashboard');
     const searchInput = document.getElementById('tableSearchInput');
     const statusFilter = document.getElementById('tableStatusFilter');
     const table = document.getElementById('masterLogDataTable');
+
 
     if (this.currentActiveView !== 'dashboard' && dashboardLink) dashboardLink.click();
     this.currentActiveView = 'dashboard';
@@ -1993,12 +2650,15 @@ EndoAppStore.openDashboardLogFilter = function(filterValue) {
     if (table) table.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
+
 EndoAppStore.updateHeaderTitles = function() {
     const viewTitle = document.getElementById('viewTitleHeading');
     const viewSub = document.getElementById('viewSubHeading');
     if (!viewTitle || !viewSub) return;
 
+
     const dict = EndoTranslationMatrix[this.activeLanguage] || EndoTranslationMatrix.en;
+
 
     switch (this.currentActiveView) {
         case 'mirror':
@@ -2006,7 +2666,7 @@ EndoAppStore.updateHeaderTitles = function() {
             viewSub.innerText = this.activeLanguage === 'id'
                 ? 'Status perbaikan, kesiapan pengambilan, dan garansi dalam satu tampilan.'
                 : 'Repair progress, pickup readiness, and warranty status in one live view.';
-            break;
+break;
         case 'parts':
             viewTitle.innerText = dict.view_title_parts;
             viewSub.innerText = dict.view_sub_parts;
@@ -2031,6 +2691,7 @@ EndoAppStore.updateHeaderTitles = function() {
     }
 };
 
+
 /* ==========================================================================
    8. UNIFIED FORM SUBMISSIONS & TRANSACTION RECORDERS
    ========================================================================== */
@@ -2040,6 +2701,7 @@ EndoAppStore.bindFormSubmissions = function() {
     const procurementForm = document.getElementById('partsProcurementForm');
     const invForm = document.getElementById('inventoryIntakeRegistrationForm');
     const privateNoteForm = document.getElementById('adminPrivateNoteForm');
+
 
     // ----------------------------------------------------------------------
     // Form 1: Master 33-Point Service Verification Report
@@ -2054,9 +2716,11 @@ EndoAppStore.bindFormSubmissions = function() {
                 submitBtn.innerText = this.activeLanguage === 'id' ? "Memproses..." : "Processing...";
             }
 
+
             try {
                 const formData = new FormData(serviceForm);
                 const targetedSerial = (formData.get('serialNumber') || "").trim();
+
 
                 if (!targetedSerial) {
                     alert("Error: Serial Number (S/N) cannot be empty.");
@@ -2066,6 +2730,7 @@ EndoAppStore.bindFormSubmissions = function() {
                     }
                     return;
                 }
+
 
                 const logEntry = {
                     id: 'LOG-' + Date.now(),
@@ -2093,6 +2758,7 @@ EndoAppStore.bindFormSubmissions = function() {
                 );
                 logEntry.scopeTracking.estimatedEndDate = logEntry.estimatedEndDate;
 
+
                 // Compile 33 Anatomy Component Matrix
                 for (let i = 1; i <= 33; i++) {
                     const idx = i.toString().padStart(2, '0');
@@ -2101,6 +2767,7 @@ EndoAppStore.bindFormSubmissions = function() {
                         desc: formData.get(`anatomy_desc_${idx}`) || ''
                     };
                 }
+
 
                 // If a spare part was requested, automatically queue an order in parts procurement
                 if (logEntry.requestedPartName) {
@@ -2118,8 +2785,10 @@ EndoAppStore.bindFormSubmissions = function() {
                     this.syncRecordToGoogleSheets({ type: 'PARTS_DEMAND_BACKUP', data: autoTicket });
                 }
 
+
                 this.serviceLogs.unshift(logEntry);
                 this.saveState();
+
 
                 // Dispatch to Google Sheets
                 this.syncRecordToGoogleSheets({
@@ -2127,8 +2796,10 @@ EndoAppStore.bindFormSubmissions = function() {
                     data: logEntry
                 });
 
+
                 this.renderAll();
                 serviceForm.reset();
+
 
                 const dict = EndoTranslationMatrix[this.activeLanguage] || EndoTranslationMatrix.en;
                 alert(dict.msg_saved_synced);
@@ -2145,11 +2816,12 @@ EndoAppStore.bindFormSubmissions = function() {
         });
     }
 
+
     // ----------------------------------------------------------------------
     // Form 2: Quick Lab Update & Relational Stock Decrement Interceptor
     // ----------------------------------------------------------------------
     if (quickForm) {
-        quickForm.addEventListener('submit', (e) => {
+        quickForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = quickForm.querySelector('button[type="submit"]');
             if (submitBtn) {
@@ -2157,20 +2829,24 @@ EndoAppStore.bindFormSubmissions = function() {
                 submitBtn.innerText = "...";
             }
 
+
             try {
                 const serialSelect = document.getElementById('quickLinkScopeSerial');
                 const noteInput = document.getElementById('quickLinkCommentText');
                 const partInput = document.getElementById('quickLinkPartRequest');
 
+
                 const selectedSerial = serialSelect ? serialSelect.value : "";
                 const typedNote = noteInput ? noteInput.value.trim() : "";
                 const requestedPart = partInput ? partInput.value.trim() : "";
+
 
                 if (!selectedSerial) {
                     alert("Please select a valid Scope Serial Number.");
                     if (submitBtn) { submitBtn.disabled = false; submitBtn.innerText = "Push Progress Update"; }
                     return;
                 }
+
 
                 const targetLog = this.serviceLogs.find(log => log.serialNumber === selectedSerial);
                 if (!targetLog) {
@@ -2179,62 +2855,83 @@ EndoAppStore.bindFormSubmissions = function() {
                     return;
                 }
 
+
+                const updatedLog = JSON.parse(JSON.stringify(targetLog));
                 const nowStamp = new Date().toLocaleString();
                 const newNoteLine = `[${nowStamp}] ${typedNote}`;
-                targetLog.repairNotes = newNoteLine + (targetLog.repairNotes ? "\n" + targetLog.repairNotes : "");
+                updatedLog.repairNotes = newNoteLine + (updatedLog.repairNotes ? "\n" + updatedLog.repairNotes : "");
+                if (requestedPart) updatedLog.requestedPartName = requestedPart;
 
-                // Handle Relational Warehouse Stock Decrement
+                const scopeSynced = await this.syncRecordToGoogleSheets({
+                    type: 'SCOPE_DATA_UPDATE',
+                    data: updatedLog
+                });
+                if (!scopeSynced) {
+                    throw new Error(this.activeLanguage === 'id'
+                        ? 'Pembaruan progres gagal disinkronkan; tidak ada perubahan lokal yang diterapkan.'
+                        : 'Progress update could not be synced; no local changes were applied.');
+                }
+
+                const targetIndex = this.serviceLogs.findIndex(log => String(log.id) === String(updatedLog.id));
+                if (targetIndex < 0) throw new Error('The selected scope record is no longer available.');
+                this.serviceLogs[targetIndex] = updatedLog;
+                this.saveState();
+
+                let matchedAsset = null;
                 if (requestedPart) {
-                    targetLog.requestedPartName = requestedPart;
-                    const matchedAsset = this.inventoryPool.find(item =>
+                    matchedAsset = this.inventoryPool.find(item =>
                         item.sku.toLowerCase() === requestedPart.toLowerCase() ||
                         item.partName.toLowerCase().includes(requestedPart.toLowerCase()) ||
                         requestedPart.toLowerCase().includes(item.sku.toLowerCase())
                     );
 
-                    if (matchedAsset && matchedAsset.currentStock > 0) {
-                        matchedAsset.currentStock -= 1;
-                        const tier = targetLog.repairComplexity || 'Minor';
-
-                        if (tier === 'Minor') matchedAsset.usedInMinor = (matchedAsset.usedInMinor || 0) + 1;
-                        else if (tier === 'Medium') matchedAsset.usedInMedium = (matchedAsset.usedInMedium || 0) + 1;
-                        else if (tier === 'Major') matchedAsset.usedInMajor = (matchedAsset.usedInMajor || 0) + 1;
-                        else if (tier === 'Overhaul') matchedAsset.usedInOverhaul = (matchedAsset.usedInOverhaul || 0) + 1;
-                        else if (tier === 'Major + CCD') matchedAsset.usedInMajorCCD = (matchedAsset.usedInMajorCCD || 0) + 1;
-                        else if (tier === 'Overhaul + CCD') matchedAsset.usedInOverhaulCCD = (matchedAsset.usedInOverhaulCCD || 0) + 1;
-                        else if (tier === 'Warranty') matchedAsset.usedInWarranty = (matchedAsset.usedInWarranty || 0) + 1;
-
-                        this.syncRecordToGoogleSheets({
-                            type: 'RELATIONAL_INVENTORY_DECREMENT',
-                            sku: matchedAsset.sku,
-                            repairType: tier,
-                            data: matchedAsset
-                        });
+                    if (matchedAsset && Number(matchedAsset.currentStock) > 0) {
+                        await this.consumeInventoryForScope(updatedLog.id, requestedPart);
                     }
 
-                    // Also push a parts order line
                     const connectedPartTicket = {
-                        id: 'PRT-' + Date.now(),
+                        id: `PRT-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
                         bindingType: 'scope',
+                        recordId: updatedLog.id,
+                        sourceLogId: updatedLog.id,
                         serialNumber: selectedSerial,
+                        scopeModel: updatedLog.scopeModel || '',
                         partName: requestedPart,
-                        supplier: matchedAsset ? matchedAsset.vendor : 'OEM Distribution Center',
+                        quantity: 1,
+                        estimatedPrice: '',
                         cost: '145.00',
-                        partEta: '3-5 Business Days',
+                        supplier: matchedAsset ? matchedAsset.vendor : 'OEM Distribution Center',
+                        preferredVendor: matchedAsset ? matchedAsset.vendor : '',
+                        requestedAt: new Date().toISOString(),
                         status: 'Awaiting Approval'
                     };
                     this.partsOrders.unshift(connectedPartTicket);
-                    this.syncRecordToGoogleSheets({ type: 'PARTS_DEMAND_BACKUP', data: connectedPartTicket });
+                    this.saveState();
+                    const partSynced = await this.syncRecordToGoogleSheets({
+                        type: 'PARTS_DEMAND_BACKUP',
+                        data: connectedPartTicket
+                    });
+                    if (!partSynced) {
+                        this.showMirrorToast(this.activeLanguage === 'id'
+                            ? 'Permintaan suku cadang tersimpan di perangkat, tetapi gagal disinkronkan.'
+                            : 'Part request was saved locally, but cloud sync failed.', true);
+                        this.renderAll();
+                        quickForm.reset();
+                        return;
+                    }
                 }
 
-                this.saveState();
-                this.syncRecordToGoogleSheets({ type: 'FULL_SERVICE_REPORT', data: targetLog });
                 this.renderAll();
                 quickForm.reset();
-
-                alert(this.activeLanguage === 'id' ? 'Catatan laboratorium diperbarui!' : 'Lab context update committed and inventory synced!');
+                this.showMirrorToast(this.activeLanguage === 'id'
+                    ? 'Pembaruan progres berhasil disinkronkan.'
+                    : 'Progress update synced successfully.');
             } catch (err) {
                 console.error("Failed pushing quick update:", err);
+                this.showMirrorToast(err.message || (this.activeLanguage === 'id'
+                    ? 'Pembaruan progres gagal disinkronkan.'
+                    : 'Progress update could not be synced.'), true);
+                this.renderAll();
             } finally {
                 if (submitBtn) {
                     submitBtn.disabled = false;
@@ -2244,6 +2941,9 @@ EndoAppStore.bindFormSubmissions = function() {
             }
         });
     }
+
+
+
 
     // ----------------------------------------------------------------------
     // Form 3: Parts Procurement Request Form
@@ -2270,6 +2970,7 @@ EndoAppStore.bindFormSubmissions = function() {
                 if (!partName || !Number.isInteger(quantity) || quantity < 1) {
                     throw new Error('Enter a part name and a whole-number quantity greater than zero.');
                 }
+
 
                 const ticket = {
                     id: 'PRT-' + Date.now(),
@@ -2299,6 +3000,7 @@ EndoAppStore.bindFormSubmissions = function() {
                     status: 'Awaiting Approval'
                 };
 
+
                 this.partsOrders.unshift(ticket);
                 this.saveState();
                 const synced = await this.syncRecordToGoogleSheets({ type: 'PARTS_DEMAND_BACKUP', data: ticket });
@@ -2317,6 +3019,7 @@ EndoAppStore.bindFormSubmissions = function() {
             }
         });
     }
+
 
     const partScopeSearch = document.getElementById('partScopeSearch');
     const activeRepairResults = document.getElementById('activeRepairResults');
@@ -2360,6 +3063,7 @@ EndoAppStore.bindFormSubmissions = function() {
         });
     }
 
+
     // ----------------------------------------------------------------------
     // Form 4: Warehouse Inventory Ingest Registration
     // ----------------------------------------------------------------------
@@ -2374,9 +3078,11 @@ EndoAppStore.bindFormSubmissions = function() {
                 const vendorInput = document.getElementById('invVendor');
                 const categoryInput = document.getElementById('invCategory');
                 const qualityInput = document.getElementById('invQualityRating');
+                const deliveryInput = document.getElementById('invDeliveryRating');
                 const qualityNotesInput = document.getElementById('invQualityNotes');
                 const currentStock = stockInput ? Number(stockInput.value) : 0;
                 const qualityRating = qualityInput && qualityInput.value ? Number(qualityInput.value) : null;
+                const deliveryRating = deliveryInput && deliveryInput.value ? Number(deliveryInput.value) : null;
                 const qualityNotes = qualityNotesInput ? qualityNotesInput.value.trim() : '';
                 if (!Number.isInteger(currentStock) || currentStock < 1) {
                     throw new Error('Enter a received stock quantity greater than zero.');
@@ -2385,9 +3091,14 @@ EndoAppStore.bindFormSubmissions = function() {
                     !vendorInput?.value.trim() || !this.inventoryCategories.includes(categoryInput?.value)) {
                     throw new Error('Complete the part name, SKU, lot, category, and vendor fields.');
                 }
-                if (qualityNotes && !qualityRating) {
-                    throw new Error('Select a quality rating before adding quality notes.');
+                if ((qualityRating !== null && (!Number.isInteger(qualityRating) || qualityRating < 1 || qualityRating > 5)) ||
+                    (deliveryRating !== null && (!Number.isInteger(deliveryRating) || deliveryRating < 1 || deliveryRating > 5))) {
+                    throw new Error('Quality and delivery-speed observations must be ratings from 1 to 5.');
                 }
+                if (qualityNotes && qualityRating === null && deliveryRating === null) {
+                    throw new Error('Record a quality or delivery-speed rating before adding receipt observations.');
+                }
+
 
                 const inventoryItem = {
                     partName: nameInput ? nameInput.value.trim() : "",
@@ -2401,9 +3112,11 @@ EndoAppStore.bindFormSubmissions = function() {
                     receiptId: `RCV-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
                     receivedQuantity: currentStock,
                     qualityRating,
+                    deliveryRating,
                     qualityNotes,
                     usedInMinor: 0, usedInMedium: 0, usedInMajor: 0, usedInOverhaul: 0, usedInMajorCCD: 0, usedInOverhaulCCD: 0, usedInWarranty: 0
                 };
+
 
                 const synced = await this.syncRecordToGoogleSheets({ type: 'INVENTORY_INTAKE_V2', data: inventoryItem });
                 if (!synced) throw new Error('Inventory intake was not synchronized. The item was not added locally.');
@@ -2432,7 +3145,7 @@ EndoAppStore.bindFormSubmissions = function() {
                     scopeLogId: '',
                     serialNumber: ''
                 });
-                if (qualityRating) {
+                if (qualityRating !== null || deliveryRating !== null) {
                     this.vendorQualityEvents.unshift({
                         id: inventoryItem.receiptId,
                         vendor: inventoryItem.vendor,
@@ -2441,6 +3154,7 @@ EndoAppStore.bindFormSubmissions = function() {
                         lotNumber: inventoryItem.lotNumber,
                         quantity: currentStock,
                         rating: qualityRating,
+                        deliveryRating,
                         notes: qualityNotes,
                         receivedAt: new Date().toISOString()
                     });
@@ -2449,7 +3163,7 @@ EndoAppStore.bindFormSubmissions = function() {
                 this.renderInventoryTable();
                 this.renderProcurementAdminDashboard();
                 invForm.reset();
-                invForm.closest('details')?.removeAttribute('open');
+                invForm.closest('dialog')?.close();
                 this.showMirrorToast(synced
                     ? (qualityRating ? 'Inventory added and vendor quality history synced.' : 'Inventory added and synced.')
                     : 'Inventory saved locally; cloud sync failed.', !synced);
@@ -2459,6 +3173,7 @@ EndoAppStore.bindFormSubmissions = function() {
             }
         });
     }
+
 
     // ----------------------------------------------------------------------
     // Form 5: Private Engineering Notebook Form
@@ -2471,6 +3186,7 @@ EndoAppStore.bindFormSubmissions = function() {
                 const titleInput = document.getElementById('adminNoteTitle');
                 const contentInput = document.getElementById('adminNoteContent');
 
+
                 const noteObj = {
                     id: 'NOTE-' + Date.now(),
                     timestamp: new Date().toLocaleString(),
@@ -2479,11 +3195,13 @@ EndoAppStore.bindFormSubmissions = function() {
                     content: contentInput ? contentInput.value.trim() : ""
                 };
 
+
                 this.adminNotes.unshift(noteObj);
                 this.saveState();
                 this.syncRecordToGoogleSheets({ type: 'PRIVATE_NOTE_BACKUP', data: noteObj });
                 this.renderAdminPrivateNotesTable();
                 privateNoteForm.reset();
+
 
                 alert(this.activeLanguage === 'id' ? 'Catatan rahasia teknisi tersimpan!' : 'Private engineering note saved and synced to cloud vault!');
             } catch (err) {
@@ -2492,6 +3210,7 @@ EndoAppStore.bindFormSubmissions = function() {
         });
     }
 };
+
 
 /* ==========================================================================
    9. DATA TABLE RENDERERS (MASTER LOGS, PARTS, INVENTORY, TIMELINE)
@@ -2549,8 +3268,8 @@ EndoAppStore.renderLogTable = function() {
             : `<span style="color:var(--text-muted); font-size:11px; display:block; margin-bottom:6px;">No Media</span>`;
 
         tr.innerHTML = `
-            <td><strong>${log.logDate}</strong><br><span style="font-size:11px; color:var(--text-muted);">${log.timestamp}</span></td>
-            <td><strong>${log.scopeModel}</strong><br><span style="font-size:11px; color:var(--text-muted);">${log.scopeType}</span></td>
+            <td><strong>${log.logDate}</strong><br><span style="font-size:11px;color:var(--text-muted);">${log.timestamp}</span></td>
+            <td><strong>${log.scopeModel}</strong><br><span style="font-size:11px;color:var(--text-muted);">${log.scopeType}</span></td>
             <td><code style="background:var(--bg-primary); border:1px solid var(--border-color); padding:4px 8px; border-radius:6px; font-weight:700; color:var(--text-main);">${log.serialNumber}</code></td>
             <td><span class="metric-card-badge badge-info" style="background:rgba(0,0,0,0.04); color:var(--text-main); font-weight:700;">${log.scopeStatusState || 'In Lab'}</span></td>
             <td>${warrantyMarkup}</td>
@@ -2563,11 +3282,11 @@ EndoAppStore.renderLogTable = function() {
             </td>
             <td class="scope-row-actions" style="white-space: nowrap;">
                 <button type="button" class="btn btn-interactive-outline" data-scope-action="edit" data-log-id="${this.escapeAttribute(log.id)}" style="padding:6px 12px; font-size:12px; border-color:var(--brand-primary); color:var(--brand-primary); font-weight:700; margin-right:4px;">
-                    ✏️ Edit
+                    ✏️ ${this.escapeHtml(this.getUiText('scope_action_edit'))}
                 </button>
                 ${this.currentUserRole === 'admin'
-                    ? `<button type="button" class="btn btn-interactive-outline" data-scope-action="delete" data-log-id="${this.escapeAttribute(log.id)}" style="padding:6px 12px; font-size:12px; border-color:var(--brand-danger); color:var(--brand-danger); font-weight:700;">🗑️ Delete</button>`
-                    : `<button type="button" class="btn btn-interactive-outline" data-scope-action="request-deletion" data-log-id="${this.escapeAttribute(log.id)}" style="padding:6px 12px; font-size:12px; border-color:var(--brand-warning); color:var(--brand-warning); font-weight:700;">Request Content Deletion</button>`
+                    ? `<button type="button" class="btn btn-interactive-outline" data-scope-action="delete" data-log-id="${this.escapeAttribute(log.id)}" style="padding:6px 12px; font-size:12px; border-color:var(--brand-danger); color:var(--brand-danger); font-weight:700;">🗑️ ${this.escapeHtml(this.getUiText('scope_action_delete'))}</button>`
+                    : `<button type="button" class="btn btn-interactive-outline" data-scope-action="request-deletion" data-log-id="${this.escapeAttribute(log.id)}" style="padding:6px 12px; font-size:12px; border-color:var(--brand-warning); color:var(--brand-warning); font-weight:700;">${this.escapeHtml(this.getUiText('scope_action_request_deletion'))}</button>`
                 }
             </td>
         `;
@@ -2813,7 +3532,7 @@ EndoAppStore.closeScopeEditor = function() {
     this.editingScopeLogId = null;
 };
 
-EndoAppStore.saveScopeEditor = function() {
+EndoAppStore.saveScopeEditor = async function() {
     const log = this.serviceLogs.find(item => String(item.id) === String(this.editingScopeLogId));
     const form = document.getElementById('scopeEditForm');
     if (!log || !form) return;
@@ -2859,13 +3578,28 @@ EndoAppStore.saveScopeEditor = function() {
 
     const index = this.serviceLogs.findIndex(item => String(item.id) === String(this.editingScopeLogId));
     if (index < 0) return;
-    this.serviceLogs[index] = updatedLog;
-    this.saveState();
-    this.syncRecordToGoogleSheets({ type: 'SCOPE_DATA_UPDATE', data: updatedLog });
-    this.renderScopeMirrorDashboard();
-    this.closeScopeEditor();
-    this.renderAll();
-    alert(this.activeLanguage === 'id' ? 'Perubahan scope tersimpan.' : 'Scope updates saved and queued for synchronization.');
+    const saveButton = form.querySelector('button[type="submit"]');
+    if (saveButton) saveButton.disabled = true;
+    try {
+        const synced = await this.syncRecordToGoogleSheets({ type: 'SCOPE_DATA_UPDATE', data: updatedLog });
+        if (!synced) {
+            this.showMirrorToast(
+                this.activeLanguage === 'id'
+                    ? 'Pembaruan scope gagal disinkronkan. Perubahan lokal belum diterapkan.'
+                    : 'Scope updates could not be synchronized. No local changes were applied.',
+                true
+            );
+            return;
+        }
+        this.serviceLogs[index] = updatedLog;
+        this.saveState();
+        this.renderScopeMirrorDashboard();
+        this.closeScopeEditor();
+        this.renderAll();
+        this.showMirrorToast(this.activeLanguage === 'id' ? 'Perubahan scope tersimpan dan disinkronkan.' : 'Scope updates saved and synced.');
+    } finally {
+        if (saveButton) saveButton.disabled = false;
+    }
 };
 
 EndoAppStore.getScopeEditorValue = function(control) {
@@ -2884,12 +3618,17 @@ EndoAppStore.requestPartForCurrentScope = async function() {
     const partName = String(formData.get('editPartName') || '').trim();
     const quantity = Number(formData.get('editPartQuantity'));
     const priceValue = String(formData.get('editPartPrice') || '').trim();
+    const sourceLink = String(formData.get('editPartSourceLink') || '').trim();
     if (!partName || !Number.isInteger(quantity) || quantity < 1) {
         this.showMirrorToast('Enter a part name and a whole-number quantity greater than zero.', true);
         return;
     }
     if (priceValue && (!Number.isFinite(Number(priceValue)) || Number(priceValue) < 0)) {
         this.showMirrorToast('Estimated price must be a non-negative number.', true);
+        return;
+    }
+    if (sourceLink && !this.safeProcurementUrl(sourceLink)) {
+        this.showMirrorToast('Enter a valid HTTP(S) vendor source link.', true);
         return;
     }
     const requestButton = document.getElementById('scopePartRequestButton');
@@ -2905,7 +3644,7 @@ EndoAppStore.requestPartForCurrentScope = async function() {
         quantity,
         estimatedPrice: priceValue ? Number(priceValue) : '',
         cost: priceValue ? Number(priceValue) : '',
-        sourceLink: String(formData.get('editPartSourceLink') || '').trim(),
+        sourceLink,
         supplier: String(formData.get('editPartVendor') || '').trim(),
         preferredVendor: String(formData.get('editPartVendor') || '').trim(),
         notes: String(formData.get('editPartNotes') || '').trim(),
@@ -2946,7 +3685,7 @@ EndoAppStore.requestPartForCurrentScope = async function() {
     }
 };
 
-EndoAppStore.requestContentDeletion = function(logId, suppliedReason) {
+EndoAppStore.requestContentDeletion = async function(logId, suppliedReason) {
     const log = this.serviceLogs.find(item => String(item.id) === String(logId));
     if (!log) return;
     if (this.currentUserRole !== 'tech') {
@@ -2971,11 +3710,23 @@ EndoAppStore.requestContentDeletion = function(logId, suppliedReason) {
         status: 'Pending Review',
         requestedAt: new Date().toISOString()
     };
-    this.syncRecordToGoogleSheets({ type: 'CONTENT_DELETION_REQUEST', data: request });
-    alert('Deletion request submitted for administrator review. The scope record was not deleted.');
+    const synced = await this.syncRecordToGoogleSheets({ type: 'CONTENT_DELETION_REQUEST', data: request });
+    if (!synced) {
+        this.showMirrorToast(
+            this.activeLanguage === 'id'
+                ? 'Permintaan penghapusan gagal dikirim ke Google Sheets.'
+                : 'The deletion request could not be sent to Google Sheets.',
+            true
+        );
+        return false;
+    }
+    alert(this.activeLanguage === 'id'
+        ? 'Permintaan penghapusan telah dikirim untuk ditinjau administrator. Data scope tidak dihapus.'
+        : 'Deletion request submitted for administrator review. The scope record was not deleted.');
+    return true;
 };
 
-EndoAppStore.purgeLogRecord = function(logId) {
+EndoAppStore.purgeLogRecord = async function(logId) {
     if (this.currentUserRole !== 'admin') {
         alert('Only administrators can delete scope records.');
         return;
@@ -2984,13 +3735,24 @@ EndoAppStore.purgeLogRecord = function(logId) {
 
     const idx = this.serviceLogs.findIndex(log => String(log.id) === String(logId));
     if (idx !== -1) {
+        const synced = await this.syncRecordToGoogleSheets({ id: logId, type: 'RECORD_DELETION_SIGNAL', status: 'DELETED' });
+        if (!synced) {
+            this.showMirrorToast(
+                this.activeLanguage === 'id'
+                    ? 'Penghapusan gagal disinkronkan. Data lokal tidak dihapus.'
+                    : 'Record deletion could not be synchronized. The local record was not removed.',
+                true
+            );
+            return false;
+        }
         this.serviceLogs.splice(idx, 1);
         this.saveState();
         this.closeScopeEditor();
         this.renderAll();
-        this.syncRecordToGoogleSheets({ id: logId, type: 'RECORD_DELETION_SIGNAL', status: 'DELETED' });
         alert(this.activeLanguage === 'id' ? 'Data berhasil dihapus!' : 'Record removed successfully.');
+        return true;
     }
+    return false;
 };
 
 /* --------------------------------------------------------------------------
@@ -3094,10 +3856,10 @@ EndoAppStore.refreshPartsProcurementData = async function() {
         if (Array.isArray(result.inventoryMovements)) this.inventoryMovements = result.inventoryMovements;
         if (Array.isArray(result.inventory)) {
             const cloudInventoryKeys = new Set(result.inventory.map(item =>
-                `${String(item.sku || '').trim().toUpperCase()}|${String(item.lotNumber || '').trim().toUpperCase()}`
+                `String(item.sku||'').trim().toUpperCase()|{String(item.lotNumber || '').trim().toUpperCase()}`
             ));
             const localOnlyInventory = this.inventoryPool.filter(item =>
-                !cloudInventoryKeys.has(`${String(item.sku || '').trim().toUpperCase()}|${String(item.lotNumber || '').trim().toUpperCase()}`)
+                !cloudInventoryKeys.has(`String(item.sku||'').trim().toUpperCase()|{String(item.lotNumber || '').trim().toUpperCase()}`)
             );
             this.inventoryPool = [...result.inventory, ...localOnlyInventory];
         }
@@ -3161,6 +3923,10 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
     const reviewList = document.getElementById('adminProcurementReviewList');
     const vendorList = document.getElementById('vendorQualityList');
     if (!reviewList || !vendorList) return;
+    const expandedPartIds = new Set(
+        [...reviewList.querySelectorAll('.admin-part-disclosure[open]')]
+            .map(disclosure => disclosure.dataset.partId)
+    );
     reviewList.replaceChildren();
     vendorList.replaceChildren();
     const statusRank = { 'Awaiting Approval': 0, 'In Procurement': 1, Ordered: 2, Received: 3 };
@@ -3178,7 +3944,11 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
         const card = document.createElement('article');
         card.className = 'admin-part-card';
         card.dataset.partId = part.id;
-        const header = document.createElement('header');
+        const disclosure = document.createElement('details');
+        disclosure.className = 'admin-part-disclosure';
+        disclosure.dataset.partId = part.id;
+        disclosure.open = expandedPartIds.has(String(part.id));
+        const header = document.createElement('summary');
         header.className = 'admin-part-card-header';
         const heading = document.createElement('div');
         const title = document.createElement('h4');
@@ -3191,12 +3961,14 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
         status.className = `parts-status-pill ${part.status === 'Received' ? 'is-received' : part.status === 'Ordered' ? 'is-ordered' : ''}`;
         status.textContent = part.status || 'Awaiting Approval';
         header.append(heading, status);
-        card.appendChild(header);
+        disclosure.appendChild(header);
+        const content = document.createElement('div');
+        content.className = 'admin-part-content';
         if (part.notes) {
             const notes = document.createElement('p');
             notes.className = 'admin-part-notes';
             notes.textContent = `Technician notes: ${part.notes}`;
-            card.appendChild(notes);
+            content.appendChild(notes);
         }
         const sourceUrl = this.safeProcurementUrl(part.sourceLink);
         if (sourceUrl) {
@@ -3205,7 +3977,7 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
             link.textContent = 'Open vendor source ↗';
-            card.appendChild(link);
+            content.appendChild(link);
         }
 
         const form = document.createElement('form');
@@ -3231,7 +4003,7 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
         save.className = 'btn btn-interactive-primary admin-part-save';
         save.textContent = 'Save procurement details';
         form.appendChild(save);
-        card.appendChild(form);
+        content.appendChild(form);
         if (part.status === 'Ordered') {
             const receiptPanel = document.createElement('section');
             receiptPanel.className = 'part-receipt-panel';
@@ -3247,14 +4019,15 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
             const lotField = this.createProcurementField('Lot / batch number', 'lotNumber', part.inventoryLot || '', 'text');
             const quantityField = this.createProcurementField('Received quantity', 'receivedQuantity', part.receivedQuantity || part.quantity || 1, 'number');
             const categoryField = this.createProcurementField('Inventory category', 'category', part.inventoryCategory || 'Other', '', ['', ...this.inventoryCategories]);
-            const qualityField = this.createProcurementField('Received part quality (1–5)', 'qualityRating', '', '', ['', '1', '2', '3', '4', '5']);
-            const notesField = this.createProcurementField('Quality notes', 'qualityNotes', '', 'textarea');
+            const qualityField = this.createProcurementField(this.getUiText('inv_quality_rating'), 'qualityRating', '', '', ['', '1', '2', '3', '4', '5']);
+            const speedField = this.createProcurementField(this.getUiText('inv_delivery_speed'), 'deliveryRating', '', '', ['', '1', '2', '3', '4', '5']);
+            const notesField = this.createProcurementField(this.getUiText('inv_quality_notes'), 'qualityNotes', '', 'textarea');
             const qualityPlaceholder = qualityField.querySelector('option[value=""]');
-            if (qualityPlaceholder) qualityPlaceholder.textContent = 'Select a rating';
+            if (qualityPlaceholder) qualityPlaceholder.textContent = this.getUiText('inv_quality_select_rating');
             const categoryPlaceholder = categoryField.querySelector('option[value=""]');
             if (categoryPlaceholder) categoryPlaceholder.textContent = 'Select a category';
             notesField.classList.add('part-receipt-notes');
-            [skuField, lotField, quantityField, categoryField, qualityField].forEach(field => {
+            [skuField, lotField, quantityField, categoryField, qualityField, speedField].forEach(field => {
                 const control = field.querySelector('input, select, textarea');
                 if (control) control.required = true;
             });
@@ -3264,15 +4037,17 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
             receiveButton.type = 'submit';
             receiveButton.className = 'btn btn-interactive-primary';
             receiveButton.textContent = 'Confirm receipt & update vendor history';
-            receiptForm.append(skuField, lotField, quantityField, categoryField, qualityField, notesField, receiveButton);
+            receiptForm.append(skuField, lotField, quantityField, categoryField, qualityField, speedField, notesField, receiveButton);
             receiptPanel.appendChild(receiptForm);
-            card.appendChild(receiptPanel);
+            content.appendChild(receiptPanel);
         } else if (part.status === 'Received') {
             const receiptSummary = document.createElement('p');
             receiptSummary.className = 'vendor-quality-summary';
             receiptSummary.textContent = `Received ${part.receivedQuantity || part.quantity || 1} unit(s) · ${part.qualityRating ? `${part.qualityRating}/5 quality logged` : 'receipt recorded'}`;
-            card.appendChild(receiptSummary);
+            content.appendChild(receiptSummary);
         }
+        disclosure.appendChild(content);
+        card.appendChild(disclosure);
         reviewList.appendChild(card);
     });
 
@@ -3280,9 +4055,14 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
         const events = this.vendorQualityEvents
             .filter(item => String(item.vendor || '').toLowerCase() === vendor.toLowerCase())
             .sort((a, b) => String(b.receivedAt || '').localeCompare(String(a.receivedAt || '')));
-        const ratingSum = events.reduce((total, item) => total + Number(item.rating || 0), 0);
-        const averageRating = events.length ? ratingSum / events.length : 0;
-        const legacy = this.vendorRatings.find(item => String(item.vendor || '').toLowerCase() === vendor.toLowerCase()) || {};
+        const qualityEvents = events.filter(item => Number(item.rating) >= 1 && Number(item.rating) <= 5);
+        const speedEvents = events.filter(item => Number(item.deliveryRating) >= 1 && Number(item.deliveryRating) <= 5);
+        const averageRating = qualityEvents.length
+            ? qualityEvents.reduce((total, item) => total + Number(item.rating), 0) / qualityEvents.length
+            : 0;
+        const averageSpeed = speedEvents.length
+            ? speedEvents.reduce((total, item) => total + Number(item.deliveryRating), 0) / speedEvents.length
+            : 0;
         const card = document.createElement('article');
         card.className = 'vendor-quality-card';
         const header = document.createElement('header');
@@ -3291,19 +4071,20 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
         title.textContent = vendor;
         const rating = document.createElement('span');
         rating.className = 'vendor-rating-stars';
-        const displayRating = events.length ? Math.round(averageRating) : Number(legacy.rating) || 0;
-        rating.textContent = displayRating
-            ? `${'★'.repeat(displayRating)}${'☆'.repeat(5 - displayRating)}`
-            : 'Not rated';
+        const displayRating = qualityEvents.length ? Math.round(averageRating) : 0;
+        const starString = displayRating ? ('★'.repeat(displayRating) + '☆'.repeat(5 - displayRating)) : '';
+        rating.textContent = displayRating ? starString : this.getUiText('vendor_no_quality_rating');
         header.append(title, rating);
         card.appendChild(header);
         const summary = document.createElement('p');
         summary.className = 'vendor-quality-summary';
+        const observationSummary = [
+            qualityEvents.length ? `${this.getUiText('vendor_quality_average')}: ${averageRating.toFixed(1)} / 5` : '',
+            speedEvents.length ? `${this.getUiText('vendor_speed_average')}: ${averageSpeed.toFixed(1)} / 5` : ''
+        ].filter(Boolean);
         summary.textContent = events.length
-            ? `${averageRating.toFixed(1)} / 5 average · ${events.length} received shipment review${events.length === 1 ? '' : 's'}`
-            : legacy.rating
-                ? `Legacy rating: ${legacy.rating}/5 · No received-shipment reviews yet`
-                : 'No received-shipment reviews yet.';
+            ? `${observationSummary.join(' · ')} · ${events.length} ${this.getUiText('vendor_receipt_count')}`
+            : this.getUiText('vendor_no_receipts');
         card.appendChild(summary);
         events.slice(0, 5).forEach(item => {
             const entry = document.createElement('div');
@@ -3315,12 +4096,21 @@ EndoAppStore.renderProcurementAdminDashboard = function() {
             entryTitle.textContent = `${item.partName || 'Received part'}${item.sku ? ` · ${item.sku}` : ''}${item.quantity ? ` · Qty ${item.quantity}` : ''}`;
             const entryRating = document.createElement('span');
             entryRating.className = 'vendor-rating-stars';
-            entryRating.textContent = `${'★'.repeat(Number(item.rating) || 0)}${'☆'.repeat(5 - (Number(item.rating) || 0))}`;
+            const itemRating = Number(item.rating) || 0;
+            entryRating.textContent = itemRating
+                ? '★'.repeat(itemRating) + '☆'.repeat(5 - itemRating)
+                : this.getUiText('vendor_no_quality_rating');
             entryHeader.append(entryTitle, entryRating);
             const entryDate = document.createElement('div');
             entryDate.className = 'vendor-quality-event-date';
             entryDate.textContent = item.receivedAt ? new Date(item.receivedAt).toLocaleDateString() : 'Date not recorded';
             entry.append(entryHeader, entryDate);
+            if (Number(item.deliveryRating) >= 1 && Number(item.deliveryRating) <= 5) {
+                const speed = document.createElement('div');
+                speed.className = 'vendor-quality-event-date';
+                speed.textContent = `${this.getUiText('vendor_speed_average')}: ${item.deliveryRating}/5`;
+                entry.appendChild(speed);
+            }
             if (item.notes) {
                 const note = document.createElement('p');
                 note.className = 'vendor-rating-notes';
@@ -3376,13 +4166,15 @@ EndoAppStore.savePartReceipt = async function(form) {
     const values = new FormData(form);
     const receivedQuantity = Number(values.get('receivedQuantity'));
     const qualityRating = Number(values.get('qualityRating'));
+    const deliveryRating = Number(values.get('deliveryRating'));
     const category = String(values.get('category') || '');
     const sku = String(values.get('sku') || '').trim().toUpperCase();
     const lotNumber = String(values.get('lotNumber') || '').trim().toUpperCase();
     if (!sku || !lotNumber || !Number.isInteger(receivedQuantity) || receivedQuantity < 1 ||
         !this.inventoryCategories.includes(category) ||
-        !Number.isInteger(qualityRating) || qualityRating < 1 || qualityRating > 5) {
-        throw new Error('Enter an inventory SKU, lot, category, positive received quantity, and quality rating from 1 to 5.');
+        !Number.isInteger(qualityRating) || qualityRating < 1 || qualityRating > 5 ||
+        !Number.isInteger(deliveryRating) || deliveryRating < 1 || deliveryRating > 5) {
+        throw new Error('Enter an inventory SKU, lot, category, positive received quantity, and quality and delivery-speed ratings from 1 to 5.');
     }
     const receivedAt = new Date().toISOString();
     const receiptId = `RCV-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -3396,6 +4188,7 @@ EndoAppStore.savePartReceipt = async function(form) {
         lotNumber,
         receivedQuantity,
         rating: qualityRating,
+        deliveryRating,
         notes: String(values.get('qualityNotes') || '').trim(),
         receivedAt
     };
@@ -3410,6 +4203,7 @@ EndoAppStore.savePartReceipt = async function(form) {
     part.inventoryLot = lotNumber;
     part.inventoryCategory = category;
     part.qualityRating = qualityRating;
+    part.deliveryRating = deliveryRating;
     part.qualityNotes = receipt.notes;
     const inventoryItem = this.inventoryPool.find(item =>
         String(item.sku || '').toUpperCase() === sku && String(item.lotNumber || '').toUpperCase() === lotNumber
@@ -3417,7 +4211,7 @@ EndoAppStore.savePartReceipt = async function(form) {
     if (inventoryItem) {
         inventoryItem.currentStock = Number(inventoryItem.currentStock || 0) + receivedQuantity;
         inventoryItem.vendor = vendor;
-        inventoryItem.category = category;
+ inventoryItem.category = category;
         inventoryItem.incomingDate = receivedAt;
     } else {
         this.inventoryPool.unshift({
@@ -3459,6 +4253,7 @@ EndoAppStore.savePartReceipt = async function(form) {
         lotNumber,
         quantity: receivedQuantity,
         rating: qualityRating,
+        deliveryRating,
         notes: receipt.notes,
         receivedAt
     });
@@ -3471,16 +4266,10 @@ EndoAppStore.savePartReceipt = async function(form) {
 EndoAppStore.renderPartsTransitMap = function() {
     const map = document.getElementById('partsTransitMap');
     const list = document.getElementById('partsTransitList');
-    const route = document.getElementById('partsTransitRoute');
-    const plane = document.getElementById('partsMapPlane');
-    const originDot = document.getElementById('partsMapOriginDot');
-    const originLabel = document.getElementById('partsMapOriginLabel');
-    const destinationDot = document.getElementById('partsMapDestinationDot');
-    const destinationLabel = document.getElementById('partsMapDestinationLabel');
+    const routesGroup = document.getElementById('partsTransitRoutes');
     const continentsGroup = document.getElementById('partsMapContinents');
     const caption = document.getElementById('partsMapCaption');
-    if (!map || !list || !route || !plane || !originDot || !originLabel || !destinationDot ||
-        !destinationLabel || !continentsGroup || !caption) return;
+    if (!map || !list || !routesGroup || !continentsGroup || !caption) return;
     const coordinateTable = {
         Australia: [134, -25], China: [104, 35], France: [2, 46], Germany: [10, 51],
         Indonesia: [107, -6], Japan: [138, 36], Malaysia: [102, 4], Netherlands: [5, 52],
@@ -3518,84 +4307,99 @@ EndoAppStore.renderPartsTransitMap = function() {
         destinationCoordinates[part.destination]
     );
     list.replaceChildren();
+    routesGroup.replaceChildren();
+    map.setAttribute('viewBox', '0 0 900 390');
     if (!transitOrders.length) {
-        map.setAttribute('viewBox', '0 0 900 390');
-        caption.textContent = 'No ordered parts with origin, arrival destination, and ETA details are available.';
-        route.setAttribute('d', '');
-        plane.setAttribute('visibility', 'hidden');
-        originDot.setAttribute('visibility', 'hidden');
-        originLabel.textContent = '';
-        const defaultDestination = toPoint(destinationCoordinates['Jakarta, Indonesia']);
-        destinationDot.setAttribute('cx', defaultDestination.x);
-        destinationDot.setAttribute('cy', defaultDestination.y);
-        destinationLabel.setAttribute('x', defaultDestination.x + 10);
-        destinationLabel.setAttribute('y', defaultDestination.y + 20);
-        destinationLabel.textContent = 'Jakarta, Indonesia';
+        caption.textContent = this.getUiText('parts_transit_empty');
         return;
     }
-    transitOrders.forEach(part => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = `parts-transit-card ${part.id === this.selectedTransitOrderId ? 'is-selected' : ''}`;
-        button.dataset.transitOrder = part.id;
+
+    const routeColors = ['#2563eb', '#db2777', '#059669', '#d97706', '#7c3aed', '#0891b2', '#dc2626', '#4f46e5'];
+    const addSvgElement = (parent, name, attributes) => {
+        const element = document.createElementNS('http://www.w3.org/2000/svg', name);
+        Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+        parent.appendChild(element);
+        return element;
+    };
+    const now = new Date();
+    transitOrders.forEach((part, index) => {
+        const color = routeColors[index % routeColors.length];
+        const start = toPoint(coordinateTable[part.originCountry]);
+        const end = toPoint(destinationCoordinates[part.destination]);
+        const control = {
+            x: (start.x + end.x) / 2,
+            y: Math.min(start.y, end.y) - 30 - (index % 3) * 9
+        };
+        const route = addSvgElement(routesGroup, 'path', {
+            class: 'map-route',
+            d: `M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`
+        });
+        route.style.setProperty('--route-color', color);
+        const routeTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        routeTitle.textContent = `${part.partName || 'Part order'}: ${part.originCountry} to ${part.destination}`;
+        route.appendChild(routeTitle);
+        const originDot = addSvgElement(routesGroup, 'circle', {
+            class: 'map-origin-dot',
+            cx: start.x,
+            cy: start.y,
+            r: 5
+        });
+        originDot.style.setProperty('--route-color', color);
+        addSvgElement(routesGroup, 'circle', {
+            class: 'map-destination-dot',
+            cx: end.x,
+            cy: end.y,
+            r: 5
+        });
+        const plane = addSvgElement(routesGroup, 'g', {
+            class: 'map-plane',
+            transform: `translate(${start.x} ${start.y})`
+        });
+        plane.style.setProperty('--route-color', color);
+        const planeTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        planeTitle.textContent = `${part.partName || 'Part order'} progress`;
+        plane.appendChild(planeTitle);
+        addSvgElement(plane, 'circle', { r: 10, fill: color });
+        const planeIcon = addSvgElement(plane, 'text', {
+            y: 4,
+            'text-anchor': 'middle'
+        });
+        planeIcon.textContent = '✈';
+
+        const orderDate = parseLocalDate(part.orderDate);
+        const etaDate = parseLocalDate(part.estimatedEta);
+        let progress = 0;
+        if (orderDate && etaDate && etaDate.getTime() > orderDate.getTime()) {
+            progress = Math.min(1, Math.max(0, (now.getTime() - orderDate.getTime()) /
+                (etaDate.getTime() - orderDate.getTime())));
+        } else if (etaDate && now >= etaDate) {
+            progress = 1;
+        }
+        const inverse = 1 - progress;
+        const position = {
+            x: inverse * inverse * start.x + 2 * inverse * progress * control.x + progress * progress * end.x,
+            y: inverse * inverse * start.y + 2 * inverse * progress * control.y + progress * progress * end.y
+        };
+        plane.setAttribute('transform', `translate(${position.x} ${position.y})`);
+
+        const item = document.createElement('div');
+        item.className = 'parts-transit-card';
+        item.setAttribute('role', 'listitem');
+        const header = document.createElement('div');
+        header.className = 'parts-transit-card-header';
         const title = document.createElement('strong');
-        title.textContent = `${part.partName} · ${part.serialNumber || 'Unlinked'}`;
+        title.textContent = `${part.partName || 'Part order'} · ${part.serialNumber || 'Unlinked'}`;
+        const progressLabel = document.createElement('span');
+        progressLabel.className = 'parts-transit-progress';
+        progressLabel.textContent = `${Math.round(progress * 100)}%`;
+        progressLabel.style.setProperty('--route-color', color);
+        header.append(title, progressLabel);
         const detail = document.createElement('span');
         detail.textContent = `${part.originCountry} → ${part.destination} · ETA ${part.estimatedEta}`;
-        button.append(title, detail);
-        list.appendChild(button);
+        item.append(header, detail);
+        list.appendChild(item);
     });
-    let selected = transitOrders.find(part => String(part.id) === String(this.selectedTransitOrderId));
-    if (!selected) {
-        selected = transitOrders[0];
-        this.selectedTransitOrderId = selected.id;
-    }
-    const start = toPoint(coordinateTable[selected.originCountry]);
-    const end = toPoint(destinationCoordinates[selected.destination]);
-    const control = { x: (start.x + end.x) / 2, y: Math.min(start.y, end.y) - 48 };
-    const minX = Math.min(start.x, end.x);
-    const maxX = Math.max(start.x, end.x);
-    const minY = Math.min(start.y, end.y, control.y);
-    const maxY = Math.max(start.y, end.y, control.y);
-    const centerX = (minX + maxX) / 2;
-    const centerY = (minY + maxY) / 2;
-    const viewWidth = Math.min(900, Math.max(
-        180,
-        maxX - minX + 80,
-        (maxY - minY + 48) * (900 / 390)
-    ));
-    const viewHeight = viewWidth * (390 / 900);
-    map.setAttribute('viewBox', `${centerX - viewWidth / 2} ${centerY - viewHeight / 2} ${viewWidth} ${viewHeight}`);
-    route.setAttribute('d', `M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`);
-    originDot.setAttribute('cx', start.x);
-    originDot.setAttribute('cy', start.y);
-    originDot.setAttribute('visibility', 'visible');
-    originLabel.setAttribute('x', Math.min(start.x + 9, 760));
-    originLabel.setAttribute('y', Math.max(start.y - 10, 20));
-    originLabel.textContent = selected.originCountry;
-    destinationDot.setAttribute('cx', end.x);
-    destinationDot.setAttribute('cy', end.y);
-    destinationLabel.setAttribute('x', Math.min(end.x + 10, 820));
-    destinationLabel.setAttribute('y', end.y + 20);
-    destinationLabel.textContent = selected.destination;
-    const orderDate = parseLocalDate(selected.orderDate);
-    const etaDate = parseLocalDate(selected.estimatedEta);
-    const now = new Date();
-    let progress = 0;
-    if (orderDate && etaDate && etaDate.getTime() > orderDate.getTime()) {
-        progress = Math.min(1, Math.max(0, (now.getTime() - orderDate.getTime()) /
-            (etaDate.getTime() - orderDate.getTime())));
-    } else if (etaDate && now >= etaDate) {
-        progress = 1;
-    }
-    const inverse = 1 - progress;
-    const position = {
-        x: inverse * inverse * start.x + 2 * inverse * progress * control.x + progress * progress * end.x,
-        y: inverse * inverse * start.y + 2 * inverse * progress * control.y + progress * progress * end.y
-    };
-    plane.setAttribute('transform', `translate(${position.x} ${position.y})`);
-    plane.setAttribute('visibility', 'visible');
-    caption.textContent = `${selected.partName} · ${selected.originCountry} → ${selected.destination} · ${Math.round(progress * 100)}% estimated route progress`;
+    caption.textContent = this.getUiText('parts_transit_summary').replace('{count}', String(transitOrders.length));
 };
 
 EndoAppStore.approvePartAction = function(partId) {
@@ -3608,6 +4412,8 @@ EndoAppStore.approvePartAction = function(partId) {
     this.syncRecordToGoogleSheets({ type: 'PARTS_PROCUREMENT_UPDATE', data: part });
     this.renderPartsTable();
 };
+
+
 
 /* --------------------------------------------------------------------------
    Warehouse Inventory Table Renderer
@@ -3635,6 +4441,11 @@ EndoAppStore.renderInventoryTable = function() {
     if (inventorySearch) inventorySearch.placeholder = this.getUiText('inv_search_placeholder');
     if (!grid) return;
 
+    const expandedItemKeys = new Set(
+        [...grid.querySelectorAll('.inventory-item-card[open]')]
+            .map(card => card.dataset.inventoryKey)
+    );
+
     const search = String(document.getElementById('inventorySearchInput')?.value || '').trim().toLowerCase();
     const filtered = this.inventoryPool.filter(item => [
         item.partName, item.sku, item.lotNumber, item.vendor, item.category || 'Other'
@@ -3650,12 +4461,14 @@ EndoAppStore.renderInventoryTable = function() {
         return;
     }
 
+
     const grouped = new Map();
     filtered.forEach(item => {
         const category = this.inventoryCategories.includes(item.category) ? item.category : 'Other';
         if (!grouped.has(category)) grouped.set(category, []);
         grouped.get(category).push(item);
     });
+
 
     this.inventoryCategories.forEach(category => {
         const items = grouped.get(category);
@@ -3673,8 +4486,8 @@ EndoAppStore.renderInventoryTable = function() {
             const key = `${String(item.sku || '').toUpperCase()}|${String(item.lotNumber || '').toUpperCase()}`;
             const escape = value => this.escapeHtml(value == null ? '' : String(value));
             const text = key => this.getUiText(key);
-            const editable = (field, label, value, display = value) =>
-                `<button type="button" class="inventory-inline-value" data-inventory-edit="${field}" data-inventory-key="${this.escapeAttribute(key)}" aria-label="${this.escapeAttribute(text('inv_edit'))} ${label}: ${this.escapeAttribute(String(value == null ? '' : value))}">${escape(display || text('inv_set_value'))}</button>`;
+            const editable = (field, labelKey, value, display = value) =>
+                `<button type="button" class="inventory-inline-value" data-inventory-edit="${field}" data-inventory-key="${this.escapeAttribute(key)}" aria-label="${this.escapeAttribute(text('inv_edit'))} ${this.escapeHtml(text(labelKey))}: ${this.escapeAttribute(String(value == null ? '' : value))}">${escape(display || text('inv_set_value'))}</button>`;
             const usageProperties = {
                 'Minor': 'usedInMinor',
                 'Medium': 'usedInMedium',
@@ -3700,28 +4513,39 @@ EndoAppStore.renderInventoryTable = function() {
                         : 0;
                     return `<span>${escape(repairCategory)} <strong>${Math.max(loggedQuantity, legacyQuantity)}</strong></span>`;
                 }).join('');
-            const card = document.createElement('article');
+            const card = document.createElement('details');
             card.className = `inventory-item-card${isLow ? ' is-low-stock' : ''}`;
+            card.dataset.inventoryKey = key;
+            card.open = expandedItemKeys.has(key);
             card.innerHTML = `
-                <header class="inventory-item-header">
-                    <div>
-                        <h5>${editable('partName', 'part name', item.partName, item.partName || 'Unnamed part')}</h5>
-                        <p class="inventory-item-sku">SKU ${escape(item.sku || '—')}</p>
-                    </div>
+                <summary class="inventory-item-summary">
+                    <span class="inventory-item-identity">
+                        <strong>${escape(item.partName || 'Unnamed part')}</strong>
+                        <span class="inventory-item-sku">SKU ${escape(item.sku || '—')}</span>
+                    </span>
+                    <span class="inventory-on-hand${isLow ? ' is-low' : ''}">
+                        <span class="inventory-on-hand-label">${escape(text('th_inv_stock'))}</span>
+                        <strong>${stockCount}</strong>
+                        <span class="inventory-on-hand-units">${escape(text('inv_units'))}</span>
+                    </span>
                     ${isLow ? `<span class="low-stock-pill">${escape(text('inv_low_stock'))}</span>` : ''}
-                </header>
-                <div class="inventory-item-edit-grid">
-                    <label>${escape(text('inv_lbl_category'))} ${editable('category', 'category', category)}</label>
-                    <label>${escape(text('inv_lot_label'))} ${editable('lotNumber', 'lot number', item.lotNumber)}</label>
-                    <label>${escape(text('inv_current_stock_label'))} ${editable('currentStock', 'current stock', stockCount, `${stockCount} ${text('inv_units')}`)}</label>
-                    <label>${escape(text('inv_vendor_label'))} ${editable('vendor', 'vendor', item.vendor)}</label>
-                </div>
-                <dl class="inventory-movement-dates">
-                    <div><dt>${escape(text('inv_incoming'))}</dt><dd>${editable('incomingDate', 'incoming date', item.incomingDate || '', this.formatInventoryDate(item.incomingDate))}</dd></div>
-                    <div><dt>${escape(text('inv_outgoing'))}</dt><dd>${editable('outgoingDate', 'outgoing date', item.outgoingDate || '', this.formatInventoryDate(item.outgoingDate))}</dd></div>
-                    <div><dt>${escape(text('inv_last_repair_category'))}</dt><dd>${escape(item.lastRepairCategory || '—')}</dd></div>
-                </dl>
-                <div class="inventory-usage-summary">${categoryUsage}</div>`;
+                    <span class="inventory-item-toggle" aria-hidden="true"></span>
+                </summary>
+                <div class="inventory-item-details">
+                    <div class="inventory-item-edit-grid">
+                        <label>${escape(text('inv_lbl_name'))} ${editable('partName', 'inventory_edit_part_name', item.partName, item.partName || 'Unnamed part')}</label>
+                        <label>${escape(text('inv_lbl_category'))} ${editable('category', 'inventory_edit_category', category)}</label>
+                        <label>${escape(text('inv_lot_label'))} ${editable('lotNumber', 'inventory_edit_lot_number', item.lotNumber)}</label>
+                        <label>${escape(text('inv_quantity_adjustment_label'))} ${editable('currentStock', 'inventory_edit_quantity', stockCount, `${stockCount} ${text('inv_units')}`)}</label>
+                        <label>${escape(text('inv_vendor_label'))} ${editable('vendor', 'inventory_edit_vendor', item.vendor)}</label>
+                    </div>
+                    <dl class="inventory-movement-dates">
+                        <div><dt>${escape(text('inv_incoming'))}</dt><dd>${editable('incomingDate', 'inventory_edit_incoming_date', item.incomingDate || '', this.formatInventoryDate(item.incomingDate))}</dd></div>
+                        <div><dt>${escape(text('inv_outgoing'))}</dt><dd>${editable('outgoingDate', 'inventory_edit_outgoing_date', item.outgoingDate || '', this.formatInventoryDate(item.outgoingDate))}</dd></div>
+                        <div><dt>${escape(text('inv_last_repair_category'))}</dt><dd>${escape(item.lastRepairCategory || '—')}</dd></div>
+                    </dl>
+                    <div class="inventory-usage-summary">${categoryUsage}</div>
+                </div>`;
             cards.appendChild(card);
         });
         section.append(heading, cards);
@@ -3729,16 +4553,19 @@ EndoAppStore.renderInventoryTable = function() {
     });
 };
 
+
 EndoAppStore.getUiText = function(key) {
     const language = EndoTranslationMatrix[this.activeLanguage] || EndoTranslationMatrix.en;
     return language[key] || EndoTranslationMatrix.en[key] || key;
 };
+
 
 EndoAppStore.formatInventoryDate = function(value) {
     if (!value) return this.getUiText('inv_not_recorded');
     const date = new Date(value);
     return Number.isNaN(date.getTime()) ? String(value) : date.toLocaleDateString();
 };
+
 
 EndoAppStore.beginInventoryInlineEdit = function(button) {
     const [sku, lotNumber] = String(button.dataset.inventoryKey || '').split('|');
@@ -3751,11 +4578,23 @@ EndoAppStore.beginInventoryInlineEdit = function(button) {
     const allowedFields = ['partName', 'category', 'lotNumber', 'currentStock', 'vendor', 'incomingDate', 'outgoingDate'];
     if (!allowedFields.includes(field)) return;
 
+
     const control = field === 'category' ? document.createElement('select') : document.createElement('input');
     control.className = 'inventory-inline-editor';
     control.dataset.inventoryKey = button.dataset.inventoryKey;
     control.dataset.inventoryField = field;
-    control.setAttribute('aria-label', `Edit ${field}`);
+    const inventoryFieldLabelKeys = {
+        partName: 'inventory_edit_part_name',
+        category: 'inventory_edit_category',
+        lotNumber: 'inventory_edit_lot_number',
+        currentStock: 'inventory_edit_quantity',
+        vendor: 'inventory_edit_vendor',
+        incomingDate: 'inventory_edit_incoming_date',
+        outgoingDate: 'inventory_edit_outgoing_date'
+    };
+    control.setAttribute('aria-label', field === 'currentStock'
+        ? this.getUiText('inv_adjust_quantity')
+        : `${this.getUiText('inv_edit')} ${this.getUiText(inventoryFieldLabelKeys[field])}`);
     if (field === 'category') {
         this.inventoryCategories.forEach(category => {
             const option = document.createElement('option');
@@ -3796,7 +4635,10 @@ EndoAppStore.beginInventoryInlineEdit = function(button) {
             categorySelect.appendChild(option);
         });
         categoryLabel.appendChild(categorySelect);
-        wrapper.append(control, categoryLabel);
+        const adjustmentHint = document.createElement('span');
+        adjustmentHint.className = 'inventory-adjustment-hint';
+        adjustmentHint.textContent = this.getUiText('inv_adjust_stock_hint');
+        wrapper.append(control, categoryLabel, adjustmentHint);
         editor = wrapper;
     }
     button.replaceWith(editor);
@@ -3835,6 +4677,7 @@ EndoAppStore.beginInventoryInlineEdit = function(button) {
         }
     });
 };
+
 
 EndoAppStore.saveInventoryInlineEdit = async function(control) {
     const [sku, originalLotNumber] = String(control.dataset.inventoryKey || '').split('|');
@@ -3928,11 +4771,13 @@ EndoAppStore.saveInventoryInlineEdit = async function(control) {
     this.showMirrorToast('Inventory correction saved and synced.');
 };
 
+
 EndoAppStore.renderScopeConsumedParts = function(logId) {
     const picker = document.getElementById('scopeConsumedPartsPicker');
     const list = document.getElementById('scopeConsumedPartsList');
     const log = this.serviceLogs.find(item => String(item.id) === String(logId || this.editingScopeLogId));
     if (!picker || !list || !log) return;
+
 
     const previousSku = picker.querySelector('[data-consumed-part-sku]')?.value || '';
     const previousQuantity = picker.querySelector('[data-consumed-part-quantity]')?.value || '1';
@@ -3959,13 +4804,18 @@ EndoAppStore.renderScopeConsumedParts = function(logId) {
         availableItems.forEach(item => {
             const option = document.createElement('option');
             option.value = `${item.sku}|${item.lotNumber}`;
-            option.textContent = `${item.partName} · ${item.sku} · Lot ${item.lotNumber} · ${item.currentStock} available`;
+            option.textContent = text('scope_consumed_option')
+                .replace('{name}', String(item.partName || ''))
+                .replace('{sku}', String(item.sku || ''))
+                .replace('{lot}', String(item.lotNumber || ''))
+                .replace('{available}', String(item.currentStock));
             partSelect.appendChild(option);
         });
         if (availableItems.some(item => `${item.sku}|${item.lotNumber}` === previousSku)) {
             partSelect.value = previousSku;
         }
         partLabel.appendChild(partSelect);
+
 
         const quantityLabel = document.createElement('label');
         quantityLabel.className = 'form-control-group';
@@ -3978,7 +4828,9 @@ EndoAppStore.renderScopeConsumedParts = function(logId) {
         quantity.value = previousQuantity;
         quantity.inputMode = 'numeric';
         quantity.dataset.consumedPartQuantity = 'true';
+        quantity.setAttribute('aria-describedby', 'scopeConsumedAvailability scopeConsumedValidation');
         quantityLabel.appendChild(quantity);
+
 
         const categoryLabel = document.createElement('label');
         categoryLabel.className = 'form-control-group';
@@ -4000,13 +4852,33 @@ EndoAppStore.renderScopeConsumedParts = function(logId) {
         category.value = previousCategory || defaultCategory;
         categoryLabel.appendChild(category);
 
+
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'btn btn-interactive-primary';
         button.dataset.consumeInventory = 'true';
         button.textContent = text('scope_consumed_link');
-        picker.append(partLabel, quantityLabel, categoryLabel, button);
+        const availability = document.createElement('p');
+        availability.className = 'scope-consumed-availability';
+        availability.dataset.consumedAvailability = 'true';
+        availability.id = 'scopeConsumedAvailability';
+        availability.setAttribute('role', 'status');
+        availability.setAttribute('aria-live', 'polite');
+        const validation = document.createElement('p');
+        validation.className = 'scope-consumed-validation';
+        validation.dataset.consumedValidation = 'true';
+        validation.id = 'scopeConsumedValidation';
+        validation.setAttribute('role', 'alert');
+        validation.hidden = true;
+        const actionGroup = document.createElement('div');
+        actionGroup.className = 'scope-consumed-action';
+        const actionHint = document.createElement('span');
+        actionHint.textContent = text('scope_consumed_button_hint');
+        actionGroup.append(button, actionHint);
+        picker.append(partLabel, quantityLabel, categoryLabel, availability, validation, actionGroup);
+        this.updateScopeConsumptionPreview();
     }
+
 
     const consumed = Array.isArray(log.partsConsumed) ? log.partsConsumed : [];
     list.replaceChildren();
@@ -4029,31 +4901,98 @@ EndoAppStore.renderScopeConsumedParts = function(logId) {
     });
 };
 
-EndoAppStore.consumeInventoryForScope = async function(logId) {
-    const log = this.serviceLogs.find(item => String(item.id) === String(logId));
+EndoAppStore.updateScopeConsumptionPreview = function(errorMessage) {
     const picker = document.getElementById('scopeConsumedPartsPicker');
-    const partSelect = picker?.querySelector('[data-consumed-part-sku]');
-    const quantityInput = picker?.querySelector('[data-consumed-part-quantity]');
-    const categorySelect = picker?.querySelector('[data-consumed-repair-category]');
-    if (!log || !partSelect || !quantityInput || !categorySelect) {
-        throw new Error('The parts-consumed control is not ready.');
-    }
+    if (!picker) return;
+    const partSelect = picker.querySelector('[data-consumed-part-sku]');
+    const quantityInput = picker.querySelector('[data-consumed-part-quantity]');
+    const categorySelect = picker.querySelector('[data-consumed-repair-category]');
+    const availability = picker.querySelector('[data-consumed-availability]');
+    const validation = picker.querySelector('[data-consumed-validation]');
+    const button = picker.querySelector('[data-consume-inventory]');
+    if (!partSelect || !quantityInput || !categorySelect || !availability || !validation || !button) return;
+
     const [sku, lotNumber] = String(partSelect.value || '').split('|');
     const item = this.inventoryPool.find(entry =>
         String(entry.sku || '') === sku && String(entry.lotNumber || '') === lotNumber
     );
+    const available = item ? Math.max(0, Number(item.currentStock) || 0) : 0;
+    quantityInput.max = item ? String(available) : '0';
     const quantity = Number(quantityInput.value);
-    const repairCategory = categorySelect.value;
+    const validQuantity = Number.isInteger(quantity) && quantity >= 1 && quantity <= available;
+    const validCategory = this.mirrorCategories.includes(categorySelect.value) &&
+        !['Backup Scope', 'Cancelled'].includes(categorySelect.value);
+    let problem = errorMessage || '';
+    if (!problem && item && !validQuantity) {
+        problem = this.getUiText('scope_consumed_quantity_error').replace('{available}', String(available));
+    } else if (!problem && item && validQuantity && !validCategory) {
+        problem = this.getUiText('scope_consumed_category_error');
+    }
+
+    if (item) {
+        const remaining = validQuantity ? available - quantity : '—';
+        availability.textContent = this.getUiText('scope_consumed_available_summary')
+            .replace('{available}', String(available))
+            .replace('{remaining}', String(remaining));
+    } else {
+        availability.textContent = this.getUiText('scope_consumed_select_item_hint');
+    }
+    validation.textContent = problem;
+    validation.hidden = !problem;
+    quantityInput.setAttribute('aria-invalid', String(Boolean(item && !validQuantity)));
+    categorySelect.setAttribute('aria-invalid', String(Boolean(item && validQuantity && !validCategory)));
+    quantityInput.setCustomValidity(item && !validQuantity
+        ? this.getUiText('scope_consumed_quantity_error').replace('{available}', String(available))
+        : '');
+    button.disabled = !item || !validQuantity || !validCategory;
+};
+
+
+EndoAppStore.consumeInventoryForScope = async function(logId, requestedPartName) {
+    const log = this.serviceLogs.find(item => String(item.id) === String(logId));
+    if (!log) throw new Error('The scope record could not be found.');
+    const tracking = this.getScopeTracking(log);
+    let item;
+    let quantity;
+    let repairCategory;
+    if (requestedPartName) {
+        const normalizedPartName = String(requestedPartName).trim().toLowerCase();
+        item = this.inventoryPool.find(entry => {
+            const sku = String(entry.sku || '').trim().toLowerCase();
+            const partName = String(entry.partName || '').trim().toLowerCase();
+            return Number(entry.currentStock) > 0 && ((sku && sku === normalizedPartName) ||
+                (partName && partName.includes(normalizedPartName)) ||
+                (sku && normalizedPartName.includes(sku)));
+        });
+        quantity = 1;
+        repairCategory = tracking.repairCategory || log.repairComplexity || 'Minor';
+    } else {
+        const picker = document.getElementById('scopeConsumedPartsPicker');
+        const partSelect = picker?.querySelector('[data-consumed-part-sku]');
+        const quantityInput = picker?.querySelector('[data-consumed-part-quantity]');
+        const categorySelect = picker?.querySelector('[data-consumed-repair-category]');
+        if (!partSelect || !quantityInput || !categorySelect) {
+            throw new Error('The parts-consumed control is not ready.');
+        }
+        const [sku, lotNumber] = String(partSelect.value || '').split('|');
+        item = this.inventoryPool.find(entry =>
+            String(entry.sku || '') === sku && String(entry.lotNumber || '') === lotNumber
+        );
+        quantity = Number(quantityInput.value);
+        repairCategory = categorySelect.value;
+    }
     if (!item) throw new Error('Choose an available inventory item.');
+    const stockAvailable = Number(item.currentStock);
+    if (!Number.isInteger(stockAvailable) || stockAvailable < 0) throw new Error('The selected item has an invalid on-hand quantity. Correct its inventory record before consuming stock.');
     if (!Number.isInteger(quantity) || quantity < 1) throw new Error('Enter a whole quantity greater than zero.');
-    if (quantity > Number(item.currentStock)) throw new Error('Requested quantity exceeds the available stock.');
+    if (quantity > stockAvailable) throw new Error('Requested quantity exceeds the available stock.');
     if (!this.mirrorCategories.includes(repairCategory) || ['Backup Scope', 'Cancelled'].includes(repairCategory)) {
         throw new Error('Select the repair category for this stock usage.');
     }
 
+
     const outgoingDate = new Date().toISOString();
     const movementId = `MOV-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    const tracking = this.getScopeTracking(log);
     const movement = {
         movementId,
         operation: 'consume',
@@ -4072,6 +5011,7 @@ EndoAppStore.consumeInventoryForScope = async function(logId) {
     });
     if (!stockSynced) throw new Error('Stock was not decremented because the outgoing movement could not be synced.');
 
+
     item.currentStock = Number(item.currentStock) - quantity;
     item.outgoingDate = outgoingDate;
     item.lastRepairCategory = repairCategory;
@@ -4085,6 +5025,7 @@ EndoAppStore.consumeInventoryForScope = async function(logId) {
         'Warranty': 'usedInWarranty'
     }[repairCategory];
     if (usageProperty) item[usageProperty] = (Number(item[usageProperty]) || 0) + quantity;
+
 
     if (!Array.isArray(log.partsConsumed)) log.partsConsumed = [];
     log.partsConsumed.push({
@@ -4105,18 +5046,23 @@ EndoAppStore.consumeInventoryForScope = async function(logId) {
         serialNumber: tracking.serialNumber || log.serialNumber || ''
     });
     this.saveState();
+    const picker = document.getElementById('scopeConsumedPartsPicker');
+    if (picker) {
+        const partSelect = picker.querySelector('[data-consumed-part-sku]');
+        const quantityInput = picker.querySelector('[data-consumed-part-quantity]');
+        if (partSelect) partSelect.value = '';
+        if (quantityInput) quantityInput.value = '1';
+    }
     this.renderScopeConsumedParts(log.id);
     this.renderInventoryTable();
     const scopeSynced = await this.syncRecordToGoogleSheets({ type: 'SCOPE_DATA_UPDATE', data: log });
     this.renderScopeMirrorDashboard();
-    this.showMirrorToast(
-        scopeSynced
-            ? 'Part linked to scope and outgoing stock synced.'
-            : 'Stock decrement synced; scope mapping is saved locally but cloud sync failed.',
-        !scopeSynced
-    );
-    if (!scopeSynced) throw new Error('Part stock was decremented, but the scope mapping failed to sync. Retry scope synchronization.');
+    if (!scopeSynced) {
+        throw new Error('Inventory was decremented, but the scope usage details could not be synced. Refresh the scope record before retrying.');
+    }
+    this.showMirrorToast('Part linked to scope and outgoing stock synced.');
 };
+
 
 /* --------------------------------------------------------------------------
    Scope History Timeline Explorer
@@ -4124,6 +5070,7 @@ EndoAppStore.consumeInventoryForScope = async function(logId) {
 EndoAppStore.generateTimelineStream = function(querySerial, historyFilter) {
     const container = document.getElementById('timelineStreamContainer');
     if (!container) return;
+
 
     const dict = EndoTranslationMatrix[this.activeLanguage] || EndoTranslationMatrix.en;
     if (querySerial !== undefined) this.activeHistorySerial = String(querySerial || '').trim();
@@ -4141,6 +5088,7 @@ EndoAppStore.generateTimelineStream = function(querySerial, historyFilter) {
         return serialMatch && textMatch;
     });
 
+
     if (matchingLogs.length === 0) {
         container.innerHTML = `
             <div style="text-align: center; color: var(--text-muted); padding: 48px;">
@@ -4149,6 +5097,7 @@ EndoAppStore.generateTimelineStream = function(querySerial, historyFilter) {
         `;
         return;
     }
+
 
     const reportTime = log => {
         const dateValue = new Date(log.logDate || log.timestamp || '').getTime();
@@ -4165,15 +5114,19 @@ EndoAppStore.generateTimelineStream = function(querySerial, historyFilter) {
             String(a.id || '').localeCompare(String(b.id || ''));
     });
 
+
     container.innerHTML = '';
+
 
     sortedLogs.forEach((log, index) => {
         const milestoneNode = document.createElement('div');
         milestoneNode.className = 'timeline-milestone-node';
 
+
         let statusClass = 'node-pending';
         if (log.inspectionStatus === 'Pass') statusClass = 'node-pass';
         if (log.inspectionStatus === 'Fail') statusClass = 'node-fail';
+
 
         // Extract failure tags from 33 components
         let failuresHtml = '';
@@ -4186,6 +5139,7 @@ EndoAppStore.generateTimelineStream = function(querySerial, historyFilter) {
                     return `<span class="failure-tag">⚠️ ${this.escapeHtml(compName)}${v.desc ? ` (${this.escapeHtml(v.desc)})` : ''}</span>`;
                 });
 
+
             if (failedItems.length > 0) {
                 failuresHtml = `
                     <div class="timeline-component-failures-badge">
@@ -4194,6 +5148,7 @@ EndoAppStore.generateTimelineStream = function(querySerial, historyFilter) {
                 `;
             }
         }
+
 
         const reportUrl = /^https?:\/\//i.test(String(log.mediaUrl || '')) ? this.escapeAttribute(log.mediaUrl) : '';
         milestoneNode.innerHTML = `
@@ -4211,6 +5166,7 @@ EndoAppStore.generateTimelineStream = function(querySerial, historyFilter) {
                     </div>
                 </div>
 
+
                 <div style="display:flex; flex-wrap:wrap; gap:16px; margin-bottom:12px; font-size:13px;">
                     <div><strong>Model:</strong> ${this.escapeHtml(log.scopeModel)} (${this.escapeHtml(log.scopeType)})</div>
                     <div><strong>S/N:</strong> <code>${this.escapeHtml(log.serialNumber)}</code></div>
@@ -4218,6 +5174,7 @@ EndoAppStore.generateTimelineStream = function(querySerial, historyFilter) {
                     <div><strong>Facility:</strong> ${this.escapeHtml(log.clientFacility || 'N/A')}</div>
                     <div><strong>Complexity:</strong> ${this.escapeHtml(log.repairComplexity)}</div>
                 </div>
+
 
                 ${log.complaintText ? `<p style="font-size:13px; margin:6px 0; color:var(--text-main);"><strong>Complaint:</strong> ${this.escapeHtml(log.complaintText)}</p>` : ''}
                 ${log.repairNotes ? `<p style="font-size:12px; color:var(--text-muted); background:var(--bg-secondary); padding:8px 12px; border-radius:6px; white-space:pre-wrap;">${this.escapeHtml(log.repairNotes)}</p>` : ''}
@@ -4237,6 +5194,7 @@ EndoAppStore.generateTimelineStream = function(querySerial, historyFilter) {
     });
 };
 
+
 /* --------------------------------------------------------------------------
    Admin Terminal Hub & Private Notes
    -------------------------------------------------------------------------- */
@@ -4244,9 +5202,11 @@ EndoAppStore.evaluateAdminSessionStateDisplay = function() {
     const promptBox = document.getElementById('adminFormLockoutPrompt');
     const unlockedDashboard = document.getElementById('unlockedTerminalDashboard');
 
+
     if (this.adminAuthenticated) {
         if (promptBox) promptBox.style.display = 'none';
         if (unlockedDashboard) unlockedDashboard.style.display = 'flex';
+
 
         this.populateAdminScopeDropdown();
         this.renderAdminPrivateNotesTable();
@@ -4258,9 +5218,11 @@ EndoAppStore.evaluateAdminSessionStateDisplay = function() {
     }
 };
 
+
 EndoAppStore.bindAdminConsoleAuthActionButtons = function() {
     const authBtn = document.getElementById('btnUnlockAdminConsole');
     if (!authBtn || authBtn.hasAttribute('data-bound')) return;
+
 
     authBtn.setAttribute('data-bound', 'true');
     authBtn.addEventListener('click', () => {
@@ -4269,6 +5231,7 @@ EndoAppStore.bindAdminConsoleAuthActionButtons = function() {
             : 'Administrator access is required. Sign in again with an administrator passcode.');
     });
 };
+
 
 EndoAppStore.initTerminalDashboardFeatures = function() {
     // Scratchpad auto-saver
@@ -4280,9 +5243,11 @@ EndoAppStore.initTerminalDashboardFeatures = function() {
         };
     }
 
+
     // Daily To-Do Checklist
     const appendTodoBtn = document.getElementById('btnAppendTerminalTodo');
     const todoInput = document.getElementById('terminalTodoInput');
+
 
     if (appendTodoBtn && !appendTodoBtn.hasAttribute('data-hooked')) {
         appendTodoBtn.setAttribute('data-hooked', 'true');
@@ -4296,9 +5261,11 @@ EndoAppStore.initTerminalDashboardFeatures = function() {
     this.renderTerminalTodoList();
 };
 
+
 EndoAppStore.appendTerminalTodoAction = function() {
     const input = document.getElementById('terminalTodoInput');
     if (!input || !input.value.trim()) return;
+
 
     this.terminalTodos.push({
         id: 'TD-' + Date.now(),
@@ -4310,15 +5277,18 @@ EndoAppStore.appendTerminalTodoAction = function() {
     input.value = '';
 };
 
+
 EndoAppStore.renderTerminalTodoList = function() {
     const container = document.getElementById('terminalTodoListContainer');
     if (!container) return;
+
 
     container.innerHTML = '';
     if (this.terminalTodos.length === 0) {
         container.innerHTML = `<li style="color:#475569; font-size:13px; text-align:center; padding-top:12px;">No active triage tasks.</li>`;
         return;
     }
+
 
     this.terminalTodos.forEach(item => {
         const li = document.createElement('li');
@@ -4334,6 +5304,7 @@ EndoAppStore.renderTerminalTodoList = function() {
     });
 };
 
+
 EndoAppStore.toggleTerminalTodoState = function(itemId) {
     const item = this.terminalTodos.find(t => t.id === itemId);
     if (item) {
@@ -4343,21 +5314,25 @@ EndoAppStore.toggleTerminalTodoState = function(itemId) {
     }
 };
 
+
 EndoAppStore.destroyTerminalTodoItem = function(itemId) {
     this.terminalTodos = this.terminalTodos.filter(t => t.id !== itemId);
     localStorage.setItem(this.adminTodoKey, JSON.stringify(this.terminalTodos));
     this.renderTerminalTodoList();
 };
 
+
 EndoAppStore.renderAdminPrivateNotesTable = function() {
     const tableBody = document.getElementById('adminPrivateNotesTableBody');
     if (!tableBody) return;
+
 
     tableBody.innerHTML = '';
     if (this.adminNotes.length === 0) {
         tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:24px; color:var(--text-muted);">No secure internal comments recorded yet.</td></tr>';
         return;
     }
+
 
     this.adminNotes.forEach(note => {
         const tr = document.createElement('tr');
@@ -4370,6 +5345,9 @@ EndoAppStore.renderAdminPrivateNotesTable = function() {
         tableBody.appendChild(tr);
     });
 };
+
+
+
 
 /* ==========================================================================
    10. DROPDOWN POPULATORS & SELECTOR HOOKS
@@ -4396,6 +5374,7 @@ EndoAppStore.populateScopeSelector = function() {
         });
     }
 };
+
 
 EndoAppStore.renderActiveRepairSearchResults = function(query) {
     const results = document.getElementById('activeRepairResults');
@@ -4427,6 +5406,7 @@ EndoAppStore.renderActiveRepairSearchResults = function(query) {
     input.setAttribute('aria-expanded', String(shouldOpen));
 };
 
+
 EndoAppStore.populateQuickSelector = function() {
     const selector = document.getElementById('quickLinkScopeSerial');
     if (!selector) return;
@@ -4439,6 +5419,7 @@ EndoAppStore.populateQuickSelector = function() {
         selector.appendChild(option);
     });
 };
+
 
 EndoAppStore.populateAdminScopeDropdown = function() {
     const selector = document.getElementById('adminNoteScopeSerial');
@@ -4453,6 +5434,7 @@ EndoAppStore.populateAdminScopeDropdown = function() {
     });
 };
 
+
 /* ==========================================================================
    11. SEARCH, FILTER & ACTION BUTTON BINDERS
    ========================================================================== */
@@ -4460,9 +5442,11 @@ EndoAppStore.bindSearchAndFilters = function() {
     const searchInput = document.getElementById('tableSearchInput');
     const statusFilter = document.getElementById('tableStatusFilter');
 
+
     if (searchInput) searchInput.addEventListener('input', () => this.renderLogTable());
     if (statusFilter) statusFilter.addEventListener('change', () => this.renderLogTable());
 };
+
 
 EndoAppStore.bindActionTriggers = function() {
     const exportBtn = document.getElementById('actionExportCsv');
@@ -4477,13 +5461,23 @@ EndoAppStore.bindActionTriggers = function() {
     const mirrorSearch = document.getElementById('mirrorSearchInput');
     const mirrorRefresh = document.getElementById('mirrorRefreshButton');
     const adminProcurementList = document.getElementById('adminProcurementReviewList');
-    const transitList = document.getElementById('partsTransitList');
     const inventoryGrid = document.getElementById('inventoryCategoryGrid');
     const inventorySearch = document.getElementById('inventorySearchInput');
+    const inventoryIntakeDialog = document.getElementById('inventoryIntakeDialog');
+    const inventoryIntakeOpenButton = document.getElementById('inventoryIntakeOpenButton');
+    const inventoryIntakeCloseButton = document.getElementById('inventoryIntakeCloseButton');
     const consumedPartsPicker = document.getElementById('scopeConsumedPartsPicker');
+
 
     if (exportBtn) exportBtn.addEventListener('click', () => this.exportToCsvFile());
     if (printBtn) printBtn.addEventListener('click', () => window.print());
+    if (inventoryIntakeOpenButton && inventoryIntakeDialog) {
+        inventoryIntakeOpenButton.addEventListener('click', () => inventoryIntakeDialog.showModal());
+    }
+    if (inventoryIntakeCloseButton && inventoryIntakeDialog) {
+        inventoryIntakeCloseButton.addEventListener('click', () => inventoryIntakeDialog.close());
+    }
+
 
     if (queryBtn && queryInput) {
         queryBtn.addEventListener('click', () => {
@@ -4514,6 +5508,7 @@ EndoAppStore.bindActionTriggers = function() {
         });
     }
 
+
     const closeButton = document.getElementById('scopeEditCloseButton');
     const cancelButton = document.getElementById('scopeEditCancelButton');
     const deleteButton = document.getElementById('scopeDeleteButton');
@@ -4540,6 +5535,7 @@ EndoAppStore.bindActionTriggers = function() {
                 await this.consumeInventoryForScope(this.editingScopeLogId);
             } catch (error) {
                 console.error('Could not link inventory to scope:', error);
+                this.updateScopeConsumptionPreview(error.message || 'Could not link inventory to this scope.');
                 this.showMirrorToast(error.message || 'Could not link inventory to this scope.', true);
             } finally {
                 if (consumeButton.isConnected) consumeButton.disabled = false;
@@ -4554,13 +5550,8 @@ EndoAppStore.bindActionTriggers = function() {
         });
     }
     if (consumedPartsPicker) {
-        consumedPartsPicker.addEventListener('change', event => {
-            if (!event.target.matches('[data-consumed-part-sku]')) return;
-            const quantity = consumedPartsPicker.querySelector('[data-consumed-part-quantity]');
-            const [sku, lotNumber] = String(event.target.value || '').split('|');
-            const item = this.inventoryPool.find(entry => entry.sku === sku && entry.lotNumber === lotNumber);
-            if (quantity && item) quantity.max = String(Number(item.currentStock) || 0);
-        });
+        consumedPartsPicker.addEventListener('input', () => this.updateScopeConsumptionPreview());
+        consumedPartsPicker.addEventListener('change', () => this.updateScopeConsumptionPreview());
     }
     if (mirrorSearch) mirrorSearch.addEventListener('input', () => this.renderScopeMirrorDashboard());
     if (mirrorRefresh) mirrorRefresh.addEventListener('click', () => this.refreshScopeMirrorFromSheets());
@@ -4596,14 +5587,6 @@ EndoAppStore.bindActionTriggers = function() {
             }
         });
     }
-    if (transitList) {
-        transitList.addEventListener('click', event => {
-            const button = event.target.closest('[data-transit-order]');
-            if (!button) return;
-            this.selectedTransitOrderId = button.dataset.transitOrder;
-            this.renderPartsTransitMap();
-        });
-    }
     document.querySelectorAll('[data-mirror-filter]').forEach(button => {
         button.addEventListener('click', () => {
             this.mirrorTab = button.dataset.mirrorFilter;
@@ -4635,7 +5618,10 @@ EndoAppStore.bindActionTriggers = function() {
                     .find(form => form.dataset.mirrorQuickNoteForm === addNoteButton.dataset.mirrorAddNote);
                 if (!noteForm) return;
                 noteForm.hidden = !noteForm.hidden;
-                addNoteButton.textContent = noteForm.hidden ? 'Add scope note' : 'Close note';
+                addNoteButton.setAttribute('aria-expanded', String(!noteForm.hidden));
+                const noteActionLabel = this.getUiText(noteForm.hidden ? 'mirror_card_add_note' : 'mirror_card_close_note');
+                addNoteButton.setAttribute('aria-label', noteActionLabel);
+                addNoteButton.title = noteActionLabel;
                 if (!noteForm.hidden) noteForm.querySelector('textarea')?.focus();
                 return;
             }
@@ -4646,11 +5632,16 @@ EndoAppStore.bindActionTriggers = function() {
                     noteForm.reset();
                     noteForm.hidden = true;
                     const addButton = noteForm.closest('.mirror-card-note-actions')?.querySelector('[data-mirror-add-note]');
-                    if (addButton) addButton.textContent = 'Add scope note';
+                    if (addButton) {
+                        const label = this.getUiText('mirror_card_add_note');
+                        addButton.setAttribute('aria-label', label);
+                        addButton.title = label;
+                        addButton.setAttribute('aria-expanded', 'false');
+                    }
                 }
                 return;
             }
-            if (event.target.closest('button, select, input, a, label')) return;
+            if (event.target.closest('button, select, input, a, label, summary, details')) return;
             const card = event.target.closest('.mirror-scope-card');
             if (card) {
                 const log = this.serviceLogs.find(item => String(item.id) === String(card.dataset.logId));
@@ -4716,14 +5707,17 @@ EndoAppStore.bindActionTriggers = function() {
     window.addEventListener('beforeprint', () => this.fitServiceReportPreviewTextareas());
 };
 
+
 EndoAppStore.exportToCsvFile = function() {
     if (this.serviceLogs.length === 0) {
         alert('There is no log dataset active in the browser state repository to export.');
         return;
     }
 
+
     let csvContent = "data:text/csv;charset=utf-8,";
     csvContent += "Log ID,Timestamp,Model,Type,Serial Number,State,Complexity,Warranty,Technician,Status,Down Payment Date\n";
+
 
     this.serviceLogs.forEach(log => {
         const row = [
@@ -4742,6 +5736,7 @@ EndoAppStore.exportToCsvFile = function() {
         csvContent += row + "\n";
     });
 
+
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -4751,9 +5746,11 @@ EndoAppStore.exportToCsvFile = function() {
     document.body.removeChild(link);
 };
 
+
 EndoAppStore.initAnatomyStyleListeners = function() {
     const scrollContainer = document.querySelector('.anatomy-scroll-container');
     if (!scrollContainer) return;
+
 
     scrollContainer.addEventListener('change', (e) => {
         if (e.target.classList.contains('anatomy-status-select')) {
@@ -4761,10 +5758,12 @@ EndoAppStore.initAnatomyStyleListeners = function() {
         }
     });
 
+
     document.querySelectorAll('.anatomy-status-select').forEach(select => {
         select.setAttribute('data-outcome', select.value);
     });
 };
+
 
 /* ==========================================================================
    12. MULTI-LANGUAGE LOCALIZATION ENGINE
@@ -4772,6 +5771,7 @@ EndoAppStore.initAnatomyStyleListeners = function() {
 EndoAppStore.bindLanguageSelectorListener = function() {
     const buttons = document.querySelectorAll('[data-app-language]');
     if (!buttons.length) return;
+
 
     const setLanguage = language => {
         if (!EndoTranslationMatrix[language]) return;
@@ -4786,6 +5786,7 @@ EndoAppStore.bindLanguageSelectorListener = function() {
         this.renderAll();
     };
 
+
     buttons.forEach(button => {
         button.addEventListener('click', () => setLanguage(button.dataset.appLanguage));
     });
@@ -4796,11 +5797,14 @@ EndoAppStore.bindLanguageSelectorListener = function() {
     });
 };
 
+
 EndoAppStore.applyGlobalLanguageTranslations = function() {
     const langDict = EndoTranslationMatrix[this.activeLanguage];
     if (!langDict) return;
 
+
     document.documentElement.lang = this.activeLanguage;
+
 
     // A. Translate all static data-trn elements
     document.querySelectorAll('[data-trn]').forEach(el => {
@@ -4811,6 +5815,54 @@ EndoAppStore.applyGlobalLanguageTranslations = function() {
         const key = el.getAttribute('data-trn-placeholder');
         if (langDict[key]) el.setAttribute('placeholder', langDict[key]);
     });
+    document.querySelectorAll('[data-trn-aria-label]').forEach(el => {
+        const key = el.getAttribute('data-trn-aria-label');
+        if (langDict[key]) el.setAttribute('aria-label', langDict[key]);
+    });
+    document.querySelectorAll('[data-trn-title]').forEach(el => {
+        const key = el.getAttribute('data-trn-title');
+        if (langDict[key]) el.setAttribute('title', langDict[key]);
+    });
+    document.querySelectorAll('.anatomy-desc-input').forEach(input => {
+        const match = input.name.match(/^anatomy_desc_(\d{2})$/);
+        const placeholder = match && langDict[`anatomy_placeholder_${match[1]}`];
+        if (placeholder) input.setAttribute('placeholder', placeholder);
+    });
+    this.syncAuthThemeToggle();
+    const mirrorSearch = document.getElementById('mirrorSearchInput');
+    if (mirrorSearch) mirrorSearch.setAttribute('aria-label', this.getUiText('mirror_search_label'));
+    const navigationToggle = document.getElementById('mobileNavbarMenuToggle');
+    const desktopNavigationToggle = document.getElementById('desktopNavbarMenuToggle');
+    const navigationToggleText = document.getElementById('sidebarToggleText');
+    const navigationLinks = document.getElementById('sidebarNavLinksGroup');
+    const desktop = window.innerWidth >= 1024;
+    const collapsed = document.getElementById('appRoot')?.classList.contains('sidebar-collapsed');
+    const open = navigationLinks?.classList.contains('drawer-open');
+    const mobileLabel = this.getUiText(open ? 'nav_close_menu' : 'nav_open_menu');
+    const desktopLabel = this.getUiText(collapsed ? 'nav_expand' : 'nav_collapse');
+    if (navigationToggle) {
+        const label = desktop ? desktopLabel : mobileLabel;
+        navigationToggle.setAttribute('aria-label', label);
+        navigationToggle.title = label;
+    }
+    if (desktopNavigationToggle) {
+        desktopNavigationToggle.setAttribute('aria-expanded', String(!collapsed));
+        desktopNavigationToggle.setAttribute('aria-label', desktopLabel);
+        desktopNavigationToggle.title = desktopLabel;
+        if (navigationToggleText) navigationToggleText.textContent = desktopLabel;
+    }
+    if (desktop && navigationLinks) {
+        navigationLinks.querySelectorAll('.menu-link').forEach(link => {
+            link.title = collapsed ? link.querySelector('.menu-text')?.textContent.trim() || '' : '';
+        });
+    }
+
+    const previewModal = document.getElementById('serviceReportPreviewModal');
+    if (previewModal?.classList.contains('is-open') && this.reportPreviewLogId) {
+        const previewLog = this.serviceLogs.find(log => String(log.id) === String(this.reportPreviewLogId));
+        if (previewLog) this.renderServiceReportChecklist(previewLog, true);
+    }
+
 
     // B. Translate 33 Anatomy Components
     document.querySelectorAll('.anatomy-component-card').forEach(card => {
@@ -4822,15 +5874,18 @@ EndoAppStore.applyGlobalLanguageTranslations = function() {
         }
     });
 
+
     // C. Refresh active header titles
     this.updateHeaderTitles();
 };
+
 
 EndoAppStore.lookupAnatomyComponentName = function(index) {
     const dict = EndoTranslationMatrix[this.activeLanguage] || EndoTranslationMatrix.en;
     const formatted = String(index).padStart(2, '0');
     return dict[formatted] || "Component " + index;
 };
+
 
 /* ==========================================================================
    13. MASTER RENDER COORDINATOR & LIVE CLOCK
@@ -4848,6 +5903,7 @@ EndoAppStore.renderAll = function() {
     if (this.editingScopeLogId) this.renderScopeConsumedParts(this.editingScopeLogId);
 };
 
+
 EndoAppStore.initBackgroundRefresh = function() {
     if (!this.transitRefreshTimer) {
         this.transitRefreshTimer = window.setInterval(() => {
@@ -4855,6 +5911,7 @@ EndoAppStore.initBackgroundRefresh = function() {
         }, 60000);
     }
 };
+
 
 /* ==========================================================================
    14. INITIALIZATION ENTRY POINT
@@ -4870,8 +5927,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+
+
+
+
+
+
 // testing the new functions here
 // app.js
+
 
 // Function to handle the request to add a part to a scope
 function requestPart(scopeId, partName) {
@@ -4884,6 +5950,7 @@ function requestPart(scopeId, partName) {
   sheet.getRange(newRow, 4).setValue(new Date());
 }
 
+
 // Function to handle the request to add an incoming part to a scope
 function addIncomingPart(scopeId, serialNumber) {
   var sheet = SpreadsheetApp.openById("YOUR_SPREADSHEET_ID").getSheetByName("Scopes");
@@ -4895,6 +5962,7 @@ function addIncomingPart(scopeId, serialNumber) {
   sheet.getRange(newRow, 4).setValue(new Date());
 }
 
+
 // Function to handle the request to add an outgoing part to a scope
 function addOutgoingPart(scopeId, serialNumber) {
   var sheet = SpreadsheetApp.openById("YOUR_SPREADSHEET_ID").getSheetByName("Scopes");
@@ -4905,6 +5973,7 @@ function addOutgoingPart(scopeId, serialNumber) {
   sheet.getRange(newRow, 3).setValue("Outgoing");
   sheet.getRange(newRow, 4).setValue(new Date());
 }
+
 
 // Function to handle the request to save a scope
 function saveScope(scopeId, name, description, priority, status, endDate) {
@@ -4918,6 +5987,7 @@ function saveScope(scopeId, name, description, priority, status, endDate) {
   sheet.getRange(newRow, 5).setValue(status);
   sheet.getRange(newRow, 6).setValue(endDate);
 }
+
 
 // Function to handle the request to view the scope history
 function viewScopeHistory(scopeId) {

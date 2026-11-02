@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,11 +17,22 @@
             </svg>
             <p class="auth-gate-eyebrow">EndoLab · Secure access</p>
             <h1 class="auth-gate-title"><span>Sign in</span><span class="auth-gate-title-context">to Scope Tracking</span></h1>
-            <p>Enter your assigned staff or administrator passcode.</p>
-            <label class="form-control-group" for="authPasscodeInput">Passcode
+            <div class="auth-gate-intro-space" aria-hidden="true"></div>
+            <label class="form-control-group" for="authPasscodeInput">Password
                 <input class="form-input-element" type="password" id="authPasscodeInput" name="passcode" autocomplete="current-password" required />
             </label>
             <button class="btn btn-interactive-primary" id="authSubmitButton" type="submit">Verify access</button>
+            <button class="auth-theme-toggle" id="authThemeToggle" type="button" aria-label="Use dark theme" aria-pressed="false">
+                <span class="auth-theme-toggle-icon" aria-hidden="true">
+                    <svg class="auth-theme-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z" />
+                    </svg>
+                    <svg class="auth-theme-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3.5" />
+                        <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+                    </svg>
+                </span>
+            </button>
             <p class="auth-gate-message" id="authGateMessage" role="status" aria-live="polite"></p>
         </form>
     </section>
@@ -33,14 +44,16 @@
 <aside class="app-sidebar" id="navigationSidebar">
     <div class="sidebar-brand-wrapper">
         <div class="brand-container">
-            <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v6" />
-                <path d="M8 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v3" />
-                <path d="M12 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v6" />
-            </svg>
+            <button type="button" class="brand-home-button" id="brandHomeButton" data-trn-aria-label="brand_return_login" data-trn-title="brand_return_login" aria-label="Return to sign in" title="Return to sign in">
+                <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v6" />
+                    <path d="M8 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v3" />
+                    <path d="M12 4v3c0 2.5 1.5 3.5 5 3.5s5 1 5 3.5v6" />
+                </svg>
+            </button>
             <h1 class="brand-title">Endo<span>Lab</span></h1>
         </div>
-        <div class="navbar-language-picker" role="group" aria-label="Interface language">
+        <div class="navbar-language-picker" role="group" aria-label="Interface language" data-trn-aria-label="ui_language_label">
             <button type="button" class="language-flag-button" data-app-language="en" aria-label="English" title="English" aria-pressed="true">
                 <svg class="language-flag-icon" viewBox="0 0 24 16" aria-hidden="true" focusable="false">
                     <rect width="24" height="16" fill="#fff" />
@@ -56,8 +69,8 @@
                 </svg>
             </button>
         </div>
-        <button type="button" id="mobileNavbarMenuToggle" aria-expanded="false" aria-controls="sidebarNavLinksGroup" aria-label="Open navigation menu">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <button type="button" id="mobileNavbarMenuToggle" aria-expanded="false" aria-controls="navigationSidebar" aria-label="Open navigation menu">
+            <svg class="nav-toggle-mobile-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
                 <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
@@ -72,7 +85,7 @@
                 <rect x="3" y="14" width="7" height="7" rx="1" />
                 <rect x="14" y="14" width="7" height="7" rx="1" />
             </svg></span>
-            <span class="menu-text">Tracking Dashboard</span>
+            <span class="menu-text" data-trn="sidebar_nav_mirror">Tracking Dashboard</span>
         </a>
         <a href="#dashboard" class="menu-link" id="navLinkDashboard">
             <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -83,14 +96,14 @@
             <span class="menu-text" data-trn="sidebar_nav_dashboard">Scope Entry & Records</span>
         </a>
         <a href="#parts-tracker" class="menu-link" id="navLinkParts">
-            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
   <circle cx="12" cy="12" r="3"/>
 </svg></span>
             <span class="menu-text" data-trn="sidebar_nav_parts">Parts & Logistics</span>
         </a>
         <a href="#timeline-history" class="menu-link" id="navLinkTimeline">
-            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <circle cx="12" cy="12" r="10"/>
   <polyline points="12 6 12 12 16 14"/>
 </svg>
@@ -98,7 +111,7 @@
             <span class="menu-text" data-trn="sidebar_nav_timeline">Scope History Timeline</span>
         </a>
         <a href="#inventory" class="menu-link" id="navLinkInventory">
-            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
   <polyline points="3.29 7 12 12 20.71 7"/>
   <line x1="12" y1="22" x2="12" y2="12"/>
@@ -107,7 +120,7 @@
             <span class="menu-text" data-trn="sidebar_nav_inventory">Inventory</span>
         </a>
         <a href="#admin-logs" class="menu-link" id="navLinkAdminLogs" style="border: 1px dashed rgba(37,99,235,0.4);">
-            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
   <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
   <path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
@@ -117,7 +130,7 @@
             <span class="menu-text" data-trn="sidebar_nav_admin_logs">Private Engineer Log</span>
         </a>
         <a href="#toggle-theme" class="menu-link" id="navLinkThemeToggle" style="margin-top: auto;">
-            <span class="menu-icon"><svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <span class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <!-- Flawless center dividing line -->
   <line x1="12" y1="2" x2="12" y2="22" />
   
@@ -132,10 +145,12 @@
         </a>
         
     </nav>
-    <footer class="sidebar-footer">
-        <span class="sidebar-footer-brand">EndoLab</span>
-        <span class="brand-version">Beta · v3.1</span>
-    </footer>
+    <button type="button" id="desktopNavbarMenuToggle" aria-expanded="true" aria-controls="navigationSidebar" aria-label="Collapse navigation">
+        <svg class="nav-toggle-desktop-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="1" />
+            <path d="M9 3v18m6-12-3 3 3 3" />
+        </svg>
+    </button>
 </aside>
 
 
@@ -162,10 +177,10 @@
                             <select class="form-select-element" id="quickLinkScopeSerial" required></select>
                         </label>
                         <label class="form-control-group">Status note
-                            <input class="form-input-element" type="text" id="quickLinkCommentText" placeholder="Add a brief repair update" required />
+                            <input class="form-input-element" type="text" id="quickLinkCommentText" data-trn-placeholder="quick_note_placeholder" placeholder="Add a brief repair update" required />
                         </label>
                         <label class="form-control-group">Part request (optional)
-                            <input class="form-input-element" type="text" id="quickLinkPartRequest" placeholder="Part or component" />
+                            <input class="form-input-element" type="text" id="quickLinkPartRequest" data-trn-placeholder="quick_part_placeholder" placeholder="Part or component" />
                         </label>
                         <button class="btn btn-interactive-primary" type="submit">Save quick update</button>
                     </form>
@@ -186,7 +201,7 @@
                             <div class="form-input-row-grid grid-2">
                                 <div class="form-control-group">
                                     <label class="field-label-text" for="scopeModel" data-trn="lbl_model">Scope Model</label>
-                                    <input class="form-input-element" type="text" id="scopeModel" name="scopeModel" placeholder="e.g., EC-760ZP" required />
+                                    <input class="form-input-element" type="text" id="scopeModel" name="scopeModel" data-trn-placeholder="scope_model_placeholder" placeholder="e.g., EC-760ZP" required />
                                 </div>
                                 <div class="form-control-group">
                                     <label class="field-label-text" for="scopeType" data-trn="lbl_class">Scope Classification</label>
@@ -208,7 +223,7 @@
                                 </div>
                                 <div class="form-control-group">
                                     <label class="field-label-text" for="clientFacility" data-trn="lbl_client">Client / Facility Source</label>
-                                    <input class="form-input-element" type="text" id="clientFacility" name="clientFacility" placeholder="Hospital wing..." required />
+                                    <input class="form-input-element" type="text" id="clientFacility" name="clientFacility" data-trn-placeholder="client_facility_placeholder" placeholder="Hospital wing..." required />
                                 </div>
                             </div>
 
@@ -251,7 +266,7 @@
                                 <div class="form-input-row-grid grid-2" style="gap: 16px;">
                                     <div class="form-control-group">
                                         <label class="field-label-text" for="technicianName" data-trn="lbl_tech">Technician</label>
-                                        <input class="form-input-element" type="text" id="technicianName" name="technicianName" placeholder="Operator name..." required />
+                                        <input class="form-input-element" type="text" id="technicianName" name="technicianName" data-trn-placeholder="technician_placeholder" placeholder="Operator name..." required />
                                     </div>
                                     <div class="form-control-group">
                                         <label class="field-label-text" for="logDate" data-trn="lbl_date">Target Entry Date</label>
@@ -285,7 +300,7 @@
                                 <legend class="fieldset-legend-title" data-trn="legend_narratives">System Narratives</legend>
                                 <div class="form-control-group">
                                     <label class="field-label-text" for="complaintTextField" data-trn="lbl_complaint">Client Complaint Details</label>
-                                    <textarea class="form-textarea-element" id="complaintTextField" name="complaintTextField" rows="2" placeholder="Symptoms reported..."></textarea>
+                                    <textarea class="form-textarea-element" id="complaintTextField" name="complaintTextField" rows="2" data-trn-placeholder="complaint_placeholder" placeholder="Symptoms reported..."></textarea>
                                 </div>
                             </fieldset>
                         <!-- -->
@@ -633,7 +648,7 @@
                                 <legend class="fieldset-legend-title" data-trn="legend_logistics">Logistics & File Attachments</legend>
                                 <div class="form-control-group">
                                     <label class="field-label-text" for="formPartRequestField" data-trn="lbl_embed_part">Embed Quick Spare Part Request</label>
-                                    <input class="form-input-element" type="text" id="formPartRequestField" name="formPartRequestField" placeholder="e.g., Replacement O-Ring Kit, BR-04 Sleeve" />
+                                    <input class="form-input-element" type="text" id="formPartRequestField" name="formPartRequestField" data-trn-placeholder="embedded_part_placeholder" placeholder="e.g., Replacement O-Ring Kit, BR-04 Sleeve" />
                                 </div>
                                 <div class="form-control-group">
                                     <label class="field-label-text" for="formMediaCloudUrl" data-trn="lbl_cloud_url">Cloud File References / Workspace Repositories</label>
@@ -641,7 +656,7 @@
                                 </div>
                                 <div class="form-control-group">
                                     <label class="field-label-text" for="formRepairNotes" data-trn="lbl_action_notes">Chronological Repair Action Notes</label>
-                                    <textarea class="form-textarea-element" id="formRepairNotes" name="formRepairNotes" rows="2" placeholder="Calibration parameter corrections, actions taken..."></textarea>
+                                    <textarea class="form-textarea-element" id="formRepairNotes" name="formRepairNotes" rows="2" data-trn-placeholder="repair_notes_placeholder" placeholder="Calibration parameter corrections, actions taken..."></textarea>
                                 </div>
                             </fieldset>
 
@@ -663,7 +678,7 @@
                         <div class="table-filtering-toolbar-layout">
                             <div class="search-input-field-wrapper">
                                 <span class="search-addon-icon">🔍</span>
-                                <input class="toolbar-search-input" type="text" id="tableSearchInput" placeholder="Search by unique Serial Number..." />
+                                <input class="toolbar-search-input" type="text" id="tableSearchInput" data-trn-placeholder="table_search_placeholder" placeholder="Search by unique Serial Number..." />
                             </div>
                             <div class="filter-dropdown-wrapper">
                                 <select class="toolbar-filter-dropdown" id="tableStatusFilter">
@@ -730,15 +745,15 @@
                             <div class="form-control-group">
                                 <label class="field-label-text" for="partScopeSearch">Active repair (ID / serial)</label>
                                 <div class="scope-search-control">
-                                    <input class="form-input-element" type="search" id="partScopeSearch" name="partScopeSearch" placeholder="Search by repair ID, serial, or model…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="activeRepairResults" required />
-                                    <div class="searchable-scope-results" id="activeRepairResults" role="listbox" aria-label="Active repairs" hidden></div>
+                                    <input class="form-input-element" type="search" id="partScopeSearch" name="partScopeSearch" data-trn-placeholder="part_scope_search_placeholder" placeholder="Search by repair ID, serial, or model…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="activeRepairResults" required />
+                                    <div class="searchable-scope-results" id="activeRepairResults" role="listbox" aria-label="Active repairs" data-trn-aria-label="part_search_results_label" hidden></div>
                                 </div>
                                 <input type="hidden" id="partScopeLogId" name="partScopeLogId" />
                                 <span class="form-help-text" id="partScopeHelp">Choose a listed active scope to link this request.</span>
                             </div>
                             <div class="form-control-group">
                                 <label class="field-label-text" for="partName">Part name</label>
-                                <input class="form-input-element" type="text" id="partName" name="partName" placeholder="e.g., Insertion tube mesh sleeve" required />
+                                <input class="form-input-element" type="text" id="partName" name="partName" data-trn-placeholder="part_name_placeholder" placeholder="e.g., Insertion tube mesh sleeve" required />
                             </div>
                             <div class="form-input-row-grid grid-2">
                                 <div class="form-control-group">
@@ -756,12 +771,12 @@
                             </div>
                             <div class="form-control-group">
                                 <label class="field-label-text" for="partSupplier">Preferred vendor (optional)</label>
-                                <input class="form-input-element" type="text" id="partSupplier" name="partSupplier" list="knownVendorOptions" placeholder="Vendor name" />
+                                <input class="form-input-element" type="text" id="partSupplier" name="partSupplier" list="knownVendorOptions" data-trn-placeholder="part_vendor_placeholder" placeholder="Vendor name" />
                                 <datalist id="knownVendorOptions"></datalist>
                             </div>
                             <div class="form-control-group">
                                 <label class="field-label-text" for="partRequestNotes">Notes / instructions (optional)</label>
-                                <textarea class="form-textarea-element" id="partRequestNotes" name="partRequestNotes" rows="3" placeholder="Fit, compatibility, urgency, or other request details…"></textarea>
+                                <textarea class="form-textarea-element" id="partRequestNotes" name="partRequestNotes" rows="3" data-trn-placeholder="part_notes_placeholder" placeholder="Fit, compatibility, urgency, or other request details…"></textarea>
                             </div>
                             <button type="submit" class="btn btn-interactive-primary parts-submit-button">Submit part request</button>
                         </form>
@@ -800,7 +815,7 @@
                                 <p class="section-card-subtitle">Orders with origin, arrival destination, and ETA are shown. Route progress is estimated, not live carrier tracking.</p>
                             </div>
                         </div>
-                        <div class="parts-transit-list" id="partsTransitList" aria-live="polite"></div>
+                        <div class="parts-transit-list" id="partsTransitList" role="list" aria-label="Estimated orders in transit" data-trn-aria-label="parts_transit_list_label" aria-live="polite"></div>
                         <div class="parts-map-wrap">
                             <svg id="partsTransitMap" class="parts-transit-map" viewBox="0 0 900 390" role="img" aria-labelledby="partsMapTitle partsMapDescription">
                                 <title id="partsMapTitle">Estimated parts shipment routes</title>
@@ -816,14 +831,7 @@
                                     <path d="M0 85H900 M0 155H900 M0 225H900 M0 295H900 M150 0V390 M300 0V390 M450 0V390 M600 0V390 M750 0V390" />
                                 </g>
                                 <g class="map-land" id="partsMapContinents" aria-hidden="true"></g>
-                                <path class="map-route" id="partsTransitRoute" d="" />
-                                <circle class="map-origin-dot" id="partsMapOriginDot" cx="0" cy="0" r="6" visibility="hidden" />
-                                <circle class="map-destination-dot" id="partsMapDestinationDot" cx="679" cy="205" r="7" />
-                                <g id="partsMapPlane" class="map-plane" visibility="hidden" aria-hidden="true">
-                                    <circle r="13"></circle><text y="5" text-anchor="middle">✈</text>
-                                </g>
-                                <text class="map-label" id="partsMapOriginLabel" x="0" y="0"></text>
-                                <text class="map-label" id="partsMapDestinationLabel" x="689" y="225">Jakarta, Indonesia</text>
+                                <g id="partsTransitRoutes" aria-hidden="true"></g>
                             </svg>
                             <p class="parts-map-caption" id="partsMapCaption">No orders with origin and destination details are currently in transit.</p>
                             <p class="parts-map-source">Coastline outlines: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a> (public domain). Transit progress is estimated from order dates.</p>
@@ -831,27 +839,26 @@
                     </section>
                 </section>
             </div>
-            <section class="view-panel mirror-dashboard-view" id="scopeMirrorDashboardView" style="display: none;" aria-label="Repair Status Tracking">
+            <section class="view-panel mirror-dashboard-view" id="scopeMirrorDashboardView" style="display: none;" aria-label="Repair Status Tracking" data-trn-aria-label="scope_dashboard_label">
                 <label class="mirror-search">
-                    <span class="visually-hidden">Search by serial number, brand, or scope model</span>
                     <span aria-hidden="true">⌕</span>
-                    <input class="form-input-element" type="search" id="mirrorSearchInput" placeholder="Search serial number, brand, or model…" autocomplete="off" />
+                    <input class="form-input-element" type="search" id="mirrorSearchInput" aria-label="Search scopes" data-trn-aria-label="mirror_search_label" data-trn-placeholder="mirror_search_placeholder" placeholder="Search serial number, brand, or model…" autocomplete="off" />
                 </label>
 
-                <section class="mirror-metrics-grid" aria-label="Scope lifecycle summary">
-                    <button class="mirror-metric-card mirror-metric-active" type="button" data-mirror-filter="active" aria-label="Show active repairs">
+                <section class="mirror-metrics-grid" aria-label="Scope lifecycle summary" data-trn-aria-label="scope_lifecycle_summary_label">
+                    <button class="mirror-metric-card mirror-metric-active" type="button" data-mirror-filter="active" aria-label="Show active repairs" data-trn-aria-label="metric_show_active">
                         <span>Active Repairs</span><strong id="mirrorMetricActive">0</strong>
                     </button>
-                    <button class="mirror-metric-card mirror-metric-ready" type="button" data-mirror-filter="completed" aria-label="Show scopes ready for pickup">
+                    <button class="mirror-metric-card mirror-metric-ready" type="button" data-mirror-filter="completed" aria-label="Show scopes ready for pickup" data-trn-aria-label="metric_show_ready">
                         <span>Ready for Pickup</span><strong id="mirrorMetricReady">0</strong>
                     </button>
-                    <button class="mirror-metric-card mirror-metric-warranty" type="button" data-mirror-filter="warranty" aria-label="Show scopes in warranty period">
+                    <button class="mirror-metric-card mirror-metric-warranty" type="button" data-mirror-filter="warranty" aria-label="Show scopes in warranty period" data-trn-aria-label="metric_show_warranty">
                         <span>In Warranty Period</span><strong id="mirrorMetricWarranty">0</strong>
                     </button>
-                    <button class="mirror-metric-card mirror-metric-complete" type="button" data-mirror-filter="out-of-lab" aria-label="Show completed scopes out of lab">
+                    <button class="mirror-metric-card mirror-metric-complete" type="button" data-mirror-filter="out-of-lab" aria-label="Show completed scopes out of lab" data-trn-aria-label="metric_show_completed">
                         <span>Completed</span><strong id="mirrorMetricOutOfLab">0</strong>
                     </button>
-                    <button class="mirror-metric-card mirror-metric-backup" type="button" data-mirror-filter="backup" aria-label="Show backup scopes">
+                    <button class="mirror-metric-card mirror-metric-backup" type="button" data-mirror-filter="backup" aria-label="Show backup scopes" data-trn-aria-label="metric_show_backup">
                         <span>Backup Scopes</span><strong id="mirrorMetricBackup">0</strong>
                     </button>
                 </section>
@@ -862,7 +869,7 @@
                             <h3 id="mirrorRegisterTitle">Scope tracking</h3>
                             <p class="mirror-sync-status" id="mirrorSyncStatus" role="status" aria-live="polite">Showing locally saved scope tracking data.</p>
                         </div>
-                        <div class="mirror-tabs" role="tablist" aria-label="Filter scopes by lifecycle">
+                        <div class="mirror-tabs" role="tablist" aria-label="Filter scopes by lifecycle" data-trn-aria-label="scope_lifecycle_filter_label">
                             <button class="mirror-tab is-selected" type="button" role="tab" id="mirrorTabActive" aria-selected="true" aria-controls="mirrorCards" data-mirror-tab="active">Active <span id="mirrorTabActiveCount">0</span></button>
                             <button class="mirror-tab" type="button" role="tab" id="mirrorTabCompleted" aria-selected="false" aria-controls="mirrorCards" data-mirror-tab="completed">Ready <span id="mirrorTabCompletedCount">0</span></button>
                             <button class="mirror-tab" type="button" role="tab" id="mirrorTabWarranty" aria-selected="false" aria-controls="mirrorCards" data-mirror-tab="warranty">Warranty <span id="mirrorTabWarrantyCount">0</span></button>
@@ -879,7 +886,7 @@
             <!-- VIEW MODULE 3: CHRONOLOGICAL SCOPE HISTORY TIMELINE VIEW -->
             <div class="view-panel" id="scopeTimelineView" style="display: none;">
                 <div class="workspace-card" style="width: 100%;">
-                    <button class="btn btn-interactive-outline timeline-back-button" id="timelineBackToDashboard" type="button">← Back to Tracking Dashboard</button>
+                    <button class="btn btn-interactive-outline timeline-back-button" id="timelineBackToDashboard" type="button" data-trn="timeline_back_dashboard">← Back to Tracking Dashboard</button>
                     <div class="section-card-header timeline-query-header">
                         <div>
                             <h3 class="section-card-title" data-trn="timeline_title">Scope Lifecycle Timeline Explorer</h3>
@@ -888,14 +895,14 @@
                         
                         <!-- Timeline Query Bar -->
                         <div class="search-input-field-wrapper timeline-query-controls">
-                            <input class="toolbar-search-input" type="text" id="timelineQueryInput" placeholder="Enter Equipment Serial Number (S/N)..." style="padding-left: 14px;" />
+                            <input class="toolbar-search-input" type="text" id="timelineQueryInput" data-trn-placeholder="timeline_serial_placeholder" data-trn-aria-label="timeline_serial_label" placeholder="Enter equipment serial number (S/N)..." aria-label="Equipment serial number" autocomplete="off" />
                             <button type="button" class="btn btn-interactive-primary" id="btnExecuteTimelineQuery" data-trn="btn_query">Query</button>
                         </div>
                     </div>
 
                     <div class="history-search-bar">
-                        <label class="field-label-text" for="historySearchInput">Search this scope's history</label>
-                        <input class="form-input-element" type="search" id="historySearchInput" placeholder="Search reports, notes, technician, facility, parts..." />
+                        <label class="field-label-text" for="historySearchInput" data-trn="timeline_history_label">Search this scope's history</label>
+                        <input class="form-input-element" type="search" id="historySearchInput" data-trn-placeholder="history_search_placeholder" placeholder="Search reports, notes, technician, facility, parts..." />
                     </div>
 
                     <!-- Target Injection Container for the Dynamic Timeline Line -->
@@ -909,64 +916,91 @@
             <!-- VIEW MODULE 5: INVENTORY LEDGER STOCK MANAGEMENT VIEW PANEL -->
             <div class="view-panel" id="warehouseInventoryView" style="display: none;">
                 <div class="workspace-layout-split">
-                    
-                    <!-- Left Column Form: Stock Intake Registration Panel Component -->
-                    <section class="workspace-card container-form-card">
-                        <div class="section-card-header">
-                            <h3 class="section-card-title" data-trn="inv_form_title">Update Inventory</h3>
-                            <p class="section-card-subtitle" data-trn="inv_form_sub">Input incoming part batch runs, item SKUs, and location tracking thresholds.</p>
-                        </div>
-                        <form class="report-submission-form" id="inventoryIntakeRegistrationForm" autocomplete="off">
-                        <div class="form-input-row-grid grid-2">
-                            <div class="form-control-group">
-                                <label class="field-label-text" for="invPartName" data-trn="inv_lbl_name">Part Name / Description</label>
-                                <input class="form-input-element" type="text" id="invPartName" name="invPartName" placeholder="e.g., Angulation Wire Core Array" required />
-                            </div>
-                            <div class="form-control-group">
-                                <label class="field-label-text" for="invSku" data-trn="inv_lbl_sku">SKU Code</label>
-                                <input class="form-input-element" type="text" id="invSku" name="invSku" placeholder="e.g., SKU-WIRE-OLY04" required />
-                            </div>
-                        </div>
-                        <div class="form-input-row-grid grid-3">
-                            <div class="form-control-group">
-                                <label class="field-label-text" for="invLotNumber" data-trn="inv_lbl_lot">Batch Lot Number (Lot #)</label>
-                                <input class="form-input-element" type="text" id="invLotNumber" name="invLotNumber" placeholder="e.g., LOT-2026-X1" required />
-                            </div>
-                            <div class="form-control-group">
-                                <label class="field-label-text" for="invCurrentStock" data-trn="inv_lbl_stock">Initial Current Stock</label>
-                                <input class="form-input-element" type="number" id="invCurrentStock" name="invCurrentStock" min="0" placeholder="100" required />
-                            </div>
-                            <div class="form-control-group">
-                                <label class="field-label-text" for="invVendor" data-trn="inv_lbl_vendor">Supplier Vendor</label>
-                                <input class="form-input-element" type="text" id="invVendor" name="invVendor" placeholder="e.g., Olympus Direct Corp" required />
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-interactive-primary" style="background: var(--brand-primary-gradient); font-weight:700;" data-trn="inv_btn_submit">Ingest Asset Batch Line</button>
-                    </form>
-
-                    </section>
-
-                    <!-- Right Column Table: Live Stock Quantities & Availability Ledger Grid -->
-                    <section class="workspace-card container-table-card">
+                    <section class="workspace-card container-table-card inventory-ledger-card">
                         <div class="section-card-header">
                             <h3 class="section-card-title" data-trn="inv_table_title">Available On-Hand Quantities</h3>
-                            <p class="section-card-subtitle" data-trn="inv_table_sub">Monitors inventory allocations and auto-decrements on-hand counts when parts are logged in per-scope per-repair triage sheets.</p>
+                            <p class="section-card-subtitle" data-trn="inv_table_sub">Search categorized stock and review incoming and outgoing activity.</p>
                         </div>
-                        <div class="data-table-overflow-scroller">
-                            <table class="clinical-records-table" id="warehouseInventoryLedgerTable">
-                                <thead>
-                                    <tr>
-                                        <th data-trn="th_inv_part">Part Profile (Name / SKU)</th>
-                                        <th data-trn="th_inv_lot">Lot #</th>
-                                        <th data-trn="th_inv_stock">On-Hand Stock</th>
-                                        <th data-trn="th_inv_vendor">Vendor Channel</th>
-                                        <th data-trn="th_inv_analytics">Utilization Analytics (By Repair Tier Category)</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="warehouseInventoryTableBody"></tbody>
-                            </table>
-                        </div>
+                        <label class="form-control-group inventory-search-control" for="inventorySearchInput">
+                            <span class="field-label-text" data-trn="inv_search_label">Search inventory</span>
+                            <input class="form-input-element" type="search" id="inventorySearchInput" data-trn-placeholder="inv_search_placeholder" placeholder="Search part name, SKU, lot, vendor, or category" />
+                        </label>
+                        <div class="inventory-category-grid" id="inventoryCategoryGrid" aria-live="polite"></div>
                     </section>
+                    <div class="inventory-intake-actions">
+                        <button type="button" class="inventory-floating-action" id="inventoryIntakeOpenButton" aria-haspopup="dialog" aria-controls="inventoryIntakeDialog">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
+                            <span data-trn="inv_open_form">Update Inventory</span>
+                        </button>
+                        <dialog class="inventory-intake-dialog" id="inventoryIntakeDialog" aria-labelledby="inventoryIntakeTitle" aria-describedby="inventoryIntakeSubtitle">
+                            <header class="inventory-intake-dialog-header">
+                                <div>
+                                    <h2 class="inventory-intake-title" id="inventoryIntakeTitle" data-trn="inv_form_title">Update Inventory</h2>
+                                    <p class="inventory-intake-subtitle" id="inventoryIntakeSubtitle" data-trn="inv_form_sub">Register a received part batch and its vendor observations.</p>
+                                </div>
+                                <button type="button" class="inventory-intake-close" id="inventoryIntakeCloseButton" aria-label="Close" data-trn-aria-label="inv_close_form">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                                        <path d="m6 6 12 12M18 6 6 18" />
+                                    </svg>
+                                </button>
+                            </header>
+                            <form class="report-submission-form" id="inventoryIntakeRegistrationForm" autocomplete="off">
+                                <div class="form-input-row-grid grid-2">
+                                    <label class="form-control-group">
+                                        <span class="field-label-text" data-trn="inv_lbl_name">Part Name / Description</span>
+                                        <input class="form-input-element" type="text" id="invPartName" name="invPartName" required />
+                                    </label>
+                                    <label class="form-control-group">
+                                        <span class="field-label-text" data-trn="inv_lbl_sku">SKU Code</span>
+                                        <input class="form-input-element" type="text" id="invSku" name="invSku" required />
+                                    </label>
+                                </div>
+                                <div class="form-input-row-grid grid-3">
+                                    <label class="form-control-group">
+                                        <span class="field-label-text" data-trn="inv_lbl_lot">Batch Lot Number (Lot #)</span>
+                                        <input class="form-input-element" type="text" id="invLotNumber" name="invLotNumber" required />
+                                    </label>
+                                    <label class="form-control-group">
+                                        <span class="field-label-text" data-trn="inv_lbl_stock">Initial Current Stock</span>
+                                        <input class="form-input-element" type="number" id="invCurrentStock" name="invCurrentStock" min="1" step="1" inputmode="numeric" required />
+                                    </label>
+                                    <label class="form-control-group">
+                                        <span class="field-label-text" data-trn="inv_lbl_vendor">Supplier Vendor</span>
+                                        <input class="form-input-element" type="text" id="invVendor" name="invVendor" required />
+                                    </label>
+                                </div>
+                                <label class="form-control-group">
+                                    <span class="field-label-text" data-trn="inv_lbl_category">Part category</span>
+                                    <select class="form-select-element" id="invCategory" name="invCategory" required></select>
+                                </label>
+                                <div class="form-input-row-grid grid-2">
+                                    <label class="form-control-group">
+                                        <span class="field-label-text" data-trn="inv_quality_rating">Received part quality (1–5)</span>
+                                        <select class="form-select-element" id="invQualityRating" name="invQualityRating">
+                                            <option value="" data-trn="inv_not_recorded">Not recorded</option>
+                                            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                                            <option value="4">4</option><option value="5">5</option>
+                                        </select>
+                                    </label>
+                                    <label class="form-control-group">
+                                        <span class="field-label-text" data-trn="inv_delivery_speed">Delivery speed (1–5)</span>
+                                        <select class="form-select-element" id="invDeliveryRating" name="invDeliveryRating">
+                                            <option value="" data-trn="inv_not_recorded">Not recorded</option>
+                                            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                                            <option value="4">4</option><option value="5">5</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <label class="form-control-group">
+                                    <span class="field-label-text" data-trn="inv_quality_notes">Receipt observations (optional)</span>
+                                    <textarea class="form-textarea-element" id="invQualityNotes" name="invQualityNotes" rows="3"></textarea>
+                                </label>
+                                <button type="submit" class="btn btn-interactive-primary" data-trn="inv_btn_submit">Ingest Asset Batch Line</button>
+                            </form>
+                        </dialog>
+                    </div>
                 </div>
             </div>
 
@@ -995,7 +1029,7 @@
                                 <h4 class="terminal-module-title" data-trn="admin_todo_title">Daily Triage Checklist</h4>
                             </div>
                             <div style="display: flex; gap: 8px; margin-bottom: 14px;">
-                                <input type="text" id="terminalTodoInput" placeholder="Add custom action step..." style="flex-grow:1; background:#020617; border:1px solid #334155; color:#22c55e; font-family:monospace; padding:8px 12px; border-radius:6px; font-size:14px;" />
+                                <input type="text" id="terminalTodoInput" data-trn-placeholder="terminal_todo_placeholder" placeholder="Add custom action step..." style="flex-grow:1; background:#020617; border:1px solid #334155; color:#22c55e; font-family:monospace; padding:8px 12px; border-radius:6px; font-size:14px;" />
                                 <button type="button" class="btn" id="btnAppendTerminalTodo" style="background:#22c55e; color:#020617; font-family:monospace; font-weight:700; padding:4px 14px; font-size:14px; border-radius:6px;">+</button>
                             </div>
                             <ul class="terminal-todo-list" id="terminalTodoListContainer">
@@ -1009,7 +1043,7 @@
                                 <span class="terminal-prompt-caret">&gt;_</span>
                                 <h4 class="terminal-module-title" data-trn="admin_scratch_title">Persistent Lab Scratchpad</h4>
                             </div>
-                            <textarea id="terminalScratchpadArea" placeholder="Drop hot temporary fragments, supplier details, or courier numbers here... Saves automatically on keystroke." style="width:100%; height:130px; background:#020617; border:1px solid #334155; color:#22c55e; font-family:monospace; padding:12px; border-radius:8px; resize:none; font-size:14px; line-height:1.5; outline:none;"></textarea>
+                            <textarea id="terminalScratchpadArea" data-trn-placeholder="terminal_scratchpad_placeholder" placeholder="Drop hot temporary fragments, supplier details, or courier numbers here... Saves automatically on keystroke." style="width:100%; height:130px; background:#020617; border:1px solid #334155; color:#22c55e; font-family:monospace; padding:12px; border-radius:8px; resize:none; font-size:14px; line-height:1.5; outline:none;"></textarea>
                         </section>
                     </div>
 
@@ -1031,11 +1065,11 @@
                                 </div>
                                 <div class="form-control-group">
                                     <label class="field-label-text" for="adminNoteTitle" style="color:#22c55e; font-family:monospace;" data-trn="admin_lbl_title">Topic Classification</label>
-                                    <input class="form-input-element" type="text" id="adminNoteTitle" name="adminNoteTitle" placeholder="e.g., Client Cost Adjustment, Damage Dispute" style="background:#020617 !important; color:#22c55e !important; border-color:#334155 !important; font-family:monospace;" required />
+                                    <input class="form-input-element" type="text" id="adminNoteTitle" name="adminNoteTitle" data-trn-placeholder="admin_note_title_placeholder" placeholder="e.g., Client Cost Adjustment, Damage Dispute" style="background:#020617 !important; color:#22c55e !important; border-color:#334155 !important; font-family:monospace;" required />
                                 </div>
                                 <div class="form-control-group">
                                     <label class="field-label-text" for="adminNoteContent" style="color:#22c55e; font-family:monospace;" data-trn="admin_lbl_comments">Internal Engineering Comments</label>
-                                    <textarea class="form-textarea-element" id="adminNoteContent" name="adminNoteContent" rows="4" placeholder="Write proprietary processing evaluations safely..." style="background:#020617 !important; color:#22c55e !important; border-color:#334155 !important; font-family:monospace;" required></textarea>
+                                    <textarea class="form-textarea-element" id="adminNoteContent" name="adminNoteContent" rows="4" data-trn-placeholder="admin_note_content_placeholder" placeholder="Write proprietary processing evaluations safely..." style="background:#020617 !important; color:#22c55e !important; border-color:#334155 !important; font-family:monospace;" required></textarea>
                                 </div>
                                 <button type="submit" class="btn" style="background: linear-gradient(135deg, #22c55e, #16a34a); color:#020617; font-family:monospace; font-weight:700; width:100%; padding:12px;" data-trn="admin_btn_write">WRITE_RECORD_TO_CLOUD()</button>
                             </form>
@@ -1048,14 +1082,6 @@
                                 <h4 class="terminal-module-title" data-trn="admin_journal_title">Secure Internal Journal Index</h4>
                             </div>
                             
-                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
-                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
-                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
-               
-               
-                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
-                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
-                                <!-- PASTE CHANGE ABOVE HERE?????????????????    -->
 
 
                             <div class="data-table-overflow-scroller" style="border-color:#334155; flex-grow:1;">
@@ -1078,55 +1104,225 @@
 
                 </div>
             </div>
+            <footer class="app-footer" aria-label="EndoLab application information" data-trn-aria-label="app_footer_label">
+                <span class="app-footer-brand">EndoLab</span>
+                <span class="app-footer-version">Beta · v3.1</span>
+            </footer>
         </main>
+    </div>
+
+    <div class="service-report-overlay" id="serviceReportPreviewModal" aria-hidden="true">
+        <section class="service-report-dialog" role="dialog" aria-modal="true" aria-labelledby="serviceReportPreviewTitle">
+            <header class="service-report-preview-header">
+                <div>
+                    <h2 id="serviceReportPreviewTitle" data-trn="report_preview_title">Editable Service Report Preview</h2>
+                    <p data-trn="report_preview_hint">Review and edit the first-page report before printing.</p>
+                </div>
+                <button class="scope-edit-close" id="serviceReportPreviewClose" type="button" aria-label="Close report preview" data-trn-aria-label="report_preview_close_label">×</button>
+            </header>
+            <div class="service-report-preview-scroll">
+                <article class="service-report-paper" id="serviceReportPaper">
+                    <header class="service-report-masthead">
+                        <div class="service-report-logo-stack" aria-label="Endo Andalan contact information" data-trn-aria-label="report_logo_contact_label">
+                            <img src="images/image6.jpg" alt="Endo Andalan" />
+                            <img src="images/image1.png" alt="Endo Andalan contact information" />
+                        </div>
+                        <div class="service-report-header-details">
+                            <div class="service-report-title-block">
+                                <h1 data-trn="report_heading">Service Report</h1>
+                                <p data-trn="report_subheading">Incoming Technical Report</p>
+                            </div>
+                            <table class="service-report-meta-table">
+                                <tbody>
+                                    <tr>
+                                        <th><label for="reportScopeType" data-trn="report_scope_type">Scope Type</label></th>
+                                        <td><input id="reportScopeType" data-report-field="scopeType" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="reportScopeModel" data-trn="report_brand_product">Brand / Product</label></th>
+                                        <td><input id="reportScopeModel" data-report-field="scopeModel" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="reportType" data-trn="report_type">Type</label></th>
+                                        <td><input id="reportType" data-report-field="reportType" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="reportSerial" data-trn="report_serial">Serial No.</label></th>
+                                        <td><input id="reportSerial" data-report-field="serialNumber" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="reportClient" data-trn="report_client">Client</label></th>
+                                        <td><input id="reportClient" data-report-field="clientFacility" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="reportSalesPerson" data-trn="report_sales_person">Sales Person</label></th>
+                                        <td><input id="reportSalesPerson" data-report-field="salesPerson" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="reportDate" data-trn="report_date">Date</label></th>
+                                        <td><input id="reportDate" data-report-field="logDate" type="date" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="reportLocation" data-trn="report_location">Location</label></th>
+                                        <td><input id="reportLocation" data-report-field="location" type="text" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </header>
+
+                    <section class="service-report-intake" aria-label="Incoming inspection" data-trn-aria-label="report_incoming_inspection_label">
+                        <label class="service-report-wide-field">
+                            <span data-trn="report_initial_complaint">Initial Complaint</span>
+                            <textarea data-report-field="complaintText" rows="2"></textarea>
+                        </label>
+                        <div class="service-report-intake-grid">
+                            <label><span data-trn="report_leak_test">Leak Test</span><input data-report-field="leakTest" type="text" /></label>
+                            <label><span data-trn="report_sterilization">Sterilization</span><input data-report-field="sterilization" type="text" /></label>
+                            <label><span data-trn="report_sterilization_date">Sterilization Date</span><input data-report-field="sterilizationDate" type="date" /></label>
+                            <label><span data-trn="report_chemical">Chemical</span><input data-report-field="sterilizationChemical" type="text" /></label>
+                        </div>
+                        <label class="service-report-wide-field">
+                            <span data-trn="report_additional">Additional Report</span>
+                            <textarea data-report-field="repairDetails" rows="2"></textarea>
+                        </label>
+                    </section>
+
+                    <section class="service-report-checklist-section" aria-labelledby="serviceReportChecklistTitle">
+                        <h2 id="serviceReportChecklistTitle" data-trn="report_components">Component Inspection</h2>
+                        <div class="service-report-checklist-columns">
+                            <table class="service-report-checklist-table">
+                                <thead>
+                                    <tr><th>#</th><th data-trn="report_component">Component</th><th data-trn="report_test">Test / Result</th><th data-trn="report_notes">Notes</th></tr>
+                                </thead>
+                                <tbody id="serviceReportChecklistLeft"></tbody>
+                            </table>
+                            <table class="service-report-checklist-table">
+                                <thead>
+                                    <tr><th>#</th><th data-trn="report_component">Component</th><th data-trn="report_test">Test / Result</th><th data-trn="report_notes">Notes</th></tr>
+                                </thead>
+                                <tbody id="serviceReportChecklistRight"></tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="service-report-original-fields" aria-label="Service report details" data-trn-aria-label="report_details_label">
+                        <table class="service-report-followup-table">
+                            <tbody>
+                                <tr>
+                                    <th><label for="reportServiceContract" data-trn="report_service_contract">Service Contract</label></th>
+                                    <td><input id="reportServiceContract" data-report-field="serviceContract" type="text" /></td>
+                                    <th><label for="reportContractNumber" data-trn="report_contract_number">Contract Number</label></th>
+                                    <td><input id="reportContractNumber" data-report-field="contractNumber" type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="reportCustomerVisits" data-trn="report_customer_visit">Customer Visit</label></th>
+                                    <td colspan="3"><input id="reportCustomerVisits" data-report-field="customerVisits" type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="reportAccessories" data-trn="report_accessories">Accessories</label></th>
+                                    <td colspan="3"><input id="reportAccessories" data-report-field="accessories" type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="reportLinkedParts" data-trn="report_linked_parts">Linked Parts</label></th>
+                                    <td colspan="3"><textarea id="reportLinkedParts" data-report-field="linkedParts" rows="2"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="reportRequester" data-trn="report_requester">Requester</label></th>
+                                    <td><input id="reportRequester" data-report-field="requesterName" type="text" /></td>
+                                    <th><label for="reportDepartment" data-trn="report_department">Department</label></th>
+                                    <td><input id="reportDepartment" data-report-field="requesterDepartment" type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="reportRepairCategory" data-trn="report_repair_category">Repair Category</label></th>
+                                    <td><input id="reportRepairCategory" data-report-field="repairCategory" type="text" /></td>
+                                    <th><label for="reportEct" data-trn="report_ect">ECT</label></th>
+                                    <td><input id="reportEct" data-report-field="ect" type="text" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section class="service-report-signature-blocks" aria-label="Handwritten signatures" data-trn-aria-label="report_signatures_label">
+                        <div><i aria-hidden="true"></i><span data-trn="report_signature_technician">Technician</span></div>
+                        <div><i aria-hidden="true"></i><span data-trn="report_signature_customer">Customer</span></div>
+                        <div><i aria-hidden="true"></i><span data-trn="report_signature_approval">Approved By</span></div>
+                    </section>
+                </article>
+            </div>
+            <footer class="service-report-preview-actions">
+                <label class="service-report-save-option">
+                    <input type="checkbox" id="serviceReportSaveToSheet" />
+                    <span data-trn="report_save_sheet">Save Changes to Sheet</span>
+                </label>
+                <div>
+                    <button class="btn btn-interactive-outline" id="serviceReportPreviewCancel" type="button" data-trn="report_cancel">Cancel</button>
+                    <button class="btn btn-interactive-primary" id="serviceReportConfirmPrint" type="button" data-trn="report_print">Print Report</button>
+                </div>
+            </footer>
+        </section>
     </div>
 
     <div class="scope-edit-overlay" id="scopeEditModal" aria-hidden="true">
         <section class="scope-edit-dialog" role="dialog" aria-modal="true" aria-labelledby="scopeEditTitle">
             <header class="scope-edit-header">
                 <div>
-                    <h2 id="scopeEditTitle">Edit Scope Service Report</h2>
-                    <p id="scopeEditSubtitle">Update report fields, parts, and scope details.</p>
+                    <h2 id="scopeEditTitle" data-trn="scope_edit_title">Edit Scope Service Report</h2>
+                    <p id="scopeEditSubtitle" data-trn="scope_edit_subtitle">Update report fields, parts, and scope details.</p>
                 </div>
-                <button class="scope-edit-close" id="scopeEditCloseButton" type="button" aria-label="Close editor">×</button>
+                <button class="scope-edit-close" id="scopeEditCloseButton" type="button" aria-label="Close editor" data-trn-aria-label="scope_edit_close_label">×</button>
             </header>
             <form id="scopeEditForm" class="scope-edit-form">
                 <div id="scopeEditFields"></div>
+                <section class="scope-edit-section">
+                    <div class="scope-edit-section-heading">
+                        <h3 data-trn="scope_consumed_title">Parts Consumed</h3>
+                        <p data-trn="scope_consumed_subtitle">Select available warehouse stock to link and consume parts for this repair. Stock is decremented when linked.</p>
+                    </div>
+                    <div id="scopeConsumedPartsPicker" class="scope-consumed-parts-picker"></div>
+                    <div id="scopeConsumedPartsList" class="scope-consumed-parts-list"></div>
+                </section>
                 <section class="scope-edit-section procurement-request-section">
                     <div class="scope-edit-section-heading">
-                        <h3>Request a Part</h3>
-                        <p>Create a procurement ticket linked to this scope and service report.</p>
+                        <h3 data-trn="scope_request_title">Request a Part</h3>
+                        <p data-trn="scope_request_hint">Create a procurement ticket linked to this scope and service report.</p>
                     </div>
                     <div class="scope-edit-grid">
-                        <label class="form-control-group">Part name
-                            <input class="form-input-element" type="text" name="partName" placeholder="Component or part required" />
+                        <label class="form-control-group"><span data-trn="scope_part_name">Part name</span>
+                            <input class="form-input-element" type="text" id="editPartName" name="editPartName" data-trn-placeholder="edit_part_name_placeholder" placeholder="Component or part required" required />
                         </label>
-                        <label class="form-control-group">Supplier
-                            <input class="form-input-element" type="text" name="supplier" value="OEM Direct Distribution" />
+                        <label class="form-control-group"><span data-trn="scope_part_quantity">Quantity</span>
+                            <input class="form-input-element" type="number" id="editPartQuantity" name="editPartQuantity" min="1" step="1" value="1" required />
                         </label>
-                        <label class="form-control-group">Estimated cost
-                            <input class="form-input-element" type="number" min="0" step="0.01" name="cost" placeholder="0.00" />
+                        <label class="form-control-group"><span data-trn="scope_part_estimated_price">Estimated price (optional)</span>
+                            <input class="form-input-element" type="number" id="editPartPrice" name="editPartPrice" min="0" step="0.01" inputmode="decimal" placeholder="0.00" />
                         </label>
-                        <label class="form-control-group">ETA
-                            <input class="form-input-element" type="text" name="partEta" placeholder="Pending verification" />
+                        <label class="form-control-group"><span data-trn="scope_part_preferred_vendor">Preferred vendor (optional)</span>
+                            <input class="form-input-element" type="text" id="editPartVendor" name="editPartVendor" list="knownVendorOptions" />
+                        </label>
+                        <label class="form-control-group"><span data-trn="scope_part_vendor_link">Vendor source link (optional)</span>
+                            <input class="form-input-element" type="url" id="editPartSourceLink" name="editPartSourceLink" placeholder="https://…" />
+                        </label>
+                        <label class="form-control-group"><span data-trn="scope_part_notes">Notes / instructions (optional)</span>
+                            <textarea class="form-textarea-element" id="editPartNotes" name="editPartNotes" rows="3"></textarea>
                         </label>
                     </div>
-                    <button class="btn btn-interactive-outline" id="scopePartRequestButton" type="button">Request this part</button>
+                    <button class="btn btn-interactive-outline" id="scopePartRequestButton" type="button" data-trn="scope_request_submit">Request this part</button>
                 </section>
                 <section class="scope-edit-section deletion-request-section" id="scopeDeletionRequestSection" hidden>
                     <div class="scope-edit-section-heading">
-                        <h3>Request Content Deletion</h3>
-                        <p>This submits a review request; technicians cannot delete scope data.</p>
+                        <h3 data-trn="scope_request_deletion">Request Content Deletion</h3>
+                        <p data-trn="scope_request_deletion_hint">This submits a review request; technicians cannot delete scope data.</p>
                     </div>
-                    <label class="form-control-group" for="scopeDeletionReason">Reason for request
-                        <textarea class="form-textarea-element" id="scopeDeletionReason" rows="3" placeholder="Explain why this record should be reviewed for deletion."></textarea>
+                    <label class="form-control-group" for="scopeDeletionReason"><span data-trn="scope_deletion_reason">Reason for request</span>
+                        <textarea class="form-textarea-element" id="scopeDeletionReason" rows="3" data-trn-placeholder="scope_deletion_placeholder" placeholder="Explain why this record should be reviewed for deletion."></textarea>
                     </label>
                 </section>
                 <footer class="scope-edit-actions">
-                    <button class="btn btn-interactive-outline" id="scopeEditCancelButton" type="button">Cancel</button>
-                    <button class="btn btn-interactive-outline scope-deletion-button" id="scopeRequestDeletionButton" type="button" hidden>Request Content Deletion</button>
-                    <button class="btn btn-danger scope-deletion-button" id="scopeDeleteButton" type="button" hidden>Delete Record</button>
-                    <button class="btn btn-interactive-primary" type="submit">Save Scope Updates</button>
+                    <button class="btn btn-interactive-outline" id="scopeEditCancelButton" type="button" data-trn="scope_action_cancel">Cancel</button>
+                    <button class="btn btn-interactive-outline scope-deletion-button" id="scopeRequestDeletionButton" type="button" hidden data-trn="scope_request_deletion">Request Content Deletion</button>
+                    <button class="btn btn-danger scope-deletion-button" id="scopeDeleteButton" type="button" hidden data-trn="scope_action_delete">Delete Record</button>
+                    <button class="btn btn-interactive-primary" type="submit" data-trn="scope_action_save">Save Scope Updates</button>
                 </footer>
             </form>
         </section>
